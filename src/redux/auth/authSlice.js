@@ -4,7 +4,7 @@ import storage from "redux-persist/lib/storage";
 import { authRegister } from "./authOperations";
 
 const initialState = {
-  user: { username: null, email: null },
+  user: { displayName: null, email: null },
   token: null,
   error: null,
   isLoading: false,
@@ -26,7 +26,7 @@ const authSlice = createSlice({
       })
       .addCase(authRegister.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.user = payload.user;
+        state.user = payload;
       });
   },
 });
