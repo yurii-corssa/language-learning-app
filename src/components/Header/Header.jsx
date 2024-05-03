@@ -5,8 +5,9 @@ import LoginForm from "../LoginForm/LoginForm";
 
 const Header = () => {
   const [isModal, setIsModal] = useState(null);
-  const openRegistrationModal = () => {
-    setIsModal("registration");
+
+  const onClose = () => {
+    setIsModal(null);
   };
 
   return (
@@ -26,21 +27,21 @@ const Header = () => {
       </nav>
       <ul>
         <li>
-          <button>Log in</button>
+          <button onClick={() => setIsModal("login")}>Log in</button>
         </li>
         <li>
-          <button type="button" onClick={openRegistrationModal}>
+          <button type="button" onClick={() => setIsModal("registration")}>
             Registration
           </button>
         </li>
       </ul>
       {isModal === "registration" && (
-        <Modal>
+        <Modal onClose={onClose}>
           <RegistrationForm />
         </Modal>
       )}
       {isModal === "login" && (
-        <Modal>
+        <Modal onClose={() => setIsModal(null)}>
           <LoginForm />
         </Modal>
       )}
