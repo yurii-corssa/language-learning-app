@@ -6,7 +6,7 @@ import { GlobalStyle } from "./styles/GlobalStyle.styled";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename="/language-learning-app">
+    <BrowserRouter>
       <GlobalStyle />
       <App />
     </BrowserRouter>

@@ -1,7 +1,8 @@
 import { createPortal } from "react-dom";
-import { Backdrop, ModalBody } from "./Modal.styled";
+import { ModalCard } from "./Modal.styled";
 import XBtn from "../XBtn/XBtn";
 import { useEffect } from "react";
+import Backdrop from "../Backdrop/Backdrop";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -23,10 +24,10 @@ const Modal = ({ onClose, children }) => {
 
   return createPortal(
     <Backdrop onClick={handleClose}>
-      <ModalBody>
+      <ModalCard>
         <XBtn onClose={onClose} />
         {children}
-      </ModalBody>
+      </ModalCard>
     </Backdrop>,
     modalRoot
   );

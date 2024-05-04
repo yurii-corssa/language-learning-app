@@ -1,14 +1,11 @@
 import { useState } from "react";
 import Modal from "../Modal/Modal";
-import RegistrationForm from "../RegistrationForm/RegistrationForm";
-import LoginForm from "../LoginForm/LoginForm";
+import RegistrationForm from "../AuthForms/RegistrationForm/RegistrationForm";
+import LoginForm from "../AuthForms/LoginForm/LoginForm";
+import ModalBody from "../Modal/ModalBody/ModalBody";
 
 const Header = () => {
   const [isModal, setIsModal] = useState(null);
-
-  const onClose = () => {
-    setIsModal(null);
-  };
 
   return (
     <header>
@@ -36,13 +33,23 @@ const Header = () => {
         </li>
       </ul>
       {isModal === "registration" && (
-        <Modal onClose={onClose}>
-          <RegistrationForm />
+        <Modal onClose={() => setIsModal(null)}>
+          <ModalBody
+            title="Registration"
+            text="Thank you for your interest in our platform! In order to register, we need some information. Please provide us with the following information"
+          >
+            <RegistrationForm onClose={() => setIsModal(null)} />
+          </ModalBody>
         </Modal>
       )}
       {isModal === "login" && (
         <Modal onClose={() => setIsModal(null)}>
-          <LoginForm />
+          <ModalBody
+            title="Log In"
+            text="Welcome back! Please enter your credentials to access your account and continue your search for an teacher."
+          >
+            <LoginForm onClose={() => setIsModal(null)} />
+          </ModalBody>
         </Modal>
       )}
     </header>
