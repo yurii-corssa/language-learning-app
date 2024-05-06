@@ -1,2 +1,2 @@
-// export { Modal } from "./Modal";
-// export { ModalBody } from "./ModalBody/ModalBody";
+export { default as Modal } from "./Modal";
+export { default as ModalBody } from "./ModalBody/ModalBody";
