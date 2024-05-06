@@ -23,10 +23,6 @@ const RegistrationForm = ({ onClose }) => {
     }
   };
 
-  // const handleLogout = async () => {
-  //   await signOut(auth);
-  // };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>

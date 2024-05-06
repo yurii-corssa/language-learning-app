@@ -6,7 +6,7 @@ const HomePage = () => {
 
   return (
     <div>
-      {loading ? "loading..." : <p> {user.email} </p>}
+      {loading ? "loading..." : <p> {user?.email} </p>}
       {error}
     </div>
   );

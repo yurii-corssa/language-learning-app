@@ -1,57 +1,51 @@
-import { useState } from "react";
-import Modal from "../Modal/Modal";
-import RegistrationForm from "../AuthForms/RegistrationForm/RegistrationForm";
-import LoginForm from "../AuthForms/LoginForm/LoginForm";
-import ModalBody from "../Modal/ModalBody/ModalBody";
+import { routes } from "../../helpers/routes";
+import { NavLink } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "/firebaseApp";
+import { useAuthState } from "react-firebase-hooks/auth";
 
-const Header = () => {
-  const [isModal, setIsModal] = useState(null);
+const Header = ({ openModal }) => {
+  const [user] = useAuthState(auth);
 
   return (
     <header>
       <nav>
         <ul>
           <li>
-            <a href="/">Logo</a>
+            <NavLink to={routes.HOME}>Logo</NavLink>
           </li>
+
           <li>
-            <a href="/">Home</a>
+            <NavLink to={routes.HOME}>Home</NavLink>
           </li>
+
           <li>
-            <a href="/teachers">Teachers</a>
+            <NavLink to={routes.TEACHERS}>Teachers</NavLink>
           </li>
+
+          {user && (
+            <li>
+              <NavLink to={routes.FAVORITES}>Favorites</NavLink>
+            </li>
+          )}
         </ul>
       </nav>
-      <ul>
-        <li>
-          <button onClick={() => setIsModal("login")}>Log in</button>
-        </li>
-        <li>
-          <button type="button" onClick={() => setIsModal("registration")}>
-            Registration
+
+      <div>
+        {!user ? (
+          <>
+            <button onClick={() => openModal("login")}>Log in</button>
+
+            <button type="button" onClick={() => openModal("registration")}>
+              Registration
+            </button>
+          </>
+        ) : (
+          <button type="button" onClick={() => signOut(auth)}>
+            Log Out
           </button>
-        </li>
-      </ul>
-      {isModal === "registration" && (
-        <Modal onClose={() => setIsModal(null)}>
-          <ModalBody
-            title="Registration"
-            text="Thank you for your interest in our platform! In order to register, we need some information. Please provide us with the following information"
-          >
-            <RegistrationForm onClose={() => setIsModal(null)} />
-          </ModalBody>
-        </Modal>
-      )}
-      {isModal === "login" && (
-        <Modal onClose={() => setIsModal(null)}>
-          <ModalBody
-            title="Log In"
-            text="Welcome back! Please enter your credentials to access your account and continue your search for an teacher."
-          >
-            <LoginForm onClose={() => setIsModal(null)} />
-          </ModalBody>
-        </Modal>
-      )}
+        )}
+      </div>
     </header>
   );
 };
