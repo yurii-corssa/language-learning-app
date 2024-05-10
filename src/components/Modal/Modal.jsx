@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import { ModalCard } from "./Modal.styled";
-import XBtn from "../XBtn/XBtn";
+import { IconBtn } from "../ui";
+import { LuX } from "react-icons/lu";
 import { useEffect } from "react";
 import Backdrop from "../Backdrop/Backdrop";
 
@@ -25,7 +26,7 @@ const Modal = ({ onClose, children }) => {
   return createPortal(
     <Backdrop onClick={handleClose}>
       <ModalCard>
-        <XBtn onClose={onClose} />
+        <IconBtn icon={LuX} onClick={onClose} />
         {children}
       </ModalCard>
     </Backdrop>,

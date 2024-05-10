@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const XBtnStyled = styled.button`
+export const IconBtnStyled = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
