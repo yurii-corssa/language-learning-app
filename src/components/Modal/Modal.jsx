@@ -8,23 +8,22 @@ import Backdrop from "../Backdrop/Backdrop";
 const modalRoot = document.querySelector("#modal-root");
 
 const Modal = ({ onClose, children }) => {
-  const handleClose = (e) => {
-    if (e.target === e.currentTarget || e.code === "Escape") {
-      onClose();
-    }
-  };
-
   useEffect(() => {
-    document.addEventListener("keydown", handleClose);
+    const handleCloseKeydown = (e) => {
+      if (e.code === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleCloseKeydown);
 
     return () => {
-      document.removeEventListener("keydown", handleClose);
+      document.removeEventListener("keydown", handleCloseKeydown);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [onClose]);
 
   return createPortal(
-    <Backdrop onClick={handleClose}>
+    <Backdrop onClose={onClose}>
       <ModalCard>
         <IconBtn icon={LuX} onClick={onClose} />
         {children}
