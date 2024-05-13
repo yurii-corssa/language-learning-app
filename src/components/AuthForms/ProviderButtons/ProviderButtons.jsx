@@ -12,7 +12,7 @@ const ProviderButtons = ({ onClose, isLoading, setIsLoading, setError }) => {
 
     try {
       setError("authentication", {});
-      const res = await signInWithPopup(auth, provider);
+      await signInWithPopup(auth, provider);
       setIsLoading(false);
       onClose();
     } catch {
