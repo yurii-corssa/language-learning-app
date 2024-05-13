@@ -3,33 +3,57 @@ import { loginSchema } from "/helpers/schemas";
 import { useForm } from "react-hook-form";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "/firebaseApp";
+import { ProviderButtons } from "../";
+import { useEffect, useState } from "react";
 
 const LoginForm = ({ onClose }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(loginSchema),
   });
+
+  useEffect(() => {
+    setIsLoading(formState.isSubmitting);
+  }, [formState.isSubmitting]);
 
   const onSubmit = async ({ email, password }) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       onClose();
-    } catch (e) {
-      control.setError("login", { message: "Incorrect login or password, please try again" });
+    } catch {
+      control.setError("authentication", {
+        message: "Incorrect login or password, please try again",
+      });
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <input type="text" placeholder="Email" {...register("email")} />
+        <input type="text" placeholder="Email" {...register("email")} disabled={isLoading} />
         <p>{formState.errors.email?.message}</p>
 
-        <input type="password" placeholder="Password" {...register("password")} />
+        <input
+          type="password"
+          placeholder="Password"
+          {...register("password")}
+          disabled={isLoading}
+        />
         <p>{formState.errors.password?.message}</p>
-        <p>{formState.errors.login?.message}</p>
+        <p>{formState.errors.authentication?.message}</p>
       </div>
 
-      <button> {formState.isSubmitting ? "loading..." : "Log in"} </button>
+      <button disabled={isLoading}> {formState.isSubmitting ? "loading..." : "Log in"} </button>
+
+      <ProviderButtons
+        onClose={onClose}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        setError={control.setError}
+      />
+
+      {isLoading && <div>Loader...</div>}
     </form>
   );
 };

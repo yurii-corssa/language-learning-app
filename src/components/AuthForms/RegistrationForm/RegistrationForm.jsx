@@ -1,13 +1,21 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registrationSchema } from "/helpers/schemas";
-import { auth } from "/firebaseApp";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../../../firebaseApp";
+import { ProviderButtons } from "../";
+import { useEffect, useState } from "react";
 
 const RegistrationForm = ({ onClose }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(registrationSchema),
   });
+
+  useEffect(() => {
+    setIsLoading(formState.isSubmitting);
+  }, [formState.isSubmitting]);
 
   const onSubmit = async ({ displayName, email, password }) => {
     try {
@@ -16,8 +24,8 @@ const RegistrationForm = ({ onClose }) => {
         displayName,
       });
       onClose();
-    } catch (e) {
-      control.setError("registration", {
+    } catch {
+      control.setError("authentication", {
         message: "Registration error, please try again later or use another email address",
       });
     }
@@ -26,18 +34,32 @@ const RegistrationForm = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <input type="text" placeholder="Name" {...register("displayName")} />
+        <input type="text" placeholder="Name" {...register("displayName")} disabled={isLoading} />
         <p>{formState.errors.displayName?.message}</p>
 
-        <input type="email" placeholder="Email" {...register("email")} />
+        <input type="email" placeholder="Email" {...register("email")} disabled={isLoading} />
         <p>{formState.errors.email?.message}</p>
 
-        <input type="password" placeholder="Password" {...register("password")} />
+        <input
+          type="password"
+          placeholder="Password"
+          {...register("password")}
+          disabled={isLoading}
+        />
         <p>{formState.errors.password?.message}</p>
-        <p>{formState.errors.registration?.message}</p>
+        <p>{formState.errors.authentication?.message}</p>
       </div>
 
-      <button> {formState.isSubmitting ? "loading..." : "Sign Up"} </button>
+      <button disabled={isLoading}>{formState.isSubmitting ? "loading..." : "Sign Up"}</button>
+
+      <ProviderButtons
+        onClose={onClose}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        setError={control.setError}
+      />
+
+      {isLoading && <div>Loader...</div>}
     </form>
   );
 };
