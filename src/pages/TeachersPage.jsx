@@ -1,29 +1,23 @@
-import { database } from "../firebaseApp";
-import { ref } from "firebase/database";
-// import { useEffect } from "react";
-import { useList } from "react-firebase-hooks/database";
 import TeacherCard from "../components/TeacherCard/TeacherCard";
+import { useTeachers } from "../hooks/useTeachers";
 
 const TeachersPage = () => {
-  const [snapshots, loading, error] = useList(ref(database));
+  const [teachers, setDisplayedCardCount, isLoading, error] = useTeachers(3);
 
-  // useEffect(() => {
-  //   console.log(loading);
-  // }, [loading]);
-
-  // useEffect(() => {
-  //   console.log(error);
-  // }, [error]);
-
-  // useEffect(() => {}, [snapshots]);
+  const showMoreCards = () => {
+    setDisplayedCardCount((prevCount) => prevCount + 5);
+  };
 
   return (
     <div>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>Error: {error.message}</p>}
       <ul>
-        {snapshots.map((el) => {
-          return <TeacherCard key={el.key} data={el.val()} />;
+        {teachers.map((el) => {
+          return <TeacherCard key={el.key} data={el} />;
         })}
       </ul>
+      <button onClick={showMoreCards}>Load more</button>
     </div>
   );
 };
