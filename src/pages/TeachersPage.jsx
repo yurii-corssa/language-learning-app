@@ -1,12 +1,10 @@
 import TeacherCard from "../components/TeacherCard/TeacherCard";
 import { useTeachers } from "../hooks/useTeachers";
 
-const TeachersPage = () => {
-  const [teachers, setDisplayedCardCount, isLoading, error] = useTeachers(3);
+const INITIAL_DISPLAY_COUNT = 4;
 
-  const showMoreCards = () => {
-    setDisplayedCardCount((prevCount) => prevCount + 5);
-  };
+const TeachersPage = () => {
+  const [teachers, isLoading, error, showMore] = useTeachers(INITIAL_DISPLAY_COUNT);
 
   return (
     <div>
@@ -14,10 +12,10 @@ const TeachersPage = () => {
       {error && <p>Error: {error.message}</p>}
       <ul>
         {teachers.map((el) => {
-          return <TeacherCard key={el.key} data={el} />;
+          return <TeacherCard key={el.tid} teacherData={el} />;
         })}
       </ul>
-      <button onClick={showMoreCards}>Load more</button>
+      <button onClick={showMore}>Load more</button>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "/firebaseApp";
+import { auth } from "../firebaseApp";
 
 const HomePage = () => {
   const [user, loading, error] = useAuthState(auth);

@@ -1,10 +1,8 @@
-import { get, limitToFirst, orderByKey, query, ref, startAfter } from "firebase/database";
 import { useEffect, useState } from "react";
-import { database } from "../firebaseApp";
+import { getTeachers } from "../api/teachers";
 
-export const useTeachers = (initialDisplayCount) => {
+export const useTeachers = (initialDisplayCount = 4) => {
   const [teachers, setTeachers] = useState([]);
-  const [displayedCardCount, setDisplayedCardCount] = useState(initialDisplayCount);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -12,35 +10,33 @@ export const useTeachers = (initialDisplayCount) => {
     setIsLoading(true);
 
     const fetchTrachers = async () => {
-      const newTeachers = [];
-      const lastTeacherKey = displayedCardCount - initialDisplayCount - 1;
-      const queryRef = query(
-        ref(database),
-        orderByKey(),
-        startAfter(lastTeacherKey.toString()),
-        limitToFirst(initialDisplayCount)
-      );
-
       try {
-        const snapshot = await get(queryRef);
-
-        snapshot.forEach((teacher) => {
-          newTeachers.push({ key: teacher.key, ...teacher.val() });
-        });
-        if (initialDisplayCount === displayedCardCount) {
-          setTeachers(newTeachers);
-        } else {
-          setTeachers((prevTeachers) => [...prevTeachers, ...newTeachers]);
-        }
+        const newTeachers = await getTeachers(initialDisplayCount);
+        setTeachers(newTeachers);
       } catch (error) {
         setError(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchTrachers();
+  }, [initialDisplayCount]);
 
-    setIsLoading(false);
-  }, [displayedCardCount, initialDisplayCount]);
+  const showMore = async () => {
+    setIsLoading(true);
 
-  return [teachers, setDisplayedCardCount, isLoading, error];
+    const lastTeacherKey = teachers[teachers.length - 1]?.tid;
+
+    try {
+      const newTeachers = await getTeachers(initialDisplayCount, lastTeacherKey);
+      setTeachers((prevTeachers) => [...prevTeachers, ...newTeachers]);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return [teachers, isLoading, error, showMore];
 };
