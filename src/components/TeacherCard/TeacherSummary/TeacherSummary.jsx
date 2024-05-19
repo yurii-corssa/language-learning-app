@@ -1,7 +1,7 @@
 import { LuBookOpen } from "react-icons/lu";
 import { FaStar } from "react-icons/fa";
 
-const TeacherSummary = ({ lessonsDone, rating, pricePerHour }) => {
+const TeacherSummary = ({ lessonsDone, rating, price }) => {
   return (
     <ul className="LessonInfo">
       <li>
@@ -19,7 +19,7 @@ const TeacherSummary = ({ lessonsDone, rating, pricePerHour }) => {
       </li>
 
       <li>
-        <span>{`Price / 1 hour: ${`${pricePerHour}$`}`}</span>
+        <span>{`Price / 1 hour: ${`${price}$`}`}</span>
       </li>
     </ul>
   );

@@ -1,49 +1,58 @@
 import { FaRegHeart } from "react-icons/fa";
 import { DetailedInfo, TeacherSummary, Reviews, Levels } from "./";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { auth } from "../../firebaseApp";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { addToFavorites } from "../../api/users";
 
-const TeacherCard = ({ data }) => {
+const TeacherCard = ({ teacherData }) => {
+  const { tid, name, surname, avatar_url: avatarUrl } = teacherData;
+  const { levels, rating, reviews, languages, conditions, experience } = teacherData;
+  const { lesson_info: lessonInfo, lessons_done: lessonsDone, price_per_hour: price } = teacherData;
+
   const [showMoreInfo, setShowMoreInfo] = useState(false);
-  const fullName = `${data.name} ${data.surname}`;
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [user] = useAuthState(auth);
+
+  const fullName = `${name} ${surname}`;
+
+  useEffect(() => {}, []);
+
+  const handleFavoriteClick = async () => {
+    await addToFavorites(user.uid, tid);
+    setIsFavorite(true);
+  };
 
   return (
     <li>
       <div className="TeacherAvatar">
-        <img src={data.avatar_url} alt={fullName} width="96" height="96" />
+        <img src={avatarUrl} alt={fullName} width="96" height="96" />
       </div>
 
       <div className="TeacherCardContent">
         <div className="TeacherCardHeader">
           <h2 className="TeacherName">{fullName} </h2>
 
-          <TeacherSummary
-            lessonsDone={data.lessons_done}
-            rating={data.rating}
-            pricePerHour={data.price_per_hour}
-          />
+          <TeacherSummary lessonsDone={lessonsDone} rating={rating} price={price} />
 
-          <button className="HeartBtn">
+          <button className="HeartBtn" onClick={handleFavoriteClick}>
             <FaRegHeart />
           </button>
         </div>
 
-        <DetailedInfo
-          languages={data.languages}
-          lessonInfo={data.lesson_info}
-          conditions={data.conditions}
-        />
+        <DetailedInfo languages={languages} lessonInfo={lessonInfo} conditions={conditions} />
 
         {showMoreInfo ? (
           <div className="moreInfo">
-            <p className="experience">{data.experience}</p>
+            <p className="experience">{experience}</p>
 
-            <Reviews reviews={data.reviews} />
+            <Reviews reviews={reviews} />
           </div>
         ) : (
           <button onClick={() => setShowMoreInfo(!showMoreInfo)}>Read more</button>
         )}
 
-        <Levels levels={data.levels} />
+        <Levels levels={levels} />
 
         <button>Book trial lesson</button>
       </div>
