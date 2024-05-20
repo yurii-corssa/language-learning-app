@@ -3,6 +3,8 @@ import { lazy } from "react";
 import { routes } from "./helpers/routes";
 import SharedLayout from "./components/SharedLayout";
 import PrivateRoute from "./components/PrivateRoute";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebaseApp";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const TeachersPage = lazy(() => import("./pages/TeachersPage"));
@@ -10,7 +12,11 @@ const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 function App() {
-  return (
+  const loading = useAuthState(auth)[1];
+
+  return loading ? (
+    <div>Loading...</div>
+  ) : (
     <Routes>
       <Route path={routes.HOME} element={<SharedLayout />}>
         <Route index element={<HomePage />} />

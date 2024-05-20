@@ -29,13 +29,20 @@ export const getTeachersByIds = async (teacherIds) => {
 
   const teachersRef = ref(database, "teachers");
 
-  for (const teacherId of teacherIds) {
+  teacherIds.forEach(async (teacherId) => {
     const snapshot = await get(child(teachersRef, teacherId));
-
     if (snapshot.exists()) {
       newTeachers.push({ tid: snapshot.key, ...snapshot.val() });
     }
-  }
+  });
+
+  // for (const teacherId of teacherIds) {
+  //   const snapshot = await get(child(teachersRef, teacherId));
+
+  //   if (snapshot.exists()) {
+  //     newTeachers.push({ tid: snapshot.key, ...snapshot.val() });
+  //   }
+  // }
 
   return newTeachers;
 };

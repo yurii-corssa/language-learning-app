@@ -1,26 +1,44 @@
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { DetailedInfo, TeacherSummary, Reviews, Levels } from "./";
 import { useEffect, useState } from "react";
 import { auth } from "../../firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { addToFavorites } from "../../api/users";
+import { addToFavorites, removeFromFavorites } from "../../api/users";
 
-const TeacherCard = ({ teacherData }) => {
+const TeacherCard = ({ teacherData, favorites }) => {
+  const [showMoreInfo, setShowMoreInfo] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [error, setError] = useState(null);
+  const [user] = useAuthState(auth);
+
   const { tid, name, surname, avatar_url: avatarUrl } = teacherData;
   const { levels, rating, reviews, languages, conditions, experience } = teacherData;
   const { lesson_info: lessonInfo, lessons_done: lessonsDone, price_per_hour: price } = teacherData;
-
-  const [showMoreInfo, setShowMoreInfo] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [user] = useAuthState(auth);
-
   const fullName = `${name} ${surname}`;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (user) {
+      if (Object.values(favorites).includes(tid)) {
+        setIsFavorite(true);
+      }
+    } else {
+      setIsFavorite(false);
+    }
+  }, [favorites, tid, user]);
 
   const handleFavoriteClick = async () => {
-    await addToFavorites(user.uid, tid);
-    setIsFavorite(true);
+    try {
+      if (isFavorite) {
+        await removeFromFavorites(user.uid, tid);
+        setIsFavorite(false);
+      } else {
+        const added = await addToFavorites(user.uid, tid);
+        console.log(added);
+        setIsFavorite(true);
+      }
+    } catch (error) {
+      setError(error);
+    }
   };
 
   return (
@@ -36,7 +54,7 @@ const TeacherCard = ({ teacherData }) => {
           <TeacherSummary lessonsDone={lessonsDone} rating={rating} price={price} />
 
           <button className="HeartBtn" onClick={handleFavoriteClick}>
-            <FaRegHeart />
+            {isFavorite ? <FaHeart /> : <FaRegHeart />}
           </button>
         </div>
 
