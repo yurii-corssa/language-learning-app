@@ -1,12 +1,8 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import { Modal, ModalBody } from "../components/Modal";
 import { LoginForm, RegistrationForm } from "../components/AuthForms";
 
-const ModalContext = createContext();
-
-export const useModal = () => {
-  return useContext(ModalContext);
-};
+export const ModalContext = createContext();
 
 export const ModalProvider = ({ children }) => {
   const [isModal, setIsModal] = useState(null);

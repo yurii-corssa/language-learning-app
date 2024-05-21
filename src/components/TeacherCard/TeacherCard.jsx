@@ -2,7 +2,7 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { DetailedInfo, TeacherSummary, Reviews, Levels } from "./";
 import { useEffect, useState } from "react";
 import { addToFavorites, removeFromFavorites } from "../../api/users";
-import { useModal } from "../../contexts/ModalContext";
+import { useModal } from "../../hooks/useModal";
 
 const TeacherCard = ({ teacherData, user, favorites }) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
