@@ -1,20 +1,20 @@
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { DetailedInfo, TeacherSummary, Reviews, Levels } from "./";
 import { useEffect, useState } from "react";
-import { auth } from "../../firebaseApp";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { addToFavorites, removeFromFavorites } from "../../api/users";
+import { useModal } from "../../contexts/ModalContext";
 
-const TeacherCard = ({ teacherData, favorites }) => {
+const TeacherCard = ({ teacherData, user, favorites }) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [error, setError] = useState(null);
-  const [user] = useAuthState(auth);
 
   const { tid, name, surname, avatar_url: avatarUrl } = teacherData;
   const { levels, rating, reviews, languages, conditions, experience } = teacherData;
   const { lesson_info: lessonInfo, lessons_done: lessonsDone, price_per_hour: price } = teacherData;
   const fullName = `${name} ${surname}`;
+
+  const { openModal } = useModal();
 
   useEffect(() => {
     if (user) {
@@ -26,15 +26,23 @@ const TeacherCard = ({ teacherData, favorites }) => {
     }
   }, [favorites, tid, user]);
 
+  useEffect(() => {
+    if (error) alert(error);
+  }, [error]);
+
   const handleFavoriteClick = async () => {
+    if (!user) {
+      openModal("authRequired");
+      return;
+    }
+
     try {
-      if (isFavorite) {
+      if (!isFavorite) {
+        await addToFavorites(user.uid, tid);
+        setIsFavorite(true);
+      } else {
         await removeFromFavorites(user.uid, tid);
         setIsFavorite(false);
-      } else {
-        const added = await addToFavorites(user.uid, tid);
-        console.log(added);
-        setIsFavorite(true);
       }
     } catch (error) {
       setError(error);

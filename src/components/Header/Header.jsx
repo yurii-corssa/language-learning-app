@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useModal } from "../../contexts/ModalContext";
 
-const Header = ({ openModal }) => {
+const Header = () => {
   const [user] = useAuthState(auth);
+  const { openModal } = useModal();
 
   return (
     <header>

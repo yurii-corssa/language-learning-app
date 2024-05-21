@@ -29,7 +29,7 @@ const TeachersPage = () => {
       {error && <p>Error: {error.message}</p>}
       <ul>
         {teachers.map((el) => {
-          return <TeacherCard key={el.tid} teacherData={el} favorites={favorites} />;
+          return <TeacherCard key={el.tid} teacherData={el} user={user} favorites={favorites} />;
         })}
       </ul>
       <button onClick={showMore}>Load more</button>
