@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { ModalCard } from "./Modal.styled";
+import { ModalCard } from "./SharedModal.styled";
 import { IconBtn } from "../ui";
 import { LuX } from "react-icons/lu";
 import { useEffect } from "react";
@@ -7,7 +7,7 @@ import Backdrop from "../Backdrop/Backdrop";
 
 const modalRoot = document.querySelector("#modal-root");
 
-const Modal = ({ onClose, children }) => {
+const SharedModal = ({ onClose, children }) => {
   useEffect(() => {
     const handleCloseKeydown = (e) => {
       if (e.code === "Escape") {
@@ -33,4 +33,4 @@ const Modal = ({ onClose, children }) => {
   );
 };
 
-export default Modal;
+export default SharedModal;
