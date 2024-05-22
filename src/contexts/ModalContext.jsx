@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
-import { Modal, ModalBody } from "../components/Modal";
-import { LoginForm, RegistrationForm } from "../components/AuthForms";
+import { RegistrationModal, LoginModal, AuthRequiredModal } from "../components/Modals/";
+import { types } from "../helpers/modalTypes";
 
 export const ModalContext = createContext();
 
@@ -18,39 +18,10 @@ export const ModalProvider = ({ children }) => {
   return (
     <ModalContext.Provider value={{ openModal, closeModal }}>
       {children}
-
-      {isModal === "registration" && (
-        <Modal onClose={() => setIsModal(null)}>
-          <ModalBody
-            title="Registration"
-            text="Thank you for your interest in our platform! In order to register, we need some information. Please provide us with the following information"
-          >
-            <RegistrationForm onClose={() => setIsModal(null)} />
-          </ModalBody>
-        </Modal>
-      )}
-
-      {isModal === "login" && (
-        <Modal onClose={() => setIsModal(null)}>
-          <ModalBody
-            title="Log In"
-            text="Welcome back! Please enter your credentials to access your account and continue your search for an teacher."
-          >
-            <LoginForm onClose={() => setIsModal(null)} />
-          </ModalBody>
-        </Modal>
-      )}
-
-      {isModal === "authRequired" && (
-        <Modal onClose={() => setIsModal(null)}>
-          <ModalBody
-            title="Authentication Required"
-            text="You need to be logged in to access this feature."
-          >
-            <button onClick={() => openModal("login")}>Log in</button>
-            <button onClick={() => openModal("registration")}>Registration</button>
-          </ModalBody>
-        </Modal>
+      {isModal === types.SIGN_UP && <RegistrationModal onClose={closeModal} />}
+      {isModal === types.SIGN_IN && <LoginModal onClose={closeModal} />}
+      {isModal === types.AUTH_REQ && (
+        <AuthRequiredModal onClose={closeModal} openModal={openModal} />
       )}
     </ModalContext.Provider>
   );

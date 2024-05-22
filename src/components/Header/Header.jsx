@@ -4,6 +4,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useModal } from "../../hooks/useModal";
+import { types } from "../../helpers/modalTypes";
 
 const Header = () => {
   const [user] = useAuthState(auth);
@@ -36,9 +37,9 @@ const Header = () => {
       <div>
         {!user ? (
           <>
-            <button onClick={() => openModal("login")}>Log in</button>
+            <button onClick={() => openModal(types.SIGN_IN)}>Log in</button>
 
-            <button type="button" onClick={() => openModal("registration")}>
+            <button type="button" onClick={() => openModal(types.SIGN_UP)}>
               Registration
             </button>
           </>

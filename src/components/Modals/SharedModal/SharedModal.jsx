@@ -1,9 +1,9 @@
 import { createPortal } from "react-dom";
 import { ModalCard } from "./SharedModal.styled";
-import { IconBtn } from "../ui";
+import { IconBtn } from "../../ui";
 import { LuX } from "react-icons/lu";
 import { useEffect } from "react";
-import Backdrop from "../Backdrop/Backdrop";
+import Backdrop from "../../Backdrop/Backdrop";
 
 const modalRoot = document.querySelector("#modal-root");
 
