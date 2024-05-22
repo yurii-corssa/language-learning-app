@@ -1,28 +1,23 @@
-import { createContext, useState } from "react";
-import { RegistrationModal, LoginModal, AuthRequiredModal } from "../components/Modals/";
-import { types } from "../helpers/modalTypes";
+import { createContext, useCallback, useState } from "react";
+import { SharedModal } from "../components/Modals/";
 
 export const ModalContext = createContext();
 
 export const ModalProvider = ({ children }) => {
-  const [isModal, setIsModal] = useState(null);
+  const [modal, setModal] = useState({ isOpen: false, content: null });
 
-  const openModal = (nameModal) => {
-    setIsModal(nameModal);
-  };
+  const openModal = useCallback((content) => {
+    setModal({ isOpen: true, content });
+  }, []);
 
-  const closeModal = () => {
-    setIsModal(null);
-  };
+  const closeModal = useCallback(() => {
+    setModal({ isOpen: false, content: null });
+  }, []);
 
   return (
-    <ModalContext.Provider value={{ openModal, closeModal }}>
+    <ModalContext.Provider value={{ modal, openModal, closeModal }}>
       {children}
-      {isModal === types.SIGN_UP && <RegistrationModal onClose={closeModal} />}
-      {isModal === types.SIGN_IN && <LoginModal onClose={closeModal} />}
-      {isModal === types.AUTH_REQ && (
-        <AuthRequiredModal onClose={closeModal} openModal={openModal} />
-      )}
+      {modal.isOpen && <SharedModal onClose={closeModal}>{modal.content}</SharedModal>}
     </ModalContext.Provider>
   );
 };

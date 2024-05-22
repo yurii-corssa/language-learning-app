@@ -3,6 +3,7 @@ import { DetailedInfo, TeacherSummary, Reviews, Levels } from "./";
 import { useEffect, useState } from "react";
 import { addToFavorites, removeFromFavorites } from "../../api/users";
 import { useModal } from "../../hooks/useModal";
+import { AuthRequiredModal } from "../Modals";
 
 const TeacherCard = ({ teacherData, user, favorites }) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
@@ -14,7 +15,7 @@ const TeacherCard = ({ teacherData, user, favorites }) => {
   const { lesson_info: lessonInfo, lessons_done: lessonsDone, price_per_hour: price } = teacherData;
   const fullName = `${name} ${surname}`;
 
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
   useEffect(() => {
     if (user) {
@@ -32,7 +33,7 @@ const TeacherCard = ({ teacherData, user, favorites }) => {
 
   const handleFavoriteClick = async () => {
     if (!user) {
-      openModal("authRequired");
+      openModal(<AuthRequiredModal closeModal={closeModal} openModal={openModal} />);
       return;
     }
 

@@ -5,10 +5,11 @@ import { auth } from "/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useModal } from "../../hooks/useModal";
 import { types } from "../../helpers/modalTypes";
+import { LoginModal, RegistrationModal } from "../Modals";
 
 const Header = () => {
   const [user] = useAuthState(auth);
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
   return (
     <header>
@@ -37,9 +38,9 @@ const Header = () => {
       <div>
         {!user ? (
           <>
-            <button onClick={() => openModal(types.SIGN_IN)}>Log in</button>
+            <button onClick={() => openModal(<LoginModal onClose={closeModal} />)}>Log in</button>
 
-            <button type="button" onClick={() => openModal(types.SIGN_UP)}>
+            <button onClick={() => openModal(<RegistrationModal onClose={closeModal} />)}>
               Registration
             </button>
           </>

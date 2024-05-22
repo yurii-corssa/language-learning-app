@@ -1,18 +1,18 @@
-import { types } from "../../../helpers/modalTypes";
+import LoginModal from "../LoginModal/LoginModal";
+import RegistrationModal from "../RegistrationModal/RegistrationModal";
 import ModalBody from "../SharedModal/ModalBody/ModalBody";
-import SharedModal from "../SharedModal/SharedModal";
 
-const AuthRequiredModal = ({ onClose, openModal }) => {
+const AuthRequiredModal = ({ closeModal, openModal }) => {
   return (
-    <SharedModal onClose={onClose}>
-      <ModalBody
-        title="Authentication Required"
-        text="You need to be logged in to access this feature."
-      >
-        <button onClick={() => openModal(types.SIGN_IN)}>Log in</button>
-        <button onClick={() => openModal(types.SIGN_UP)}>Registration</button>
-      </ModalBody>
-    </SharedModal>
+    <ModalBody
+      title="Authentication Required"
+      text="You need to be logged in to access this feature."
+    >
+      <button onClick={() => openModal(<LoginModal onClose={closeModal} />)}>Log in</button>
+      <button onClick={() => openModal(<RegistrationModal onClose={closeModal} />)}>
+        Registration
+      </button>
+    </ModalBody>
   );
 };
 
