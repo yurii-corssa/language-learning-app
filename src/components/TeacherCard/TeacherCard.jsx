@@ -3,7 +3,7 @@ import { DetailedInfo, TeacherSummary, Reviews, Levels } from "./";
 import { useEffect, useState } from "react";
 import { addToFavorites, removeFromFavorites } from "../../api/users";
 import { useModal } from "../../hooks/useModal";
-import { AuthRequiredModal } from "../Modals";
+import { AuthRequiredModal, BookLessonModal } from "../Modals";
 
 const TeacherCard = ({ teacherData, user, favorites }) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
@@ -81,7 +81,13 @@ const TeacherCard = ({ teacherData, user, favorites }) => {
 
         <Levels levels={levels} />
 
-        <button>Book trial lesson</button>
+        <button
+          onClick={() =>
+            openModal(<BookLessonModal teacherData={teacherData} closeModal={closeModal} />)
+          }
+        >
+          Book trial lesson
+        </button>
       </div>
     </li>
   );

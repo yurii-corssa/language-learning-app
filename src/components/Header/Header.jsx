@@ -4,7 +4,6 @@ import { signOut } from "firebase/auth";
 import { auth } from "/firebaseApp";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useModal } from "../../hooks/useModal";
-import { types } from "../../helpers/modalTypes";
 import { LoginModal, RegistrationModal } from "../Modals";
 
 const Header = () => {
