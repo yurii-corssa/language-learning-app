@@ -5,27 +5,26 @@ import { addToFavorites, removeFromFavorites } from "../../api/users";
 import { useModal } from "../../hooks/useModal";
 import { AuthRequiredModal, BookLessonModal } from "../Modals";
 
-const TeacherCard = ({ teacherData, user, favorites }) => {
+const TeacherCard = ({ teacherData, user, favoriteIds }) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [error, setError] = useState(null);
+  const { openModal, closeModal } = useModal();
 
   const { tid, name, surname, avatar_url: avatarUrl } = teacherData;
   const { levels, rating, reviews, languages, conditions, experience } = teacherData;
   const { lesson_info: lessonInfo, lessons_done: lessonsDone, price_per_hour: price } = teacherData;
   const fullName = `${name} ${surname}`;
 
-  const { openModal, closeModal } = useModal();
-
   useEffect(() => {
     if (user) {
-      if (Object.values(favorites).includes(tid)) {
+      if (Object.values(favoriteIds).includes(tid)) {
         setIsFavorite(true);
       }
     } else {
       setIsFavorite(false);
     }
-  }, [favorites, tid, user]);
+  }, [favoriteIds, tid, user]);
 
   useEffect(() => {
     if (error) alert(error);

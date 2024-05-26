@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTeachers } from "../api/teachers";
 
-export const useTeachers = (initialDisplayCount = 4) => {
+export const useTeachers = (initialCount = 4) => {
   const [teachers, setTeachers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -11,7 +11,7 @@ export const useTeachers = (initialDisplayCount = 4) => {
 
     const fetchTrachers = async () => {
       try {
-        const newTeachers = await getTeachers(initialDisplayCount);
+        const newTeachers = await getTeachers(initialCount);
         setTeachers(newTeachers);
       } catch (error) {
         setError(error);
@@ -21,7 +21,7 @@ export const useTeachers = (initialDisplayCount = 4) => {
     };
 
     fetchTrachers();
-  }, [initialDisplayCount]);
+  }, [initialCount]);
 
   const showMore = async () => {
     setIsLoading(true);
@@ -29,7 +29,7 @@ export const useTeachers = (initialDisplayCount = 4) => {
     const lastTeacherKey = teachers[teachers.length - 1]?.tid;
 
     try {
-      const newTeachers = await getTeachers(initialDisplayCount, lastTeacherKey);
+      const newTeachers = await getTeachers(initialCount, lastTeacherKey);
       setTeachers((prevTeachers) => [...prevTeachers, ...newTeachers]);
     } catch (error) {
       setError(error);
