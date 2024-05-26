@@ -1,4 +1,4 @@
-import { child, get, push, ref, remove } from "firebase/database";
+import { child, get, off, onValue, push, ref, remove } from "firebase/database";
 import { database } from "../firebaseApp";
 
 export const addToFavorites = async (userId, teacherId) => {
@@ -16,9 +16,20 @@ export const removeFromFavorites = async (userId, teacherId) => {
   });
 };
 
-export const getFavorites = async (userId) => {
+export const subscribeToFavorites = (userId, callback) => {
   const favoriteRef = ref(database, `users/${userId}/favorites`);
-  const snapshot = await get(favoriteRef);
 
-  return snapshot.exists() ? snapshot.val() : {};
+  const handleValueChange = (snapshot) => {
+    if (snapshot.exists()) {
+      callback(snapshot.val());
+    } else {
+      callback({});
+    }
+  };
+
+  onValue(favoriteRef, handleValueChange);
+
+  return () => {
+    off(favoriteRef, handleValueChange);
+  };
 };
