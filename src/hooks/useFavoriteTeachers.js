@@ -31,9 +31,11 @@ export const useFavoriteTeachers = (favoriteIds, initialCount = 4) => {
             ...newFavoriteTeachers,
           ]);
         }
-
+        console.log(newFavoriteTeachers.length, initialCount);
         if (newFavoriteTeachers.length < initialCount) {
           setIsLastPage(true);
+        } else {
+          setIsLastPage(false);
         }
 
         setLastLoadedIndex(displayCount);
