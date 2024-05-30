@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { subscribeToFavorites } from "../api/users";
 
-const useFavoriteIds = (user) => {
+export const useFavoriteIds = (user) => {
   const [favoriteIds, setFavoriteIds] = useState([]);
   const [isLoadingIds, setIsLoadingIds] = useState(true);
 
@@ -9,7 +9,7 @@ const useFavoriteIds = (user) => {
     if (user) {
       setIsLoadingIds(true);
       const unsubscribe = subscribeToFavorites(user.uid, (favorites) => {
-        setFavoriteIds(Object.values(favorites));
+        setFavoriteIds(Object.values(favorites).reverse());
         setIsLoadingIds(false);
       });
 
@@ -23,5 +23,3 @@ const useFavoriteIds = (user) => {
 
   return [favoriteIds, isLoadingIds];
 };
-
-export default useFavoriteIds;
