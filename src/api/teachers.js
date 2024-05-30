@@ -1,40 +1,15 @@
-import {
-  child,
-  get,
-  limitToFirst,
-  orderByKey,
-  push,
-  query,
-  ref,
-  set,
-  startAfter,
-} from "firebase/database";
+import { get, push, ref, set } from "firebase/database";
 import { database } from "../firebaseApp";
 
-export const getTeachers = async (limit, start = "0") => {
+export const getAllTeachers = async () => {
   const newTeachers = [];
-  const teachersRef = ref(database, "teachers");
-  const queryRef = query(teachersRef, orderByKey(), limitToFirst(limit), startAfter(start));
 
-  const snapshot = await get(queryRef);
+  const teachersRef = ref(database, "teachers");
+
+  const snapshot = await get(teachersRef);
   snapshot.forEach((teacher) => {
     newTeachers.push({ tid: teacher.key, ...teacher.val() });
   });
-
-  return newTeachers;
-};
-
-export const getTeachersByIds = async (teacherIds) => {
-  const newTeachers = [];
-
-  const teachersRef = ref(database, "teachers");
-
-  for (const teacherId of teacherIds) {
-    const snapshot = await get(child(teachersRef, teacherId));
-    if (snapshot.exists()) {
-      newTeachers.push({ tid: snapshot.key, ...snapshot.val() });
-    }
-  }
 
   return newTeachers;
 };
