@@ -54,5 +54,5 @@ export const useTeachers = (filters, initialCount = 4) => {
     setVisibleCount((prevCount) => prevCount + initialCount);
   };
 
-  return [visibleTeachers, isLastPage, isLoading, error, showMore];
+  return [visibleTeachers, favoriteIds, isLastPage, isLoading, error, showMore];
 };
