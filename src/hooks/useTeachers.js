@@ -18,12 +18,18 @@ export const useTeachers = (filters, initialCount = 4) => {
   const [favoriteIds] = useFavoriteIds(user);
 
   useEffect(() => {
+    setVisibleCount(initialCount);
+  }, [initialCount, filters]);
+
+  useEffect(() => {
     const fetchTrachers = async () => {
       try {
         const newTeachers = await getAllTeachers();
         setAllTeachers(newTeachers);
       } catch (error) {
         setError(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -31,15 +37,17 @@ export const useTeachers = (filters, initialCount = 4) => {
   }, []);
 
   useEffect(() => {
-    const filteredTeacher = applyFilters(allTeachers, filters, favoriteIds);
+    if (allTeachers.length !== 0) {
+      const filteredTeacher = applyFilters(allTeachers, filters, favoriteIds);
 
-    if (visibleCount >= filteredTeacher.length && filteredTeacher.length !== 0) {
-      setIsLastPage(true);
+      if (visibleCount >= filteredTeacher.length && filteredTeacher.length !== 0) {
+        setIsLastPage(true);
+      } else {
+        setIsLastPage(false);
+      }
+
+      setVisibleTeachers(filteredTeacher.slice(0, visibleCount));
     }
-
-    setVisibleTeachers(filteredTeacher.slice(0, visibleCount));
-
-    setIsLoading(false);
   }, [allTeachers, favoriteIds, filters, initialCount, visibleCount]);
 
   const showMore = () => {
