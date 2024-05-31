@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { getAllTeachers } from "../api/teachers";
 import { applyFilters } from "../helpers/applyFilters";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebaseApp";
 import { useFavoriteIds } from "./useFavoriteIds";
+import { useAuth } from "./useAuth";
 
 export const useTeachers = (filters, initialCount = 4) => {
   const [visibleTeachers, setVisibleTeachers] = useState([]);
@@ -14,7 +13,7 @@ export const useTeachers = (filters, initialCount = 4) => {
   const [allTeachers, setAllTeachers] = useState([]);
   const [visibleCount, setVisibleCount] = useState(initialCount);
 
-  const [user] = useAuthState(auth);
+  const { user } = useAuth();
   const [favoriteIds] = useFavoriteIds(user);
 
   useEffect(() => {

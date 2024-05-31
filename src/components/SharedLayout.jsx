@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
+import { ModalProvider } from "../contexts/ModalContext";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-import { ModalProvider } from "../contexts/ModalContext";
 
 const SharedLayout = () => {
   return (

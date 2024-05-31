@@ -1,18 +1,18 @@
-import { signInWithPopup } from "firebase/auth";
-// import { signInWithRedirect } from "firebase/auth";
-import { auth, facebookProvider, googleProvider } from "../../../firebaseApp";
+import { facebookProvider, googleProvider } from "../../../firebaseApp";
 import { useState } from "react";
+import { useAuth } from "../../../hooks/useAuth";
 
 const ProviderButtons = ({ onClose, isLoading, setIsLoading, setError }) => {
   const [isSubmittingGoogle, setIsSubmittingGoogle] = useState(false);
   const [isSubmittingFacebook, setIsSubmittingFacebook] = useState(false);
+  const { signinWithProvider } = useAuth();
 
   const handleLogin = async (provider) => {
     setIsLoading(true);
 
     try {
       setError("authentication", {});
-      await signInWithPopup(auth, provider);
+      await signinWithProvider(provider);
       setIsLoading(false);
       onClose();
     } catch {

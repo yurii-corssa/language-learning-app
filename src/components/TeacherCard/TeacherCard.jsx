@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import { addToFavorites, removeFromFavorites } from "../../api/users";
 import { useModal } from "../../hooks/useModal";
 import { AuthRequiredModal, BookLessonModal } from "../Modals";
+import { useAuth } from "../../hooks/useAuth";
 
-const TeacherCard = ({ teacherData, user, favoriteIds }) => {
+const TeacherCard = ({ teacherData, favoriteIds }) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [error, setError] = useState(null);
   const { openModal, closeModal } = useModal();
+  const { user } = useAuth();
 
   const { tid, name, surname, avatar_url: avatarUrl } = teacherData;
   const { levels, rating, reviews, languages, conditions, experience } = teacherData;

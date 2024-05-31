@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registrationSchema } from "/helpers/schemas";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../../../firebaseApp";
 import { ProviderButtons } from "../";
 import { useEffect, useState } from "react";
+import { useAuth } from "../../../hooks/useAuth";
 
 const RegistrationForm = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { signup } = useAuth();
 
   const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(registrationSchema),
@@ -19,10 +19,7 @@ const RegistrationForm = ({ onClose }) => {
 
   const onSubmit = async ({ displayName, email, password }) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(auth.currentUser, {
-        displayName,
-      });
+      await signup(email, password, displayName);
       onClose();
     } catch {
       control.setError("authentication", {

@@ -1,13 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "/helpers/schemas";
 import { useForm } from "react-hook-form";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "/firebaseApp";
 import { ProviderButtons } from "../";
 import { useEffect, useState } from "react";
+import { useAuth } from "../../../hooks/useAuth";
 
 const LoginForm = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { signin } = useAuth();
 
   const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(loginSchema),
@@ -19,7 +19,7 @@ const LoginForm = ({ onClose }) => {
 
   const onSubmit = async ({ email, password }) => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signin(email, password);
       onClose();
     } catch {
       control.setError("authentication", {

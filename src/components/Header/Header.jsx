@@ -2,12 +2,12 @@ import { routes } from "../../helpers/routes";
 import { NavLink } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "/firebaseApp";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useModal } from "../../hooks/useModal";
 import { LoginModal, RegistrationModal } from "../Modals";
+import { useAuth } from "../../hooks/useAuth";
 
 const Header = () => {
-  const [user] = useAuthState(auth);
+  const { user } = useAuth();
   const { openModal, closeModal } = useModal();
 
   return (

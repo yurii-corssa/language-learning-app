@@ -1,12 +1,11 @@
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Navigate } from "react-router-dom";
-import { auth } from "/firebaseApp";
 import { routes } from "/helpers/routes";
+import { useAuth } from "../hooks/useAuth";
 
 const PrivateRoute = ({ comp: Component, redirectTo = routes.HOME }) => {
-  const [user, loading] = useAuthState(auth);
+  const { user, isLoading } = useAuth();
 
-  const shouldRedirect = !user && !loading;
+  const shouldRedirect = !user && !isLoading;
 
   return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };

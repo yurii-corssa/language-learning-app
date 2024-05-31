@@ -1,12 +1,11 @@
 import TeacherCard from "../components/TeacherCard/TeacherCard";
 import { useTeachers } from "../hooks/useTeachers";
-import { auth } from "../firebaseApp";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useCallback, useEffect, useState } from "react";
 import FilterForm from "../components/FilterForm/FilterForm";
+import { useAuth } from "../hooks/useAuth";
 
 const TeachersPage = () => {
-  const [user] = useAuthState(auth);
+  const { user } = useAuth();
   const [filters, setFilters] = useState({
     language: "",
     level: "",

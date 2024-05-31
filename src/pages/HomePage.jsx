@@ -1,12 +1,11 @@
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebaseApp";
+import { useAuth } from "../hooks/useAuth";
 
 const HomePage = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const { user, isLoading, error } = useAuth();
 
   return (
     <div>
-      {loading ? "loading..." : <p> {user?.email} </p>}
+      {isLoading ? "loading..." : <p> {user?.email} </p>}
       {error}
     </div>
   );
