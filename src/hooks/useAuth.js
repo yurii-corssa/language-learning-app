@@ -7,70 +7,6 @@ import { AuthContext } from "../contexts/AuthContext";
 export const useProvideAuth = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const signin = async (email, password) => {
-    setIsLoading(true);
-
-    try {
-      const res = await signInWithEmailAndPassword(auth, email, password);
-
-      setUser(res.user);
-
-      return res.user;
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const signinWithProvider = async (provider) => {
-    setIsLoading(true);
-
-    try {
-      const res = await signInWithPopup(auth, provider);
-
-      setUser(res.user);
-
-      return res.user;
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const signup = async (email, password, displayName) => {
-    setIsLoading(true);
-
-    try {
-      const res = await createUserWithEmailAndPassword(auth, email, password);
-      updateProfile(res.user, { displayName });
-
-      setUser(res.user);
-
-      return res.user;
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const signout = async () => {
-    setIsLoading(true);
-
-    try {
-      await signOut(auth);
-
-      setUser(null);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -87,7 +23,37 @@ export const useProvideAuth = () => {
     return () => unsubscribe();
   }, []);
 
-  return { user, isLoading, error, signin, signinWithProvider, signup, signout };
+  const signin = async (email, password) => {
+    const res = await signInWithEmailAndPassword(auth, email, password);
+
+    setUser(res.user);
+
+    return res.user;
+  };
+
+  const signinWithProvider = async (provider) => {
+    const res = await signInWithPopup(auth, provider);
+    setUser(res.user);
+
+    return res.user;
+  };
+
+  const signup = async (email, password, displayName) => {
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    updateProfile(res.user, { displayName });
+
+    setUser(res.user);
+
+    return res.user;
+  };
+
+  const signout = async () => {
+    await signOut(auth);
+
+    setUser(null);
+  };
+
+  return { user, isLoading, signin, signinWithProvider, signup, signout };
 };
 
 export const useAuth = () => {
