@@ -5,6 +5,9 @@ import { auth } from "/firebaseApp";
 import { useModal } from "../../hooks/useModal";
 import { LoginModal, RegistrationModal } from "../Modals";
 import { useAuth } from "../../hooks/useAuth";
+import HomeLogo from "../ui/HomeLogo/HomeLogo";
+
+// import sprite from "../../assets/images/sprite.svg";
 
 const Header = () => {
   const { user } = useAuth();
@@ -15,7 +18,7 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <NavLink to={routes.HOME}>Logo</NavLink>
+            <HomeLogo to={routes.HOME} />
           </li>
 
           <li>
