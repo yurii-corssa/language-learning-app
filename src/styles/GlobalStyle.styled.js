@@ -6,34 +6,34 @@ ${normalize}
 
 @font-face {
     font-family: 'Roboto';
-    src: local('Roboto'), url('/language-learning-app/fonts/roboto-latin-400-italic.woff2') format('woff2') , url('/language-learning-app/fonts/roboto-latin-400-italic.woff') format('woff');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
+    src: local('Roboto Latin'), url('/language-learning-app/fonts/roboto-latin-400-italic.woff2') format('woff2') , url('/language-learning-app/fonts/roboto-latin-400-italic.woff') format('woff');
 }
 
 @font-face {
     font-family: 'Roboto';
-    src: local('Roboto'), url('/language-learning-app/fonts/roboto-latin-400-normal.woff2') format('woff2') , url('/language-learning-app/fonts/roboto-latin-400-normal.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
+    src: local('Roboto Latin'), url('/language-learning-app/fonts/roboto-latin-400-normal.woff2') format('woff2') , url('/language-learning-app/fonts/roboto-latin-400-normal.woff') format('woff');
 }
 
 @font-face {
     font-family: 'Roboto';
-    src: local('Roboto'), url('/language-learning-app/fonts/roboto-latin-500-normal.woff2') format('woff2') , url('/language-learning-app/fonts/roboto-latin-500-normal.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
+    src: local('Roboto Latin'), url('/language-learning-app/fonts/roboto-latin-500-normal.woff2') format('woff2') , url('/language-learning-app/fonts/roboto-latin-500-normal.woff') format('woff');
 }
 
 @font-face {
     font-family: 'Roboto';
-    src: local('Roboto'), url('/language-learning-app/fonts/roboto-latin-700-normal.woff2') format('woff2') , url('/language-learning-app/fonts/roboto-latin-700-normal.woff') format('woff');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
+    src: local('Roboto Latin'), url('/language-learning-app/fonts/roboto-latin-700-normal.woff2') format('woff2') , url('/language-learning-app/fonts/roboto-latin-700-normal.woff') format('woff');
 }
 
 :root {
