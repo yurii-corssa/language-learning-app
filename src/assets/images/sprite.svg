@@ -4,8 +4,21 @@
 <defs>
 
 <symbol id="icon-log-in" viewBox="0 0 32 32">
-<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M20 4h1.6c2.24 0 3.36 0 4.208 0.432 0.752 0.384 1.36 0.992 1.744 1.744 0.448 0.848 0.448 1.968 0.448 4.224v11.2c0 2.24 0 3.36-0.448 4.208-0.384 0.752-0.992 1.36-1.744 1.744-0.848 0.448-1.968 0.448-4.208 0.448h-1.6"></path>
-<path fill="none" stroke-linejoin="round" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="3.2" d="M13.328 9.328l6.672 6.672-6.672 6.656M4 16h16"></path>
+<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M20 4h5.333c1.473 0 2.667 1.194 2.667 2.667v0 18.667c0 1.473-1.194 2.667-2.667 2.667v0h-5.333"></path>
+<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M13.333 22.667l6.667-6.667-6.667-6.667"></path>
+<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M20 16h-16"></path>
+</symbol>
+
+<symbol id="icon-log-out" viewBox="0 0 32 32">
+<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M12 28h-5.333c-1.473 0-2.667-1.194-2.667-2.667v0-18.667c0-1.473 1.194-2.667 2.667-2.667v0h5.333"></path>
+<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M21.333 22.667l6.667-6.667-6.667-6.667"></path>
+<path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M28 16h-16"></path>
+</symbol>
+
+<symbol id="icon-burger-menu" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M5.333 16h21.333"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M5.333 8h21.333"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M5.333 24h21.333"></path>
 </symbol>
 
 <symbol id="icon-mac" viewBox="0 0 26 32">
