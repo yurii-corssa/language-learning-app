@@ -1,11 +1,9 @@
+import SvgIcon from "../SvgIcon";
 import { LogoText, LogoWrapper } from "./HomeLogo.styled";
-import sprite from "/assets/images/sprite.svg";
 
 const HomeLogo = ({ to = "/" }) => (
   <LogoWrapper to={to}>
-    <svg width="28" height="28">
-      <use href={`${sprite}#icon-home`} />
-    </svg>
+    <SvgIcon name="icon-home" width="28" height="28" />
     <LogoText>LearnLingo</LogoText>
   </LogoWrapper>
 );
