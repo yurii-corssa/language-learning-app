@@ -37,12 +37,8 @@ ${normalize}
 }
 
 :root {
-    --primary: #9FBAAE;
-    --backgroundApp: #F8F8F8;
-    --backgroundPage: #FFF;
-    --blackText: #121417;
+  
 
-    --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     --yellow: #FFC107;
     --blueLink: #54ADFF;
@@ -67,7 +63,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--backgroundApp);
-    color: var(--blackText);
+    color: var(--black);
 }
 
 a {

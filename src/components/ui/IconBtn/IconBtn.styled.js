@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { transitions } from "../../../styles/variables";
 
 export const IconBtnStyled = styled.button`
   position: absolute;
@@ -12,7 +13,7 @@ export const IconBtnStyled = styled.button`
 
   svg {
     color: currentColor;
-    transition: var(--transition);
+    transition: ${transitions.default};
   }
 
   &:hover,

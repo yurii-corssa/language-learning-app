@@ -1,33 +1,37 @@
 import styled, { css } from "styled-components";
+import { colors, transitions } from "../../../styles/variables";
 
 const buttonStyles = {
   black: css`
-    background-color: var(--black);
-    color: var(--white);
+    background-color: ${colors.black};
+    color: ${colors.white};
     padding: 14px 39px;
 
-    &:hover {
-      background-color: var(--primary);
+    @media (hover: hover) {
+      &:hover,
+      &:focus {
+        background-color: ${colors.primary};
+      }
     }
   `,
 
   transparent: css`
     background-color: transparent;
-    color: var(--black);
+    color: ${colors.black};
     padding: 14px 0;
 
     svg {
-      stroke: var(--primary);
+      stroke: ${colors.primary};
     }
 
     &:hover {
-      color: var(--primary);
+      color: ${colors.primary};
     }
   `,
 
   primary: css`
-    background-color: var(--primary);
-    color: var(--black);
+    background-color: ${colors.primary};
+    color: ${colors.black};
     padding: 16px 48px;
   `,
 };
@@ -43,13 +47,13 @@ export const ButtonStyled = styled.button`
   justify-content: center;
 
   transition-property: color, background-color;
-  transition: var(--transition);
+  transition: ${transitions.default};
 
   svg {
     transition-property: stroke, fill;
-    transition: var(--transition);
+    transition: ${transitions.default};
   }
 
   width: ${(props) => props.width || "auto"};
-  ${(props) => buttonStyles[props.variant]}
+  ${(props) => buttonStyles[props.$variant]}
 `;

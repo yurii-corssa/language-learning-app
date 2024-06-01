@@ -1,58 +1,42 @@
 import { routes } from "../../helpers/routes";
-import { NavLink } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "/firebaseApp";
-import { useModal } from "../../hooks/useModal";
-import { LoginModal, RegistrationModal } from "../Modals";
 import { useAuth } from "../../hooks/useAuth";
 import HomeLogo from "../ui/HomeLogo/HomeLogo";
-
-// import sprite from "../../assets/images/sprite.svg";
+import BurgerBtn from "../ui/BurgerBtn";
+import TabletAndDesktop from "../Responsive/TabletAndDesktop";
+import MobileAndTablet from "../Responsive/MobileAndTablet";
+import Desktop from "../Responsive/Desktop";
+import { HeaderLink, HeaderStyled, NavMenu } from "./Header.styled";
+import AuthBtns from "./AuthBtn/AuthBtns";
 
 const Header = () => {
   const { user } = useAuth();
-  const { openModal, closeModal } = useModal();
+
+  const handleBurgerMenu = () => {
+    //
+  };
 
   return (
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <HomeLogo to={routes.HOME} />
-          </li>
+    <HeaderStyled>
+      <NavMenu>
+        <HomeLogo to={routes.HOME} />
 
-          <li>
-            <NavLink to={routes.HOME}>Home</NavLink>
-          </li>
+        <TabletAndDesktop>
+          <HeaderLink to={routes.HOME}>Home</HeaderLink>
 
-          <li>
-            <NavLink to={routes.TEACHERS}>Teachers</NavLink>
-          </li>
+          <HeaderLink to={routes.TEACHERS}>Teachers</HeaderLink>
 
-          {user && (
-            <li>
-              <NavLink to={routes.FAVORITES}>Favorites</NavLink>
-            </li>
-          )}
-        </ul>
-      </nav>
+          {user && <HeaderLink to={routes.FAVORITES}>Favorites</HeaderLink>}
+        </TabletAndDesktop>
+      </NavMenu>
 
-      <div>
-        {!user ? (
-          <>
-            <button onClick={() => openModal(<LoginModal onClose={closeModal} />)}>Log in</button>
+      <MobileAndTablet>
+        <BurgerBtn onClick={handleBurgerMenu} />
+      </MobileAndTablet>
 
-            <button onClick={() => openModal(<RegistrationModal onClose={closeModal} />)}>
-              Registration
-            </button>
-          </>
-        ) : (
-          <button type="button" onClick={() => signOut(auth)}>
-            Log Out
-          </button>
-        )}
-      </div>
-    </header>
+      <Desktop>
+        <AuthBtns />
+      </Desktop>
+    </HeaderStyled>
   );
 };
 
