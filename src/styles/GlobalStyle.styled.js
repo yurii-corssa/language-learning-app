@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
+import { colors } from "./variables";
 
 export const GlobalStyle = createGlobalStyle`
 ${normalize}
@@ -9,15 +10,16 @@ ${normalize}
     font-weight: 400;
     font-style: italic;
     font-display: swap;
-    src: local('Roboto Latin'), url('/language-learning-app/fonts/roboto-latin-400-italic.woff2') format('woff2') , url('/language-learning-app/fonts/roboto-latin-400-italic.woff') format('woff');
+    src: local("Roboto") url('/language-learning-app/fonts/Roboto-RegularItalic.woff2') format('woff2') , url('/language-learning-app/fonts/Roboto-RegularItalic.woff') format('woff');
 }
+
 
 @font-face {
     font-family: 'Roboto';
     font-weight: 400;
     font-style: normal;
     font-display: swap;
-    src: local('Roboto Latin'), url('/language-learning-app/fonts/roboto-latin-400-normal.woff2') format('woff2') , url('/language-learning-app/fonts/roboto-latin-400-normal.woff') format('woff');
+    src: local("Roboto") url('/language-learning-app/fonts/Roboto-Regular.woff2') format('woff2') , url('/language-learning-app/fonts/Roboto-Regular.woff') format('woff');
 }
 
 @font-face {
@@ -25,7 +27,7 @@ ${normalize}
     font-weight: 500;
     font-style: normal;
     font-display: swap;
-    src: local('Roboto Latin'), url('/language-learning-app/fonts/roboto-latin-500-normal.woff2') format('woff2') , url('/language-learning-app/fonts/roboto-latin-500-normal.woff') format('woff');
+    src: local("Roboto") url('/language-learning-app/fonts/Roboto-Medium.woff2') format('woff2') , url('/language-learning-app/fonts/Roboto-Medium.woff') format('woff');
 }
 
 @font-face {
@@ -33,7 +35,7 @@ ${normalize}
     font-weight: 700;
     font-style: normal;
     font-display: swap;
-    src: local('Roboto Latin'), url('/language-learning-app/fonts/roboto-latin-700-normal.woff2') format('woff2') , url('/language-learning-app/fonts/roboto-latin-700-normal.woff') format('woff');
+    src: local("Roboto") url('/language-learning-app/fonts/Roboto-Bold.woff2') format('woff2') , url('/language-learning-app/fonts/Roboto-Bold.woff') format('woff');
 }
 
 :root {
@@ -62,8 +64,8 @@ body {
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--backgroundApp);
-    color: var(--black);
+    background-color: ${colors.backgroundApp};
+    color: ${colors.black};
 }
 
 a {
