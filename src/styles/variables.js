@@ -11,7 +11,7 @@ export const transitions = {
 };
 
 export const breakpoints = {
-  mobile: 576,
+  mobile: 320,
   tablet: 768,
   desktop: 1024,
 };
