@@ -5,4 +5,7 @@ export default defineConfig({
   root: "./src",
   plugins: [react()],
   base: "/language-learning-app",
+  build: {
+    outDir: "../dist",
+  },
 });
