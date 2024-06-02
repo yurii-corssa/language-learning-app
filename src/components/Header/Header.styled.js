@@ -1,11 +1,19 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { colors, transitions } from "../../styles/variables";
+import { breakpoints, colors, transitions } from "../../styles/variables";
 
 export const HeaderStyled = styled.header`
   display: flex;
   align-items: center;
-  padding: 20px 64px;
+  padding: 20px;
+
+  @media only screen and (min-width: ${breakpoints.tablet}px) {
+    padding: 30px 32px;
+  }
+
+  @media only screen and (min-width: ${breakpoints.desktop}px) {
+    padding: 20px 64px;
+  }
 `;
 
 export const NavMenu = styled.nav`
