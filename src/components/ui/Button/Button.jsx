@@ -2,7 +2,7 @@ import { ButtonStyled } from "./Button.styled";
 
 const Button = ({ variant, width, onClick, children }) => {
   return (
-    <ButtonStyled $variant={variant} width={width} onClick={onClick}>
+    <ButtonStyled $variant={variant} $width={width} onClick={onClick}>
       {children}
     </ButtonStyled>
   );

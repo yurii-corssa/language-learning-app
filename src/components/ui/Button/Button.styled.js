@@ -34,6 +34,19 @@ const buttonStyles = {
     color: ${colors.black};
     padding: 16px 48px;
   `,
+
+  icon: css`
+    background-color: transparent;
+    color: ${colors.black};
+
+    svg {
+      stroke: currentColor;
+    }
+
+    &:hover {
+      color: ${colors.primary};
+    }
+  `,
 };
 
 export const ButtonStyled = styled.button`
@@ -54,6 +67,6 @@ export const ButtonStyled = styled.button`
     transition: ${transitions.default};
   }
 
-  width: ${(props) => props.width || "auto"};
+  width: ${(props) => props.$width || "auto"};
   ${(props) => buttonStyles[props.$variant]}
 `;
