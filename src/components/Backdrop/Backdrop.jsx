@@ -1,3 +1,4 @@
+import { fadeVariants } from "../../styles/animations";
 import { BackdropStyled } from "./Backdrop.styled";
 
 const Backdrop = ({ onClose, children }) => {
@@ -7,7 +8,17 @@ const Backdrop = ({ onClose, children }) => {
     }
   };
 
-  return <BackdropStyled onClick={handleClose}>{children}</BackdropStyled>;
+  return (
+    <BackdropStyled
+      variants={fadeVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      onClick={handleClose}
+    >
+      {children}
+    </BackdropStyled>
+  );
 };
 
 export default Backdrop;
