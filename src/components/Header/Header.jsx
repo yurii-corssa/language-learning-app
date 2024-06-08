@@ -1,19 +1,13 @@
 import { routes } from "../../helpers/routes";
 import { useAuth } from "../../hooks/useAuth";
 import HomeLogo from "../ui/HomeLogo/HomeLogo";
-import BurgerBtn from "../ui/BurgerBtn";
-import TabletAndDesktop from "../Responsive/TabletAndDesktop";
-import MobileAndTablet from "../Responsive/MobileAndTablet";
-import Desktop from "../Responsive/Desktop";
 import { HeaderLink, HeaderStyled, NavMenu } from "./Header.styled";
-import AuthBtns from "./AuthBtn/AuthBtns";
+import AuthBtns from "./AuthBtns/AuthBtns";
+import { Desktop, MobileAndTablet, TabletAndDesktop } from "../Responsive";
+import { Button, SvgIcon } from "../ui";
 
-const Header = () => {
+const Header = ({ openMenu }) => {
   const { user } = useAuth();
-
-  const handleBurgerMenu = () => {
-    //
-  };
 
   return (
     <HeaderStyled>
@@ -22,15 +16,15 @@ const Header = () => {
 
         <TabletAndDesktop>
           <HeaderLink to={routes.HOME}>Home</HeaderLink>
-
           <HeaderLink to={routes.TEACHERS}>Teachers</HeaderLink>
-
           {user && <HeaderLink to={routes.FAVORITES}>Favorites</HeaderLink>}
         </TabletAndDesktop>
       </NavMenu>
 
       <MobileAndTablet>
-        <BurgerBtn onClick={handleBurgerMenu} />
+        <Button variant="icon" onClick={openMenu}>
+          <SvgIcon name="icon-burger-menu" width="28" height="28" />
+        </Button>
       </MobileAndTablet>
 
       <Desktop>
