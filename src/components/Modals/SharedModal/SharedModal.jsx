@@ -1,11 +1,7 @@
-import { createPortal } from "react-dom";
+import { modalScaleVariants } from "../../../styles/animations";
+import { Button, SvgIcon } from "../../ui";
 import { ModalCard } from "./SharedModal.styled";
-import { IconBtn } from "../../ui";
-import { LuX } from "react-icons/lu";
 import { useEffect } from "react";
-import Backdrop from "../../Backdrop/Backdrop";
-
-const modalRoot = document.querySelector("#modal-root");
 
 const SharedModal = ({ onClose, children }) => {
   useEffect(() => {
@@ -22,14 +18,13 @@ const SharedModal = ({ onClose, children }) => {
     };
   }, [onClose]);
 
-  return createPortal(
-    <Backdrop onClose={onClose}>
-      <ModalCard>
-        <IconBtn icon={LuX} onClick={onClose} />
-        {children}
-      </ModalCard>
-    </Backdrop>,
-    modalRoot
+  return (
+    <ModalCard variants={modalScaleVariants} initial="initial" animate="animate" exit="exit">
+      <Button variant="x" onClick={onClose}>
+        <SvgIcon name="icon-x" />
+      </Button>
+      {children}
+    </ModalCard>
   );
 };
 

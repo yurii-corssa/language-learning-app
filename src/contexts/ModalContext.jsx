@@ -1,23 +1,39 @@
 import { createContext, useCallback, useState } from "react";
-import { SharedModal } from "../components/Modals/";
+import Backdrop from "../components/Backdrop/Backdrop";
+import { createPortal } from "react-dom";
+import { AnimatePresence } from "framer-motion";
+import { SharedModal } from "../components/Modals";
 
 export const ModalContext = createContext();
+const modalRoot = document.querySelector("#modal-root");
 
 export const ModalProvider = ({ children }) => {
-  const [modal, setModal] = useState({ isOpen: false, content: null });
+  const [content, setContent] = useState(null);
 
   const openModal = useCallback((content) => {
-    setModal({ isOpen: true, content });
+    setContent(content);
   }, []);
 
   const closeModal = useCallback(() => {
-    setModal({ isOpen: false, content: null });
+    setContent(null);
   }, []);
 
+  const contextValue = { openModal, closeModal };
+
   return (
-    <ModalContext.Provider value={{ modal, openModal, closeModal }}>
+    <ModalContext.Provider value={contextValue}>
       {children}
-      {modal.isOpen && <SharedModal onClose={closeModal}>{modal.content}</SharedModal>}
+      {createPortal(
+        <AnimatePresence>
+          {content && (
+            <>
+              <Backdrop onClose={closeModal} />
+              <SharedModal onClose={closeModal}>{content}</SharedModal>
+            </>
+          )}
+        </AnimatePresence>,
+        modalRoot
+      )}
     </ModalContext.Provider>
   );
 };
