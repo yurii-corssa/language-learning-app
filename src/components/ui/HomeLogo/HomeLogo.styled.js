@@ -8,9 +8,17 @@ export const LogoWrapper = styled(NavLink)`
   align-items: center;
   transition: color ${transitions.default};
 
-  &:hover,
-  &:focus {
-    color: ${colors.primary};
+  @media (hover: hover) {
+    &:hover,
+    &:focus {
+      color: ${colors.primary};
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      color: ${colors.primary};
+    }
   }
 `;
 

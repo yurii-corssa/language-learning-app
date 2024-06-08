@@ -50,8 +50,10 @@ const buttonStyles = {
       }
     }
 
-    &:active {
-      color: ${colors.primary};
+    @media (hover: none) {
+      &:active {
+        color: ${colors.primary};
+      }
     }
   `,
 
@@ -94,7 +96,7 @@ export const ButtonStyled = styled.button`
 
   svg {
     transition-property: stroke, fill;
-    transition: ${transitions.default};
+    transition: 20ms ease-in;
   }
 
   width: ${(props) => props.$width || "auto"};

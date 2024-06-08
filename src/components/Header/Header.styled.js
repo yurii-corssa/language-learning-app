@@ -35,8 +35,20 @@ export const HeaderLink = styled(NavLink)`
   line-height: 20px;
   transition: color ${transitions.default};
 
-  &:hover,
-  &:focus {
+  &.active {
     color: ${colors.primary};
+  }
+
+  @media (hover: hover) {
+    &:hover,
+    &:focus {
+      color: ${colors.primary};
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      color: ${colors.primary};
+    }
   }
 `;
