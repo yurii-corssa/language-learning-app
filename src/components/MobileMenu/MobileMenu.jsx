@@ -10,7 +10,7 @@ import { menuTranslateVariants } from "../../styles/animations";
 import { MenuContainer } from "./MobileMenu.styled";
 import Avatar from "../ui/Avatar/Avatar";
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useAuth, useSidebar } from "../../hooks";
 
 export const UserContainer = styled.div`
   display: flex;
@@ -26,22 +26,22 @@ export const UserName = styled.span`
 
 const menuRoot = document.querySelector("#modal-root");
 
-const MobileMenu = ({ user, isOpen, onClose }) => {
-  useEffect(() => {
-    console.log("user", user);
-  }, [user]);
+const SharedMobileMenu = () => {
+  const { isSidebarOpen, closeSidebar } = useSidebar();
+  const { user } = useAuth();
+
   return createPortal(
     <AnimatePresence>
-      {isOpen && (
+      {isSidebarOpen && (
         <>
-          <Backdrop onClose={onClose} />
+          <Backdrop onClose={closeSidebar} />
           <MenuContainer
             variants={menuTranslateVariants}
             initial="initial"
             animate="animate"
             exit="exit"
           >
-            <Button variant="x" onClick={onClose}>
+            <Button variant="x" onClick={closeSidebar}>
               <SvgIcon name="icon-x" width="32" height="32" />
             </Button>
 
@@ -54,20 +54,26 @@ const MobileMenu = ({ user, isOpen, onClose }) => {
             )}
 
             <Mobile>
-              <HeaderLink to={routes.HOME} onClick={onClose}>
+              <HeaderLink to={routes.HOME} onClick={closeSidebar}>
                 Home
               </HeaderLink>
-              <HeaderLink to={routes.TEACHERS} onClick={onClose}>
+              <HeaderLink
+                to={routes.TEACHERS}
+                onClick={() => {
+                  debugger;
+                  closeSidebar();
+                }}
+              >
                 Teachers
               </HeaderLink>
               {user && (
-                <HeaderLink to={routes.FAVORITES} onClick={onClose}>
+                <HeaderLink to={routes.FAVORITES} onClick={closeSidebar}>
                   Favorites
                 </HeaderLink>
               )}
             </Mobile>
 
-            <AuthBtns type="mobile" onCloseMobileMenu={onClose} />
+            <AuthBtns type="mobile" onCloseMobileMenu={closeSidebar} />
           </MenuContainer>
         </>
       )}
@@ -76,4 +82,4 @@ const MobileMenu = ({ user, isOpen, onClose }) => {
   );
 };
 
-export default MobileMenu;
+export default SharedMobileMenu;

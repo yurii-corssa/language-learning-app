@@ -1,13 +1,21 @@
+import { createPortal } from "react-dom";
 import { modalScaleVariants } from "../../../styles/animations";
 import { Button, SvgIcon } from "../../ui";
 import { ModalCard } from "./SharedModal.styled";
 import { useEffect } from "react";
+import Backdrop from "../../Backdrop/Backdrop";
+import { AnimatePresence } from "framer-motion";
+import { useModal } from "../../../hooks";
 
-const SharedModal = ({ onClose, children }) => {
+const modalRoot = document.querySelector("#modal-root");
+
+const SharedModal = () => {
+  const { content, closeModal } = useModal();
+
   useEffect(() => {
     const handleCloseKeydown = (e) => {
       if (e.code === "Escape") {
-        onClose();
+        closeModal();
       }
     };
 
@@ -16,15 +24,23 @@ const SharedModal = ({ onClose, children }) => {
     return () => {
       document.removeEventListener("keydown", handleCloseKeydown);
     };
-  }, [onClose]);
+  }, [closeModal]);
 
-  return (
-    <ModalCard variants={modalScaleVariants} initial="initial" animate="animate" exit="exit">
-      <Button variant="x" onClick={onClose}>
-        <SvgIcon name="icon-x" />
-      </Button>
-      {children}
-    </ModalCard>
+  return createPortal(
+    <AnimatePresence>
+      {content && (
+        <>
+          <Backdrop onClose={closeModal} />
+          <ModalCard variants={modalScaleVariants} initial="initial" animate="animate" exit="exit">
+            <Button variant="x" onClick={closeModal}>
+              <SvgIcon name="icon-x" />
+            </Button>
+            {content}
+          </ModalCard>
+        </>
+      )}
+    </AnimatePresence>,
+    modalRoot
   );
 };
 

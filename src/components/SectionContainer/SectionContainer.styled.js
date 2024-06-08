@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/variables";
 import { motion } from "framer-motion";
 
-export const Container = styled(motion.div)`
+export const SectionContainerStyled = styled(motion.section)`
   width: 100%;
   padding: 0 20px;
   margin: 0 auto;

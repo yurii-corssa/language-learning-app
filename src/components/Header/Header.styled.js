@@ -2,17 +2,24 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { breakpoints, colors, transitions } from "../../styles/variables";
 
-export const HeaderStyled = styled.header`
+export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
-  padding: 20px;
+
+  width: 100%;
+
+  padding: 20px 40px;
+  margin: 0 auto;
+  background-color: ${colors.backgroundPage};
 
   @media only screen and (min-width: ${breakpoints.tablet}px) {
-    padding: 30px 32px;
+    width: 768px;
+    padding: 30px 64px;
   }
 
   @media only screen and (min-width: ${breakpoints.desktop}px) {
-    padding: 20px 64px;
+    width: 1024px;
+    padding: 20px 80px;
   }
 `;
 

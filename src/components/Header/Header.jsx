@@ -1,13 +1,18 @@
 import { routes } from "../../helpers/routes";
 import HomeLogo from "../ui/HomeLogo/HomeLogo";
-import { HeaderLink, HeaderStyled, NavMenu } from "./Header.styled";
+import { HeaderLink, HeaderContainer, NavMenu } from "./Header.styled";
 import AuthBtns from "./AuthBtns/AuthBtns";
 import { Desktop, MobileAndTablet, TabletAndDesktop } from "../Responsive";
 import { Button, SvgIcon } from "../ui";
+import { memo } from "react";
+import { useAuth, useSidebar } from "../../hooks";
 
-const Header = ({ user, openMenu }) => {
+const Header = () => {
+  const { user } = useAuth();
+  const { openSidebar } = useSidebar();
+
   return (
-    <HeaderStyled>
+    <HeaderContainer>
       <NavMenu>
         <HomeLogo to={routes.HOME} />
 
@@ -19,7 +24,7 @@ const Header = ({ user, openMenu }) => {
       </NavMenu>
 
       <MobileAndTablet>
-        <Button variant="icon" onClick={openMenu}>
+        <Button variant="icon" onClick={openSidebar}>
           <SvgIcon name="icon-burger-menu" width="28" height="28" />
         </Button>
       </MobileAndTablet>
@@ -27,8 +32,10 @@ const Header = ({ user, openMenu }) => {
       <Desktop>
         <AuthBtns />
       </Desktop>
-    </HeaderStyled>
+    </HeaderContainer>
   );
 };
+
+// Header.displayName = "Header";
 
 export default Header;
