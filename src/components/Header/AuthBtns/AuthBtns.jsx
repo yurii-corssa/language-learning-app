@@ -3,7 +3,7 @@ import { LoginModal, RegistrationModal } from "../../Modals";
 import { Button, SvgIcon } from "../../ui";
 import { AuthBtnContainer } from "./AuthBtns.styled";
 
-const AuthBtns = () => {
+const AuthBtns = ({ type }) => {
   const { user, signout } = useAuth();
 
   const { openModal, closeModal } = useModal();
@@ -21,7 +21,7 @@ const AuthBtns = () => {
   };
 
   return (
-    <AuthBtnContainer>
+    <AuthBtnContainer $type={type}>
       {!user ? (
         <>
           <Button variant="transparent" onClick={handleLogin}>
