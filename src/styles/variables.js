@@ -4,6 +4,7 @@ export const colors = {
   backgroundPage: "#FFF",
   black: "#121417",
   white: "#FFF",
+  backdrop: "rgba(107, 114, 128, 0.75)",
 };
 
 export const transitions = {
@@ -14,4 +15,8 @@ export const breakpoints = {
   mobile: 320,
   tablet: 768,
   desktop: 1024,
+};
+
+export const shadows = {
+  menu: "-20px -2px 41px -25px rgba(107, 114, 128, 0.75)",
 };
