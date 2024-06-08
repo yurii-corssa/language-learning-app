@@ -36,7 +36,12 @@ export const modalScaleVariants = {
 };
 
 export const menuTranslateVariants = {
-  initial: { x: "100%" },
-  animate: { x: "0%", transition: { ease: "easeInOut", duration: 0.4 } },
-  exit: { x: "100%", transition: { ease: "easeInOut", duration: 0.3 } },
+  initial: { opacity: 0, x: "100%" },
+  animate: { opacity: 1, x: "0%", transition: { ease: "easeInOut", duration: 0.4 } },
+  exit: { opacity: 0, x: "100%", transition: { ease: "easeInOut", duration: 0.3 } },
+};
+
+export const pageScaleVariants = {
+  menuOpen: { scale: 0.98 },
+  menuClosed: { scale: 1 },
 };

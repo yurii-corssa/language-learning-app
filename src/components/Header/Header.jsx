@@ -1,14 +1,11 @@
 import { routes } from "../../helpers/routes";
-import { useAuth } from "../../hooks/useAuth";
 import HomeLogo from "../ui/HomeLogo/HomeLogo";
 import { HeaderLink, HeaderStyled, NavMenu } from "./Header.styled";
 import AuthBtns from "./AuthBtns/AuthBtns";
 import { Desktop, MobileAndTablet, TabletAndDesktop } from "../Responsive";
 import { Button, SvgIcon } from "../ui";
 
-const Header = ({ openMenu }) => {
-  const { user } = useAuth();
-
+const Header = ({ user, openMenu }) => {
   return (
     <HeaderStyled>
       <NavMenu>
