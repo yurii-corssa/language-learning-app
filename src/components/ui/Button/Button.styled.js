@@ -43,7 +43,37 @@ const buttonStyles = {
       stroke: currentColor;
     }
 
-    &:hover {
+    @media (hover: hover) {
+      &:hover,
+      &:focus {
+        color: ${colors.primary};
+      }
+    }
+
+    &:active {
+      color: ${colors.primary};
+    }
+  `,
+
+  x: css`
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    color: ${colors.black};
+
+    svg {
+      stroke: currentColor;
+    }
+
+    @media (hover: hover) {
+      &:hover,
+      &:focus {
+        color: ${colors.primary};
+      }
+    }
+
+    &:active {
       color: ${colors.primary};
     }
   `,
@@ -68,5 +98,5 @@ export const ButtonStyled = styled.button`
   }
 
   width: ${(props) => props.$width || "auto"};
-  ${(props) => buttonStyles[props.$variant]}
+  ${(props) => buttonStyles[props.$variant] || buttonStyles.primary}
 `;
