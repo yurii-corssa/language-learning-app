@@ -4,7 +4,6 @@ import { HeaderLink, HeaderContainer, NavMenu } from "./Header.styled";
 import AuthBtns from "./AuthBtns/AuthBtns";
 import { Desktop, MobileAndTablet, TabletAndDesktop } from "../Responsive";
 import { Button, SvgIcon } from "../ui";
-import { memo } from "react";
 import { useAuth, useSidebar } from "../../hooks";
 
 const Header = () => {
@@ -35,7 +34,5 @@ const Header = () => {
     </HeaderContainer>
   );
 };
-
-// Header.displayName = "Header";
 
 export default Header;

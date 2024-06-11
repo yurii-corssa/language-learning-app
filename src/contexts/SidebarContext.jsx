@@ -1,9 +1,18 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
+import { useMediaQuery } from "../hooks";
+import { breakpoints } from "../styles/variables";
 
 export const SidebarContext = createContext();
 
 const SidebarProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const isMobileAndTablet = useMediaQuery(`(max-width: ${breakpoints.desktop - 1}px)`);
+
+  useEffect(() => {
+    if (!isMobileAndTablet) {
+      setIsOpen(false);
+    }
+  }, [isMobileAndTablet]);
 
   const openSidebar = useCallback(() => {
     setIsOpen(true);

@@ -42,7 +42,7 @@ const TeachersPage = () => {
       </ul>
 
       {isLoading ? (
-        <div style={{ position: "relative", top: "50%", left: "50%" }}>Loading...</div>
+        <div>Loading...</div>
       ) : isEmpty ? (
         <p>No teachers found matching your filter criteria. Please try adjusting your filters.</p>
       ) : isLastPage ? (

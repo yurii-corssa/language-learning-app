@@ -1,5 +1,5 @@
 import { Button, SvgIcon } from "../ui";
-import { HeaderLink } from "../Header/Header.styled";
+import { HeaderLink, UserContainer, UserName } from "../Header/Header.styled";
 import { routes } from "../../helpers/routes";
 import { Mobile } from "../Responsive";
 import AuthBtns from "../Header/AuthBtns/AuthBtns";
@@ -9,22 +9,9 @@ import { AnimatePresence } from "framer-motion";
 import { menuTranslateVariants } from "../../styles/animations";
 import { MenuContainer } from "./MobileMenu.styled";
 import Avatar from "../ui/Avatar/Avatar";
-import styled from "styled-components";
 import { useAuth, useSidebar } from "../../hooks";
 
-export const UserContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-`;
-
-export const UserName = styled.span`
-  font-weight: 700;
-  margin-bottom: 18px;
-`;
-
-const menuRoot = document.querySelector("#modal-root");
+const menuRoot = document.querySelector("#menu-root");
 
 const SharedMobileMenu = () => {
   const { isSidebarOpen, closeSidebar } = useSidebar();
@@ -57,13 +44,7 @@ const SharedMobileMenu = () => {
               <HeaderLink to={routes.HOME} onClick={closeSidebar}>
                 Home
               </HeaderLink>
-              <HeaderLink
-                to={routes.TEACHERS}
-                onClick={() => {
-                  debugger;
-                  closeSidebar();
-                }}
-              >
+              <HeaderLink to={routes.TEACHERS} onClick={closeSidebar}>
                 Teachers
               </HeaderLink>
               {user && (

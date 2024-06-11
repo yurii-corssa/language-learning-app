@@ -3,19 +3,14 @@ import { lazy } from "react";
 import { routes } from "./helpers/routes";
 import SharedLayout from "./components/SharedLayout/";
 import PrivateRoute from "./components/PrivateRoute";
-import { useAuth } from "./hooks/useAuth";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const TeachersPage = lazy(() => import("./pages/TeachersPage"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
-function App() {
-  const { isLoading } = useAuth();
-
-  return isLoading ? (
-    <div>Loading...</div>
-  ) : (
+const App = () => {
+  return (
     <Routes>
       <Route path={routes.HOME} element={<SharedLayout />}>
         <Route index element={<HomePage />} />
@@ -26,6 +21,6 @@ function App() {
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;

@@ -5,23 +5,28 @@ import AppContainer from "./AppContainer/AppContainer";
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { SharedModal } from "./Modals";
+import SectionContainer from "./SectionContainer/SectionContainer";
 
 const SharedLayout = () => {
   return (
-    <AppContainer>
-      <Header />
+    <>
+      <AppContainer>
+        <Header />
 
-      <main>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Outlet />
-        </Suspense>
-      </main>
+        <SectionContainer>
+          <main>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Outlet />
+            </Suspense>
+          </main>
 
-      <Footer />
+          <Footer />
+        </SectionContainer>
+      </AppContainer>
 
       <SharedModal />
       <SharedMobileMenu />
-    </AppContainer>
+    </>
   );
 };
 

@@ -59,3 +59,15 @@ export const HeaderLink = styled(NavLink)`
     }
   }
 `;
+
+export const UserContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+`;
+
+export const UserName = styled.span`
+  font-weight: 700;
+  margin-bottom: 18px;
+`;
