@@ -1,9 +1,8 @@
 import { routes } from "../../helpers/routes";
-import HomeLogo from "../ui/HomeLogo/HomeLogo";
 import { HeaderLink, HeaderContainer, NavMenu } from "./Header.styled";
 import AuthBtns from "./AuthBtns/AuthBtns";
 import { Desktop, MobileAndTablet, TabletAndDesktop } from "../Responsive";
-import { Button, SvgIcon } from "../ui";
+import { Button, HomeLogo, SvgIcon } from "../ui";
 import { useAuth, useSidebar } from "../../hooks";
 
 const Header = () => {
