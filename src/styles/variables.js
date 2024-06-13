@@ -4,7 +4,9 @@ export const colors = {
   backgroundPage: "#FFF",
   black: "#121417",
   white: "#FFF",
+  error: "#FF4D4D",
   backdrop: "rgba(107, 114, 128, 0.75)",
+  semiTransparent: (alpha = 0.5) => `rgba(18, 20, 23, ${alpha})`,
 };
 
 export const transitions = {

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { ProviderButtons } from "../";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
+import { TextInput } from "../../ui";
 
 const LoginForm = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,17 +32,23 @@ const LoginForm = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <input type="text" placeholder="Email" {...register("email")} disabled={isLoading} />
-        <p>{formState.errors.email?.message}</p>
+        <TextInput
+          type="email"
+          placeholder="Email"
+          disabled={isLoading}
+          errorMessage={formState.errors.email?.message}
+          {...register("email")}
+        />
 
-        <input
+        <TextInput
           type="password"
           placeholder="Password"
-          {...register("password")}
           disabled={isLoading}
+          errorMessage={
+            formState.errors.password?.message || formState.errors.authentication?.message
+          }
+          {...register("password")}
         />
-        <p>{formState.errors.password?.message}</p>
-        <p>{formState.errors.authentication?.message}</p>
       </div>
 
       <button disabled={isLoading}> {formState.isSubmitting ? "loading..." : "Log in"} </button>

@@ -45,3 +45,9 @@ export const pageScaleVariants = {
   menuOpen: { scale: 0.98 },
   menuClosed: { scale: 1 },
 };
+
+export const inputMessageVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
