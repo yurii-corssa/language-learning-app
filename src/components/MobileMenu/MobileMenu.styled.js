@@ -10,8 +10,7 @@ export const MenuContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 28px;
+  justify-content: space-evenly;
 
   width: 100vw;
   max-width: 448px;
@@ -20,4 +19,11 @@ export const MenuContainer = styled(motion.div)`
   background-color: ${colors.backgroundPage};
   box-shadow: ${shadows.menu};
   overflow: hidden;
+`;
+
+export const NavMobileMenu = styled.nav`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
 `;
