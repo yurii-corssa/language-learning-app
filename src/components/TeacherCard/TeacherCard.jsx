@@ -34,7 +34,7 @@ const TeacherCard = ({ teacherData, favoriteIds }) => {
 
   const handleFavoriteClick = async () => {
     if (!user) {
-      openModal(<AuthRequiredModal closeModal={closeModal} openModal={openModal} />);
+      openModal(<AuthRequiredModal openModal={openModal} />);
       return;
     }
 

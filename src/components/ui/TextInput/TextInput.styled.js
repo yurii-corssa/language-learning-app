@@ -26,7 +26,6 @@ export const TextInputStyled = styled.input`
 
 export const InputWrapper = styled.div`
   position: relative;
-  padding-bottom: 18px;
 `;
 
 export const ErrorMessage = styled(motion.small)`

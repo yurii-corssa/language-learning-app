@@ -1,25 +1,24 @@
 import { useAuth, useModal } from "../../../hooks";
-import { LoginModal, RegistrationModal } from "../../Modals";
+import { AuthModal } from "../../Modals";
 import { Button, SvgIcon } from "../../ui";
 import { AuthBtnContainer } from "./AuthBtns.styled";
 
 const AuthBtns = ({ type, onCloseMobileMenu }) => {
   const { user, signout } = useAuth();
-
-  const { openModal, closeModal } = useModal();
+  const { openModal } = useModal();
 
   const handleLogin = () => {
     if (typeof onCloseMobileMenu === "function") {
       onCloseMobileMenu();
     }
-    openModal(<LoginModal onClose={closeModal} />);
+    openModal(<AuthModal type="login" />);
   };
 
   const handleRegistration = () => {
     if (typeof onCloseMobileMenu === "function") {
       onCloseMobileMenu();
     }
-    openModal(<RegistrationModal onClose={closeModal} />);
+    openModal(<AuthModal type="registration" />);
   };
 
   const handleLogout = async () => {

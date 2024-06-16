@@ -4,21 +4,24 @@ import { useAuth } from "../../../hooks/useAuth";
 import { Button, DotsLoader, SvgIcon } from "../../ui";
 import { ProviderBtnWrapper } from "./ProviderButtons.styled";
 
-const ProviderButtons = ({ onClose, isLoading, setIsLoading, setError }) => {
+const ProviderButtons = ({ onClose, isLoading, setIsLoading }) => {
   const [isSubmittingGoogle, setIsSubmittingGoogle] = useState(false);
   const [isSubmittingFacebook, setIsSubmittingFacebook] = useState(false);
   const { signinWithProvider } = useAuth();
+
+  const setError = ({ message }) => {
+    alert(message);
+  };
 
   const handleLogin = async (provider) => {
     setIsLoading(true);
 
     try {
-      setError("authentication", {});
       await signinWithProvider(provider);
       setIsLoading(false);
       onClose();
     } catch {
-      setError("authentication", {
+      setError({
         message: "Authentication error, please try again",
       });
       setIsLoading(false);

@@ -1,11 +1,22 @@
 import styled from "styled-components";
 import { colors } from "../../../styles/variables";
 
+export const AuthPromt = styled.p`
+  font-size: 0.875rem;
+  padding: 0 18px;
+  margin-bottom: 18px;
+  span {
+    color: ${colors.primary};
+    cursor: pointer;
+  }
+`;
+
 export const DividerWrapper = styled.div`
   display: flex;
   text-transform: uppercase;
-  padding: 24px 18px;
+  padding: 0 18px;
   align-items: center;
+  margin-bottom: 18px;
 
   &::before {
     content: "";

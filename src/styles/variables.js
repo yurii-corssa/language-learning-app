@@ -22,3 +22,18 @@ export const breakpoints = {
 export const shadows = {
   menu: "-20px -2px 41px -25px rgba(107, 114, 128, 0.75)",
 };
+
+export const modalContent = {
+  login: {
+    title: "Log In",
+    text: "Welcome back! Please enter your credentials to access your account and continue your search for an teacher.",
+  },
+  registration: {
+    title: "Registration",
+    text: "Thank you for your interest in our platform! In order to register, we need some information. Please provide us with the following information",
+  },
+  authRequiredModal: {
+    title: "Authentication Required",
+    text: "You need to be logged in to access this feature.",
+  },
+};

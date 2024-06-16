@@ -56,15 +56,10 @@ ${normalize}
 
 html {
     font-family: 'Roboto', sans-serif;
-    font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: ${colors.backgroundApp};
     color: ${colors.black};
-
-    @media only screen and (min-width: ${breakpoints.tablet}px) {
-        font-size: 16px;
-    }
 }
 
 * {
