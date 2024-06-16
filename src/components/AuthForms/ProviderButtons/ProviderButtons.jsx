@@ -1,6 +1,8 @@
 import { facebookProvider, googleProvider } from "../../../firebaseApp";
 import { useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
+import { Button, DotsLoader, SvgIcon } from "../../ui";
+import { ProviderBtnWrapper } from "./ProviderButtons.styled";
 
 const ProviderButtons = ({ onClose, isLoading, setIsLoading, setError }) => {
   const [isSubmittingGoogle, setIsSubmittingGoogle] = useState(false);
@@ -36,14 +38,41 @@ const ProviderButtons = ({ onClose, isLoading, setIsLoading, setError }) => {
   };
 
   return (
-    <div>
-      <button type="button" onClick={onLoginWithGoogle} disabled={isLoading}>
-        {isSubmittingGoogle ? "loading..." : "Google"}
-      </button>
-      <button type="button" onClick={onLoginWithFacebook} disabled={isLoading}>
-        {isSubmittingFacebook ? "loading..." : "Facebook"}
-      </button>
-    </div>
+    <ProviderBtnWrapper>
+      <Button
+        variant="provider"
+        type="button"
+        onClick={onLoginWithGoogle}
+        disabled={isLoading}
+        width="100%"
+      >
+        {isSubmittingGoogle ? (
+          <DotsLoader />
+        ) : (
+          <>
+            <SvgIcon name="icon-google-logo" width="28" height="28" />
+            <span>Google</span>
+          </>
+        )}
+      </Button>
+
+      <Button
+        variant="provider"
+        type="button"
+        onClick={onLoginWithFacebook}
+        disabled={isLoading}
+        width="100%"
+      >
+        {isSubmittingFacebook ? (
+          <DotsLoader />
+        ) : (
+          <>
+            <SvgIcon name="icon-facebook-logo" width="28" height="28" />
+            <span>Facebook</span>
+          </>
+        )}
+      </Button>
+    </ProviderBtnWrapper>
   );
 };
 
