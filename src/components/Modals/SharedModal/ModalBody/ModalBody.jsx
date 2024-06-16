@@ -1,8 +1,10 @@
+import { ModalText, ModalTitle } from "./ModalBody.styled";
+
 const ModalBody = ({ title, text, children }) => {
   return (
     <div>
-      {title && <h2>{title}</h2>}
-      {text && <p>{text}</p>}
+      {title && <ModalTitle>{title}</ModalTitle>}
+      {text && <ModalText>{text}</ModalText>}
       {children}
     </div>
   );

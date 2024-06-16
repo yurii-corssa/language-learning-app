@@ -9,4 +9,5 @@ export const ModalCard = styled(motion.div)`
   padding: 64px;
   border-radius: 30px;
   background: ${colors.white};
+  overflow: hidden;
 `;
