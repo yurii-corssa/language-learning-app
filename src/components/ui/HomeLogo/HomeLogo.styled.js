@@ -6,11 +6,12 @@ export const LogoWrapper = styled(NavLink)`
   display: flex;
   gap: 8px;
   align-items: center;
+
+  height: 100%;
   transition: color ${transitions.default};
 
   @media (hover: hover) {
-    &:hover,
-    &:focus {
+    &:hover {
       color: ${colors.primary};
     }
   }
@@ -23,7 +24,7 @@ export const LogoWrapper = styled(NavLink)`
 `;
 
 export const LogoText = styled.span`
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 24px;
   color: currentColor;

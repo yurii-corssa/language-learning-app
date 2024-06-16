@@ -7,6 +7,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
 
   width: 100%;
+  height: 68px;
 
   padding: 20px 40px;
   margin: 0 auto;
@@ -14,6 +15,7 @@ export const HeaderContainer = styled.header`
 
   @media only screen and (min-width: ${breakpoints.tablet}px) {
     width: 768px;
+    height: 88px;
     padding: 30px 64px;
   }
 
@@ -28,6 +30,7 @@ export const NavMenu = styled.nav`
   align-items: center;
   gap: 28px;
   width: 100%;
+  height: 100%;
 
   a:first-child {
     margin-right: auto;
@@ -39,6 +42,8 @@ export const NavMenu = styled.nav`
 `;
 
 export const HeaderLink = styled(NavLink)`
+  align-content: center;
+  height: 100%;
   line-height: 20px;
   transition: color ${transitions.default};
 
@@ -47,8 +52,7 @@ export const HeaderLink = styled(NavLink)`
   }
 
   @media (hover: hover) {
-    &:hover,
-    &:focus {
+    &:hover {
       color: ${colors.primary};
     }
   }

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
-import { colors } from "./variables";
+import { breakpoints, colors } from "./variables";
 
 export const GlobalStyle = createGlobalStyle`
 ${normalize}
@@ -54,19 +54,26 @@ ${normalize}
     --boxShadowHover: 7px 13px 14px 0px rgba(116, 177, 232, 0.24);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* outline: 1px solid red !important; */
-}
-
-body {
+html {
     font-family: 'Roboto', sans-serif;
+    font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: ${colors.backgroundApp};
     color: ${colors.black};
+
+    @media only screen and (min-width: ${breakpoints.tablet}px) {
+        font-size: 16px;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline-color: ${colors.primary};
+
+    /* outline: 1px solid red !important; */
 }
 
 a {
@@ -89,4 +96,6 @@ img {
 input, button, textarea, select {
     font: inherit;
 }
+
+
 `;
