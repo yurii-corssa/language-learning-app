@@ -38,7 +38,7 @@ const TextInput = forwardRef(
         </AnimatePresence>
 
         {type === "password" && (
-          <VisibleBtn onClick={togglePasswordVisibility}>
+          <VisibleBtn type="button" onClick={togglePasswordVisibility} disabled={disabled}>
             <SvgIcon name={`icon-eye${passwordVisible ? "" : "-off"}`} width="20px" height="20px" />
           </VisibleBtn>
         )}

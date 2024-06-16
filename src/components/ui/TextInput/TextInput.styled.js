@@ -8,17 +8,19 @@ export const TextInputStyled = styled.input`
   padding: 16px 18px;
   border-radius: 12px;
   border: 1px solid ${colors.semiTransparent(0.1)};
-  margin: 1px;
-  transition: border-color ${transitions.default};
+  outline-color: transparent;
+  transition: outline-color ${transitions.default};
 
   &::placeholder {
     color: ${colors.semiTransparent(0.3)};
   }
 
   &:focus {
-    outline: inherit;
-    margin: 0;
-    border: 2px solid ${colors.primary};
+    outline-color: ${colors.primary};
+  }
+
+  &:disabled {
+    color: grey;
   }
 `;
 
@@ -34,12 +36,15 @@ export const ErrorMessage = styled(motion.small)`
   color: ${colors.error};
 `;
 
-export const VisibleBtn = styled.div`
+export const VisibleBtn = styled.button`
   position: absolute;
   top: 18px;
   right: 18px;
   width: 20px;
   height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
 
   svg {
     stroke: currentColor;

@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form";
 import { ProviderButtons } from "../";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
-import { TextInput } from "../../ui";
+import { Button, DotsLoader, RingLoader, TextInput } from "../../ui";
+import { Divider, DividerWrapper, ModalBackdrop } from "./LoginForm.styled";
 
 const LoginForm = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,19 +40,23 @@ const LoginForm = ({ onClose }) => {
           errorMessage={formState.errors.email?.message}
           {...register("email")}
         />
-
         <TextInput
           type="password"
           placeholder="Password"
           disabled={isLoading}
-          errorMessage={
-            formState.errors.password?.message || formState.errors.authentication?.message
-          }
+          errorMessage={formState.errors.password?.message}
           {...register("password")}
         />
+        {/* formState.errors.authentication?.message */}
       </div>
 
-      <button disabled={isLoading}> {formState.isSubmitting ? "loading..." : "Log in"} </button>
+      <Button type="submit" variant="primary" disabled={isLoading} width="100%">
+        {formState.isSubmitting ? <DotsLoader /> : <span>Log in</span>}
+      </Button>
+
+      <DividerWrapper>
+        <Divider>or</Divider>
+      </DividerWrapper>
 
       <ProviderButtons
         onClose={onClose}
@@ -60,7 +65,11 @@ const LoginForm = ({ onClose }) => {
         setError={control.setError}
       />
 
-      {isLoading && <div>Loader...</div>}
+      {isLoading && (
+        <ModalBackdrop>
+          <RingLoader width="65" height="65" />
+        </ModalBackdrop>
+      )}
     </form>
   );
 };
