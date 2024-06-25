@@ -31,7 +31,13 @@ const SharedModal = () => {
       {content && (
         <>
           <Backdrop onClose={closeModal} />
-          <ModalCard variants={modalScaleVariants} initial="initial" animate="animate" exit="exit">
+          <ModalCard
+            key={content.key}
+            variants={modalScaleVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
             <Button variant="x" onClick={closeModal}>
               <SvgIcon name="icon-x" />
             </Button>
