@@ -8,8 +8,10 @@ const AuthRequiredModal = ({ openModal }) => {
       title={modalContent.authRequiredModal.title}
       text={modalContent.authRequiredModal.text}
     >
-      <button onClick={() => openModal(<AuthModal type="login" />)}>Log in</button>
-      <button onClick={() => openModal(<AuthModal type="registration" />)}>Registration</button>
+      <button onClick={() => openModal(<AuthModal key="login" type="login" />)}>Log in</button>
+      <button onClick={() => openModal(<AuthModal key="registration" type="registration" />)}>
+        Registration
+      </button>
     </ModalBody>
   );
 };

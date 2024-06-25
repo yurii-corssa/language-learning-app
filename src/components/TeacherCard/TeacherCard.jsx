@@ -34,7 +34,7 @@ const TeacherCard = ({ teacherData, favoriteIds }) => {
 
   const handleFavoriteClick = async () => {
     if (!user) {
-      openModal(<AuthRequiredModal openModal={openModal} />);
+      openModal(<AuthRequiredModal key="authRequired" openModal={openModal} />);
       return;
     }
 
@@ -84,7 +84,9 @@ const TeacherCard = ({ teacherData, favoriteIds }) => {
 
         <button
           onClick={() =>
-            openModal(<BookLessonModal teacherData={teacherData} closeModal={closeModal} />)
+            openModal(
+              <BookLessonModal key="bookLesson" teacherData={teacherData} closeModal={closeModal} />
+            )
           }
         >
           Book trial lesson

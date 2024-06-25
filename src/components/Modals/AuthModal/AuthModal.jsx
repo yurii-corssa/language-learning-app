@@ -10,9 +10,9 @@ const AuthModal = ({ type }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { openModal, closeModal } = useModal();
 
-  const handleRegistration = () => {
+  const handleChangeModal = async () => {
     const targetType = type === "login" ? "registration" : "login";
-    openModal(<AuthModal type={targetType} />);
+    openModal(<AuthModal key={targetType} type={targetType} />);
   };
 
   return (
@@ -29,7 +29,7 @@ const AuthModal = ({ type }) => {
 
       <AuthPromt>
         {type === "login" ? "Don't have an account? " : "Already have an account? "}
-        <span onClick={handleRegistration}>{type === "login" ? "Sign Up" : "Sign In"}</span>
+        <span onClick={handleChangeModal}>{type === "login" ? "Sign Up" : "Sign In"}</span>
       </AuthPromt>
 
       <DividerWrapper>
