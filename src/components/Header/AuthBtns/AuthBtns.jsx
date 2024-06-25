@@ -11,14 +11,14 @@ const AuthBtns = ({ type, onCloseMobileMenu }) => {
     if (typeof onCloseMobileMenu === "function") {
       onCloseMobileMenu();
     }
-    openModal(<AuthModal type="login" />);
+    openModal(<AuthModal key="login" type="login" />);
   };
 
   const handleRegistration = () => {
     if (typeof onCloseMobileMenu === "function") {
       onCloseMobileMenu();
     }
-    openModal(<AuthModal type="registration" />);
+    openModal(<AuthModal key="registration" type="registration" />);
   };
 
   const handleLogout = async () => {
@@ -29,22 +29,27 @@ const AuthBtns = ({ type, onCloseMobileMenu }) => {
   };
 
   return (
-    <AuthBtnContainer $type={type}>
-      {!user ? (
-        <>
-          <Button variant="transparent" onClick={handleLogin}>
-            <SvgIcon name="icon-log-in" width="20" height="20" />
-            Log in
-          </Button>
-
-          <Button variant="black" onClick={handleRegistration}>
-            Registration
-          </Button>
-        </>
-      ) : (
+    <AuthBtnContainer
+      $type={type}
+      key={!user ? "isLogout" : "isLogin"}
+      initial={{ opacity: 0, y: "-50%" }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: "50%" }}
+    >
+      {user ? (
         <Button variant="transparent" onClick={handleLogout}>
           <SvgIcon name="icon-log-out" width="20" height="20" />
           Log Out
+        </Button>
+      ) : (
+        <Button variant="transparent" onClick={handleLogin}>
+          <SvgIcon name="icon-log-in" width="20" height="20" />
+          Log in
+        </Button>
+      )}
+      {!user && (
+        <Button variant="black" onClick={handleRegistration}>
+          Registration
         </Button>
       )}
     </AuthBtnContainer>

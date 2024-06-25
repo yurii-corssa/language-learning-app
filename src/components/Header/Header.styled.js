@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { breakpoints, colors, transitions } from "../../styles/variables";
+import { motion } from "framer-motion";
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -25,7 +26,7 @@ export const HeaderContainer = styled.header`
   }
 `;
 
-export const NavMenu = styled.nav`
+export const NavMenu = styled(motion.nav)`
   display: flex;
   align-items: center;
   gap: 28px;
