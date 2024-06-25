@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
-import { breakpoints, colors } from "./variables";
+import { colors } from "./variables";
 
 export const GlobalStyle = createGlobalStyle`
 ${normalize}

@@ -9,16 +9,17 @@ export const buttonStyles = {
 
     @media (hover: hover) {
       &:hover {
-        background-color: ${colors.primary};
+        opacity: 0.85;
+      }
+
+      &:active {
+        opacity: 1;
       }
     }
     @media (hover: none) {
       &:active {
-        background-color: ${colors.primary};
+        opacity: 0.5;
       }
-    }
-    &:active {
-      filter: brightness(0.9);
     }
   `,
 
@@ -34,14 +35,14 @@ export const buttonStyles = {
       &:hover {
         color: ${colors.primary};
       }
+      &:active {
+        opacity: 0.5;
+      }
     }
     @media (hover: none) {
       &:active {
         color: ${colors.primary};
       }
-    }
-    &:active {
-      filter: brightness(0.9);
     }
   `,
 
@@ -53,11 +54,12 @@ export const buttonStyles = {
 
     @media (hover: hover) {
       &:hover {
-        filter: brightness(1.1);
+        opacity: 0.85;
       }
     }
     &:active {
-      filter: brightness(0.9);
+      opacity: 1;
+      box-shadow: inset 0px 0px 50px 10px rgba(0, 0, 0, 0.1);
     }
   `,
 
@@ -79,7 +81,7 @@ export const buttonStyles = {
       }
     }
     &:active {
-      filter: brightness(0.9);
+      opacity: 0.5;
     }
   `,
 
@@ -104,7 +106,7 @@ export const buttonStyles = {
       }
     }
     &:active {
-      filter: brightness(0.9);
+      opacity: 0.5;
     }
   `,
 
@@ -125,7 +127,7 @@ export const buttonStyles = {
       }
     }
     &:active {
-      filter: brightness(0.9);
+      box-shadow: inset 0px 0px 50px 10px rgba(0, 0, 0, 0.1);
     }
     @media (hover: none) {
       &:active {

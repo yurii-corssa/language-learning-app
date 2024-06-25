@@ -12,8 +12,8 @@ export const ButtonStyled = styled.button`
   gap: 8px;
   justify-content: center;
   transition: ${transitions.default};
-  width: ${(props) => props.$width || "auto"};
-  ${(props) => buttonStyles[props.$variant] || buttonStyles.primary}
+  width: ${({ $width }) => $width || "auto"};
+  ${({ $variant }) => buttonStyles[$variant] || buttonStyles.primary}
 
   &:disabled {
     cursor: default;
