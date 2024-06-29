@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { breakpoints, colors, transitions } from "../../styles/variables";
 import { motion } from "framer-motion";
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled(motion.header)`
   display: flex;
   align-items: center;
 
@@ -42,7 +42,7 @@ export const NavMenu = styled(motion.nav)`
   }
 `;
 
-export const HeaderLink = styled(NavLink)`
+export const HeaderLink = styled(motion(NavLink))`
   align-content: center;
   height: 100%;
   line-height: 20px;

@@ -9,17 +9,11 @@ export const buttonStyles = {
 
     @media (hover: hover) {
       &:hover {
-        opacity: 0.85;
-      }
-
-      &:active {
-        opacity: 1;
+        background-color: color-mix(in srgb, ${colors.black}, ${colors.white} 20%);
       }
     }
-    @media (hover: none) {
-      &:active {
-        opacity: 0.5;
-      }
+    &:active {
+      background-color: color-mix(in srgb, ${colors.black}, ${colors.primary} 80%);
     }
   `,
 
@@ -35,14 +29,9 @@ export const buttonStyles = {
       &:hover {
         color: ${colors.primary};
       }
-      &:active {
-        opacity: 0.5;
-      }
     }
-    @media (hover: none) {
-      &:active {
-        color: ${colors.primary};
-      }
+    &:active {
+      color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
     }
   `,
 
@@ -54,12 +43,11 @@ export const buttonStyles = {
 
     @media (hover: hover) {
       &:hover {
-        opacity: 0.85;
+        background-color: color-mix(in srgb, ${colors.primary}, ${colors.white} 20%);
       }
     }
     &:active {
-      opacity: 1;
-      box-shadow: inset 0px 0px 50px 10px rgba(0, 0, 0, 0.1);
+      background-color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
     }
   `,
 
@@ -75,13 +63,8 @@ export const buttonStyles = {
         color: ${colors.primary};
       }
     }
-    @media (hover: none) {
-      &:active {
-        color: ${colors.primary};
-      }
-    }
     &:active {
-      opacity: 0.5;
+      color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
     }
   `,
 
@@ -100,13 +83,8 @@ export const buttonStyles = {
         color: ${colors.primary};
       }
     }
-    @media (hover: none) {
-      &:active {
-        color: ${colors.primary};
-      }
-    }
     &:active {
-      opacity: 0.5;
+      color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
     }
   `,
 
@@ -114,25 +92,21 @@ export const buttonStyles = {
     gap: 12px;
     font-size: 1.125rem;
     line-height: 28px;
-    background-color: ${colors.white};
+    background-color: ${colors.backgroundPage};
     padding: 16px 48px;
     border: 2px solid ${colors.primary};
 
     svg {
       stroke: currentColor;
     }
+
     @media (hover: hover) {
       &:hover:not(:disabled) {
-        color: ${colors.primary};
+        background-color: color-mix(in srgb, ${colors.backgroundPage}, ${colors.primary} 20%);
       }
     }
     &:active {
-      box-shadow: inset 0px 0px 50px 10px rgba(0, 0, 0, 0.1);
-    }
-    @media (hover: none) {
-      &:active {
-        color: ${colors.primary};
-      }
+      background-color: ${colors.primary};
     }
   `,
 };

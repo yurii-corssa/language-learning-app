@@ -6,7 +6,7 @@ import AuthBtns from "../Header/AuthBtns/AuthBtns";
 import Backdrop from "../Backdrop/Backdrop";
 import { createPortal } from "react-dom";
 import { AnimatePresence } from "framer-motion";
-import { menuTranslateVariants } from "../../styles/animations";
+import { menuTranslateVariants, menuChildrenVariants } from "../../styles/animations";
 import Avatar from "../ui/Avatar/Avatar";
 import { useAuth, useSidebar } from "../../hooks";
 import { MenuContainer, NavMobileMenu } from "./MobileMenu.styled";
@@ -40,21 +40,29 @@ const SharedMobileMenu = () => {
               </UserContainer>
             )}
 
-            <NavMobileMenu>
-              <Mobile>
-                <HeaderLink to={routes.HOME} onClick={closeSidebar}>
+            <Mobile>
+              <NavMobileMenu>
+                <HeaderLink variants={menuChildrenVariants} to={routes.HOME} onClick={closeSidebar}>
                   Home
                 </HeaderLink>
-                <HeaderLink to={routes.TEACHERS} onClick={closeSidebar}>
+                <HeaderLink
+                  variants={menuChildrenVariants}
+                  to={routes.TEACHERS}
+                  onClick={closeSidebar}
+                >
                   Teachers
                 </HeaderLink>
                 {user && (
-                  <HeaderLink to={routes.FAVORITES} onClick={closeSidebar}>
+                  <HeaderLink
+                    variants={menuChildrenVariants}
+                    to={routes.FAVORITES}
+                    onClick={closeSidebar}
+                  >
                     Favorites
                   </HeaderLink>
                 )}
-              </Mobile>
-            </NavMobileMenu>
+              </NavMobileMenu>
+            </Mobile>
 
             <AuthBtns type="mobile" onCloseMobileMenu={closeSidebar} />
           </MenuContainer>

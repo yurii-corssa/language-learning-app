@@ -5,20 +5,16 @@ import { Desktop, MobileAndTablet, TabletAndDesktop } from "../Responsive";
 import { Button, HomeLogo, SvgIcon } from "../ui";
 import { useAuth, useSidebar } from "../../hooks";
 import { AnimatePresence } from "framer-motion";
+import { headerChildVariants, headerInVariants } from "../../styles/animations";
 
 const Header = () => {
   const { user } = useAuth();
   const { openSidebar } = useSidebar();
 
   return (
-    <AnimatePresence initial={false} mode="wait">
-      <HeaderContainer>
-        <NavMenu
-          key={!user ? "isLogout" : "isLogin"}
-          initial={{ opacity: 0, y: "-50%" }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: "50%" }}
-        >
+    <AnimatePresence>
+      <HeaderContainer variants={headerInVariants} initial="initial" animate="animate" exit="exit">
+        <NavMenu key={user ? "isLoginMenu" : "isLogoutMenu"} variants={headerChildVariants}>
           <HomeLogo to={routes.HOME} />
 
           <TabletAndDesktop>
@@ -35,7 +31,7 @@ const Header = () => {
         </MobileAndTablet>
 
         <Desktop>
-          <AuthBtns />
+          <AuthBtns key={user ? "isLoginAuth" : "isLogoutAuth"} />
         </Desktop>
       </HeaderContainer>
     </AnimatePresence>

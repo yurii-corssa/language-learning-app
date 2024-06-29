@@ -1,4 +1,5 @@
 import { useAuth, useModal } from "../../../hooks";
+import { headerChildVariants, menuChildrenVariants } from "../../../styles/animations";
 import { AuthModal } from "../../Modals";
 import { Button, SvgIcon } from "../../ui";
 import { AuthBtnContainer } from "./AuthBtns.styled";
@@ -31,10 +32,7 @@ const AuthBtns = ({ type, onCloseMobileMenu }) => {
   return (
     <AuthBtnContainer
       $type={type}
-      key={!user ? "isLogout" : "isLogin"}
-      initial={{ opacity: 0, y: "-50%" }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: "50%" }}
+      variants={type === "mobile" ? menuChildrenVariants : headerChildVariants}
     >
       {user ? (
         <Button variant="transparent" onClick={handleLogout}>
