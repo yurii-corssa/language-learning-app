@@ -37,3 +37,12 @@ export const modalContent = {
     text: "You need to be logged in to access this feature.",
   },
 };
+
+export const pageContent = {
+  isEmpty: {
+    noFavTeachers: "You don't have any favorite teachers yet. Add some to see them here!",
+    noFilterTeachers:
+      "No teachers found matching your filter criteria. Please try adjusting your filters.",
+  },
+  isLastPage: "You have reached the end of the list of teachers.",
+};

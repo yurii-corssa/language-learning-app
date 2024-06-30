@@ -1,5 +1,5 @@
-export const applyFilters = (teachers, filters, favoriteIds = []) => {
-  const { language, level, price, onlyFavorites } = filters;
+export const applyFilters = (teachers, filters, favoriteIds = [], onlyFavorites) => {
+  const { language, level, price } = filters;
 
   return teachers.filter((teacher) => {
     const matchesFavorite = onlyFavorites ? favoriteIds.includes(teacher.tid) : true;
