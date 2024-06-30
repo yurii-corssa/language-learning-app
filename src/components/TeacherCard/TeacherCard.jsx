@@ -80,7 +80,7 @@ const TeacherCard = ({ teacherData, favoriteIds }) => {
           <button onClick={() => setShowMoreInfo(!showMoreInfo)}>Read more</button>
         )}
 
-        <Levels levels={levels} />
+        <Levels fullName={fullName} levels={levels} />
 
         <button
           onClick={() =>
