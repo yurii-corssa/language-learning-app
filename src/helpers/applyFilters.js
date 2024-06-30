@@ -5,7 +5,7 @@ export const applyFilters = (teachers, filters, favoriteIds = [], onlyFavorites)
     const matchesFavorite = onlyFavorites ? favoriteIds.includes(teacher.tid) : true;
     const matchesLanguage = language ? teacher.languages.includes(language) : true;
     const matchesLevel = level ? teacher.levels.includes(level) : true;
-    const matchesPrice = price ? teacher.price_per_hour === price : true;
+    const matchesPrice = price ? teacher.price_per_hour === Number(price) : true;
 
     return matchesLanguage && matchesLevel && matchesFavorite && matchesPrice;
   });

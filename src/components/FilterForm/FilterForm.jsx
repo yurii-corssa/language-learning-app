@@ -1,16 +1,25 @@
-import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useFilterAttributes } from "../../hooks/useFilterAttributes";
 
-const FilterForm = ({ changeFilter }) => {
-  const [language, setLanguage] = useState("");
-  const [level, setLevel] = useState("");
-  const [price, setPrice] = useState("");
-
+const FilterForm = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [languages, levels, prices, isLoading, error] = useFilterAttributes();
 
-  useEffect(() => {
-    changeFilter({ language, level, price });
-  }, [changeFilter, language, level, price]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (value) {
+      setSearchParams((prevParams) => {
+        prevParams.set(name, value);
+        return prevParams;
+      });
+    } else {
+      setSearchParams((prevParams) => {
+        prevParams.delete(name);
+        return prevParams;
+      });
+    }
+  };
 
   return (
     <form>
@@ -19,11 +28,13 @@ const FilterForm = ({ changeFilter }) => {
         <select
           id="language"
           name="language"
-          value={language}
+          value={searchParams.get("language") ?? ""}
           disabled={isLoading}
-          onChange={(e) => setLanguage(e.target.value)}
+          onChange={handleChange}
         >
-          <option value="">- - - - - - -</option>
+          <option key="defaultLang" value="">
+            - - - - - - -
+          </option>
           {languages.map((lang) => (
             <option key={lang} value={lang}>
               {lang}
@@ -37,11 +48,13 @@ const FilterForm = ({ changeFilter }) => {
         <select
           id="level"
           name="level"
-          value={level}
+          value={searchParams.get("level") ?? ""}
           disabled={isLoading}
-          onChange={(e) => setLevel(e.target.value)}
+          onChange={handleChange}
         >
-          <option value="">- - - - - - -</option>
+          <option key="defaultLevel" value="">
+            - - - - - - -
+          </option>
           {levels.map((lvl) => (
             <option key={lvl} value={lvl}>
               {lvl}
@@ -55,11 +68,13 @@ const FilterForm = ({ changeFilter }) => {
         <select
           id="price"
           name="price"
-          value={price}
+          value={searchParams.get("price") ?? ""}
           disabled={isLoading}
-          onChange={(e) => setPrice(Number(e.target.value))}
+          onChange={handleChange}
         >
-          <option value="">- - - - - - -</option>
+          <option key="defaultPrice" value="">
+            - - - - - - -
+          </option>
           {prices.map((price) => (
             <option key={price} value={price}>
               {price}

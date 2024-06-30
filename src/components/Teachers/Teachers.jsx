@@ -6,8 +6,9 @@ import { useAuth } from "../../hooks/useAuth";
 import TeacherCard from "../TeacherCard/TeacherCard";
 import { RingLoader } from "../ui";
 import { pageContent } from "../../styles/variables";
+import { useSearchParams } from "react-router-dom";
 
-const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
+const Teachers = ({ onlyFavorites = false, initialCount = 4 }) => {
   const [allTeachers, setAllTeachers] = useState([]);
   const [visibleTeachers, setVisibleTeachers] = useState([]);
   const [visibleCount, setVisibleCount] = useState(initialCount);
@@ -16,6 +17,7 @@ const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [searchParams] = useSearchParams();
   const { user } = useAuth();
   const [favoriteIds] = useFavoriteIds(user);
 
@@ -36,6 +38,12 @@ const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
 
   useEffect(() => {
     if (allTeachers.length !== 0) {
+      const filters = {
+        language: searchParams.get("language"),
+        level: searchParams.get("level"),
+        price: searchParams.get("price"),
+      };
+
       const filteredTeacher = applyFilters(allTeachers, filters, favoriteIds, onlyFavorites);
 
       if (visibleCount >= filteredTeacher.length && filteredTeacher.length !== 0) {
@@ -46,7 +54,7 @@ const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
 
       setVisibleTeachers(filteredTeacher.slice(0, visibleCount));
     }
-  }, [allTeachers, favoriteIds, filters, onlyFavorites, visibleCount]);
+  }, [allTeachers, favoriteIds, onlyFavorites, searchParams, visibleCount]);
 
   useEffect(() => {
     if (visibleTeachers.length === 0 && !isLoading) {
@@ -58,7 +66,7 @@ const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
 
   useEffect(() => {
     setVisibleCount(initialCount);
-  }, [initialCount, filters]);
+  }, [initialCount, searchParams]);
 
   const showMore = () => {
     setVisibleCount((prevCount) => prevCount + initialCount);
