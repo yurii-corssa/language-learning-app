@@ -1,6 +1,7 @@
 import { LevelLabel } from "../../ui";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { LevelsList } from "./LevelsList.styled";
 
 const Levels = ({ fullName, levels }) => {
   const [filteredLevel, setFilteredLevel] = useState("");
@@ -27,16 +28,19 @@ const Levels = ({ fullName, levels }) => {
   };
 
   return (
-    <ul>
+    <LevelsList>
       {levels.map((el) => {
         const isSelected = filteredLevel === el;
         return (
-          <li style={{ display: "flex" }} key={`${fullName}-${el}`}>
-            <LevelLabel isSelected={isSelected} value={el} onChange={handleChangeLevel} />
-          </li>
+          <LevelLabel
+            key={`${fullName}-${el}`}
+            isSelected={isSelected}
+            value={el}
+            onChange={handleChangeLevel}
+          />
         );
       })}
-    </ul>
+    </LevelsList>
   );
 };
 

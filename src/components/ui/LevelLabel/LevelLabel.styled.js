@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors, transitions } from "../../../styles/variables";
 
-export const LevelLabelStyled = styled.button`
+export const LevelLabelStyled = styled.li`
   height: 32px;
   font-size: 14px;
   font-weight: 500;
