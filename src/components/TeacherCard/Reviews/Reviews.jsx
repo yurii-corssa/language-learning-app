@@ -1,25 +1,27 @@
 import { nanoid } from "nanoid";
-import { FaStar } from "react-icons/fa";
+
+import { SvgIcon } from "../../ui";
+import { ReviewItem, ReviewList, ReviewerName, ReviewerRating } from "./Reviews.styled";
 
 const Reviews = ({ reviews }) => {
   return (
-    <ul>
+    <ReviewList>
       {reviews.map((el) => {
         const key = nanoid();
         return (
-          <li key={key}>
-            <p>{el.reviewer_name}</p>
+          <ReviewItem key={key}>
+            <ReviewerName>{el.reviewer_name}</ReviewerName>
 
-            <p>
-              <FaStar />
-              <span>{Number(el.reviewer_rating).toFixed(1)}</span>
-            </p>
+            <ReviewerRating>
+              <SvgIcon name="icon-star" width="16" height="16" />
+              {Number(el.reviewer_rating).toFixed(1)}
+            </ReviewerRating>
 
-            <p>{el.comment}</p>
-          </li>
+            <span>{el.comment}</span>
+          </ReviewItem>
         );
       })}
-    </ul>
+    </ReviewList>
   );
 };
 

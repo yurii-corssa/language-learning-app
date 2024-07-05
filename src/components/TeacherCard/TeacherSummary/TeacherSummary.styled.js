@@ -1,9 +1,20 @@
 import styled from "styled-components";
-import { colors } from "../../../styles/variables";
+import { breakpoints, colors } from "../../../styles/variables";
 
 export const SummaryList = styled.ul`
   display: flex;
-  gap: 32px;
+  flex-wrap: wrap;
+  height: fit-content;
+
+  @media only screen and (max-width: ${breakpoints.desktop - 1}px) {
+    column-gap: 18px;
+  }
+  @media only screen and (min-width: ${breakpoints.tablet}px) {
+    grid-area: s;
+  }
+  @media only screen and (min-width: ${breakpoints.desktop}px) {
+    column-gap: 32px;
+  }
 `;
 
 export const SummaryItem = styled.li`
@@ -19,14 +30,16 @@ export const SummaryItem = styled.li`
     ${({ $star }) => ($star ? `fill: ${colors.primary}` : "stroke: currentColor")}
   }
 
-  &:not(:last-child)::after {
-    content: "";
-    position: relative;
-    top: 0;
-    right: -16px;
-    width: 1px;
-    height: 16px;
-    background-color: ${colors.semiTransparent(0.2)};
+  @media only screen and (min-width: ${breakpoints.desktop}px) {
+    &:not(:last-child)::after {
+      content: "";
+      position: relative;
+      top: 0;
+      right: -16px;
+      width: 1px;
+      height: 16px;
+      background-color: ${colors.semiTransparent(0.2)};
+    }
   }
 `;
 

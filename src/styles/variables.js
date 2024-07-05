@@ -2,10 +2,11 @@ export const colors = {
   primary: "#F4C550",
   backgroundApp: "#F8F8F8",
   backgroundPage: "#FFF",
+  avatarBorder: "#FBE9BA",
   black: "#121417",
   white: "#FFF",
   green: "#38CD3E",
-  error: "#FF4D4D",
+  red: "#FF4D4D",
   backdrop: "rgba(107, 114, 128, 0.75)",
   semiTransparent: (alpha = 0.5) => `rgba(18, 20, 23, ${alpha})`,
 };
@@ -17,7 +18,7 @@ export const transitions = {
 export const breakpoints = {
   mobile: 320,
   tablet: 768,
-  desktop: 1024,
+  desktop: 1280,
 };
 
 export const shadows = {

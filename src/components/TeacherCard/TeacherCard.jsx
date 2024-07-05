@@ -1,12 +1,14 @@
-import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { DetailedInfo, TeacherSummary, Reviews, Levels } from "./";
 import { useEffect, useState } from "react";
 import { addToFavorites, removeFromFavorites } from "../../api/users";
 import { useModal } from "../../hooks/useModal";
 import { AuthRequiredModal, BookLessonModal } from "../Modals";
 import { useAuth } from "../../hooks/useAuth";
+import { Button, SvgIcon } from "../ui";
+import { TeacherAvatar, TeacherCardStyled, TeacherName } from "./TeacherCard.styled";
+import { CardBtn, Experience, HeartBtn, MoreWrapper } from "./TeacherCard.styled";
 
-const TeacherCard = ({ teacherData, favoriteIds }) => {
+const TeacherCard = ({ isOnline = true, teacherData, favoriteIds }) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [error, setError] = useState(null);
@@ -52,37 +54,44 @@ const TeacherCard = ({ teacherData, favoriteIds }) => {
   };
 
   return (
-    <li>
-      <div className="TeacherAvatar">
+    <TeacherCardStyled>
+      <HeartBtn $isFavorite={isFavorite} onClick={handleFavoriteClick}>
+        <SvgIcon name="icon-heart" $isFavorite={isFavorite} />
+      </HeartBtn>
+
+      <TeacherAvatar $isOnline={isOnline}>
         <img src={avatarUrl} alt={fullName} width="96" height="96" />
-      </div>
+      </TeacherAvatar>
 
-      <div className="TeacherCardContent">
-        <div className="TeacherCardHeader">
-          <h2 className="TeacherName">{fullName} </h2>
+      <TeacherName>{fullName}</TeacherName>
 
-          <TeacherSummary lessonsDone={lessonsDone} rating={rating} price={price} />
+      <TeacherSummary lessonsDone={lessonsDone} rating={rating} price={price} />
 
-          <button className="HeartBtn" onClick={handleFavoriteClick}>
-            {isFavorite ? <FaHeart /> : <FaRegHeart />}
-          </button>
-        </div>
+      <DetailedInfo
+        fullName={fullName}
+        languages={languages}
+        lessonInfo={lessonInfo}
+        conditions={conditions}
+      />
 
-        <DetailedInfo languages={languages} lessonInfo={lessonInfo} conditions={conditions} />
-
+      <MoreWrapper>
         {showMoreInfo ? (
-          <div className="moreInfo">
-            <p className="experience">{experience}</p>
+          <>
+            <Experience>{experience}</Experience>
 
             <Reviews reviews={reviews} />
-          </div>
+          </>
         ) : (
-          <button onClick={() => setShowMoreInfo(!showMoreInfo)}>Read more</button>
+          <Button variant="underline" onClick={() => setShowMoreInfo(!showMoreInfo)}>
+            Read more
+          </Button>
         )}
+      </MoreWrapper>
 
-        <Levels fullName={fullName} levels={levels} />
+      <Levels fullName={fullName} levels={levels} />
 
-        <button
+      {showMoreInfo && (
+        <CardBtn
           onClick={() =>
             openModal(
               <BookLessonModal key="bookLesson" teacherData={teacherData} closeModal={closeModal} />
@@ -90,9 +99,9 @@ const TeacherCard = ({ teacherData, favoriteIds }) => {
           }
         >
           Book trial lesson
-        </button>
-      </div>
-    </li>
+        </CardBtn>
+      )}
+    </TeacherCardStyled>
   );
 };
 

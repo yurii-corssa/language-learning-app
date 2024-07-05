@@ -1,10 +1,14 @@
 import styled from "styled-components";
-import { colors, transitions } from "../../../styles/variables";
+import { breakpoints, colors, transitions } from "../../../styles/variables";
 
 export const DetailedList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  @media only screen and (min-width: ${breakpoints.tablet}px) {
+    grid-area: i;
+  }
 `;
 
 export const InfoText = styled.p`

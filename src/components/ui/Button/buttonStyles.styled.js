@@ -35,6 +35,22 @@ export const buttonStyles = {
     }
   `,
 
+  underline: css`
+    font-weight: 500;
+    line-height: 24px;
+    text-decoration-line: underline;
+    background-color: transparent;
+
+    @media (hover: hover) {
+      &:hover {
+        color: ${colors.primary};
+      }
+    }
+    &:active {
+      color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
+    }
+  `,
+
   primary: css`
     font-size: 1.125rem;
     line-height: 28px;

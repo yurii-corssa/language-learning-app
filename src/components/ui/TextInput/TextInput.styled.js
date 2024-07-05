@@ -32,7 +32,7 @@ export const ErrorMessage = styled(motion.small)`
   display: block;
 
   padding: 2px 8px;
-  color: ${colors.error};
+  color: ${colors.red};
 `;
 
 export const VisibleBtn = styled.button`
