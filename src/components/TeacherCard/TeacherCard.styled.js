@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { breakpoints, colors, transitions } from "../../styles/variables";
 import { ButtonStyled } from "../ui/Button/Button.styled";
+import { motion } from "framer-motion";
 
-export const TeacherCardStyled = styled.li`
+export const TeacherCardStyled = styled(motion.li)`
   position: relative;
   padding: 24px;
   background-color: ${colors.white};
@@ -79,10 +80,18 @@ export const TeacherAvatar = styled.div`
   }
 `;
 
-export const MoreWrapper = styled.div`
+export const MoreWrapper = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  @media only screen and (max-width: ${breakpoints.tablet - 1}px) {
+    gap: 16px;
+  }
   @media only screen and (min-width: ${breakpoints.tablet}px) {
     margin-top: -16px;
     grid-area: m;
+    gap: 32px;
   }
 `;
 
@@ -125,15 +134,8 @@ export const HeartBtn = styled.button`
   }
 `;
 
-export const Experience = styled.p`
+export const Experience = styled(motion.p)`
   line-height: 24px;
-
-  @media only screen and (max-width: ${breakpoints.tablet - 1}px) {
-    margin-bottom: 16px;
-  }
-  @media only screen and (min-width: ${breakpoints.tablet}px) {
-    margin-bottom: 32px;
-  }
 `;
 
 export const CardBtn = styled(ButtonStyled)`

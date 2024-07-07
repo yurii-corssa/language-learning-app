@@ -1,5 +1,5 @@
 import { DetailedInfo, TeacherSummary, Reviews, Levels } from "./";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { addToFavorites, removeFromFavorites } from "../../api/users";
 import { useModal } from "../../hooks/useModal";
 import { AuthRequiredModal, BookLessonModal } from "../Modals";
@@ -7,8 +7,10 @@ import { useAuth } from "../../hooks/useAuth";
 import { Button, SvgIcon } from "../ui";
 import { TeacherAvatar, TeacherCardStyled, TeacherName } from "./TeacherCard.styled";
 import { CardBtn, Experience, HeartBtn, MoreWrapper } from "./TeacherCard.styled";
+import { reviewsVariants, slideUpVariants } from "../../styles/animations";
+import { AnimatePresence } from "framer-motion";
 
-const TeacherCard = ({ isOnline = true, teacherData, favoriteIds }) => {
+const TeacherCard = memo(({ isOnline = true, teacherData, favoriteIds }) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [error, setError] = useState(null);
@@ -54,7 +56,7 @@ const TeacherCard = ({ isOnline = true, teacherData, favoriteIds }) => {
   };
 
   return (
-    <TeacherCardStyled>
+    <TeacherCardStyled key={fullName} variants={slideUpVariants}>
       <HeartBtn $isFavorite={isFavorite} onClick={handleFavoriteClick}>
         <SvgIcon name="icon-heart" $isFavorite={isFavorite} />
       </HeartBtn>
@@ -68,27 +70,34 @@ const TeacherCard = ({ isOnline = true, teacherData, favoriteIds }) => {
       <TeacherSummary lessonsDone={lessonsDone} rating={rating} price={price} />
 
       <DetailedInfo
-        fullName={fullName}
+        tid={tid}
         languages={languages}
         lessonInfo={lessonInfo}
         conditions={conditions}
       />
 
-      <MoreWrapper>
-        {showMoreInfo ? (
-          <>
-            <Experience>{experience}</Experience>
+      <MoreWrapper
+        variants={reviewsVariants}
+        initial="initial"
+        animate={!showMoreInfo ? "initial" : "animate"}
+        exit="exit"
+      >
+        <AnimatePresence>
+          {showMoreInfo ? (
+            <>
+              <Experience variants={slideUpVariants}>{experience}</Experience>
 
-            <Reviews reviews={reviews} />
-          </>
-        ) : (
-          <Button variant="underline" onClick={() => setShowMoreInfo(!showMoreInfo)}>
-            Read more
-          </Button>
-        )}
+              <Reviews reviews={reviews} />
+            </>
+          ) : (
+            <Button variant="underline" onClick={() => setShowMoreInfo(!showMoreInfo)}>
+              Read more
+            </Button>
+          )}
+        </AnimatePresence>
       </MoreWrapper>
 
-      <Levels fullName={fullName} levels={levels} />
+      <Levels tid={tid} levels={levels} />
 
       {showMoreInfo && (
         <CardBtn
@@ -103,6 +112,8 @@ const TeacherCard = ({ isOnline = true, teacherData, favoriteIds }) => {
       )}
     </TeacherCardStyled>
   );
-};
+});
+
+TeacherCard.displayName = "TeacherCard";
 
 export default TeacherCard;

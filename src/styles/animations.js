@@ -138,3 +138,29 @@ export const menuChildrenVariants = {
     },
   },
 };
+
+export const reviewsVariants = {
+  initial: { height: "24px" },
+  animate: { height: "auto", transition: { ease: "easeIn", duration: 0.3, staggerChildren: 0.1 } },
+  exit: {},
+};
+
+export const slideUpVariants = {
+  initial: { opacity: 0, y: "10%" },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 17,
+    },
+  },
+  exit: {},
+};
+
+export const cardsVariants = {
+  initial: {},
+  animate: { transition: { duration: 2, staggerChildren: 0.3 } },
+  exit: {},
+};

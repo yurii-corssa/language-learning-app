@@ -2,14 +2,20 @@ import { nanoid } from "nanoid";
 
 import { SvgIcon } from "../../ui";
 import { ReviewItem, ReviewList, ReviewerName, ReviewerRating } from "./Reviews.styled";
+import { slideUpVariants } from "../../../styles/animations";
+import { memo } from "react";
 
-const Reviews = ({ reviews }) => {
+const Reviews = memo(({ reviews = [] }) => {
+  if (!reviews.length) {
+    return null;
+  }
+
   return (
     <ReviewList>
       {reviews.map((el) => {
         const key = nanoid();
         return (
-          <ReviewItem key={key}>
+          <ReviewItem key={key} variants={slideUpVariants}>
             <ReviewerName>{el.reviewer_name}</ReviewerName>
 
             <ReviewerRating>
@@ -23,6 +29,8 @@ const Reviews = ({ reviews }) => {
       })}
     </ReviewList>
   );
-};
+});
+
+Reviews.displayName = "Reviews";
 
 export default Reviews;

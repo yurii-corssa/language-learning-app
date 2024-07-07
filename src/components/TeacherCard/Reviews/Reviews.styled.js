@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../../styles/variables";
+import { motion } from "framer-motion";
 
-export const ReviewList = styled.ul`
+export const ReviewList = styled(motion.ul)`
   display: flex;
   flex-direction: column;
 
@@ -13,7 +14,7 @@ export const ReviewList = styled.ul`
   }
 `;
 
-export const ReviewItem = styled.li`
+export const ReviewItem = styled(motion.li)`
   font-weight: 500;
   line-height: 24px;
 `;

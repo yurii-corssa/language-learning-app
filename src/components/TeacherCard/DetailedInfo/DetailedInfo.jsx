@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { DetailedList, InfoText, Speak } from "./DetailedInfo.styled";
 
-const DetailedInfo = ({ fullName, languages, lessonInfo, conditions }) => {
+const DetailedInfo = ({ tid, languages, lessonInfo, conditions }) => {
   const [filteredLanguage, setFilteredLanguage] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -35,16 +35,12 @@ const DetailedInfo = ({ fullName, languages, lessonInfo, conditions }) => {
             const isSelected = filteredLanguage === el;
             return i !== languages.length - 1 ? (
               <Speak
-                key={`${fullName}${el}`}
+                key={`${tid}${el}`}
                 $isSelected={isSelected}
                 onClick={handleChangeLanguege}
               >{`${el},`}</Speak>
             ) : (
-              <Speak
-                key={`${fullName}${el}`}
-                $isSelected={isSelected}
-                onClick={handleChangeLanguege}
-              >
+              <Speak key={`${tid}${el}`} $isSelected={isSelected} onClick={handleChangeLanguege}>
                 {el}
               </Speak>
             );

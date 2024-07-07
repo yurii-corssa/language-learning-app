@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { LevelsList } from "./LevelsList.styled";
 
-const Levels = ({ fullName, levels }) => {
+const Levels = ({ tid, levels }) => {
   const [filteredLevel, setFilteredLevel] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -33,7 +33,7 @@ const Levels = ({ fullName, levels }) => {
         const isSelected = filteredLevel === el;
         return (
           <LevelLabel
-            key={`${fullName}-${el}`}
+            key={`${tid}-${el}`}
             isSelected={isSelected}
             value={el}
             onChange={handleChangeLevel}
