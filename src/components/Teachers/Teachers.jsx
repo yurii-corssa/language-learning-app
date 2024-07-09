@@ -6,20 +6,20 @@ import { useAuth } from "../../hooks/useAuth";
 import TeacherCard from "../TeacherCard/TeacherCard";
 import { RingLoader } from "../ui";
 import { pageContent } from "../../styles/variables";
-import { useSearchParams } from "react-router-dom";
+import { TeachersList } from "./Teachers.styled";
 
-const Teachers = ({ onlyFavorites = false, initialCount = 4 }) => {
+const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
   const [allTeachers, setAllTeachers] = useState([]);
-  const [visibleTeachers, setVisibleTeachers] = useState([]);
+  const [filteredTeachers, setFilteredTeachers] = useState([]);
   const [visibleCount, setVisibleCount] = useState(initialCount);
-  const [isEmpty, setIsEmpty] = useState(false);
   const [isLastPage, setIsLastPage] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [visibleTeachers, setVisibleTeachers] = useState([]);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [isLoadingData, setIsLoadingData] = useState(true);
   const [error, setError] = useState(null);
 
-  const [searchParams] = useSearchParams();
+  const [favoriteIds, isLoadingIds] = useFavoriteIds();
   const { user } = useAuth();
-  const [favoriteIds] = useFavoriteIds(user);
 
   useEffect(() => {
     const fetchTeachers = async () => {
@@ -28,74 +28,90 @@ const Teachers = ({ onlyFavorites = false, initialCount = 4 }) => {
         setAllTeachers(newTeachers);
       } catch (error) {
         setError(error);
-      } finally {
-        setIsLoading(false);
       }
     };
 
+    setIsLoadingData(true);
     fetchTeachers();
   }, []);
 
   useEffect(() => {
+    if (isLoadingIds) {
+      return;
+    }
     if (allTeachers.length !== 0) {
-      const filters = {
-        language: searchParams.get("language"),
-        level: searchParams.get("level"),
-        price: searchParams.get("price"),
-      };
+      const newFilteredTeacher = applyFilters(allTeachers, filters, favoriteIds, onlyFavorites);
 
-      const filteredTeacher = applyFilters(allTeachers, filters, favoriteIds, onlyFavorites);
+      if (newFilteredTeacher.length !== 0) {
+        setIsEmpty(false);
+        setFilteredTeachers(newFilteredTeacher);
+      } else {
+        setIsLoadingData(false);
+        setIsEmpty(true);
+      }
+    }
+  }, [allTeachers, favoriteIds, filters, isLoadingIds, onlyFavorites]);
 
-      if (visibleCount >= filteredTeacher.length && filteredTeacher.length !== 0) {
+  useEffect(() => {
+    if (isLoadingIds || isEmpty) {
+      return;
+    }
+    if (filteredTeachers.length !== 0) {
+      const newVisibleTeachers = filteredTeachers.slice(0, visibleCount);
+      setVisibleTeachers(newVisibleTeachers);
+      setIsLoadingData(false);
+
+      if (visibleCount >= filteredTeachers.length) {
         setIsLastPage(true);
       } else {
         setIsLastPage(false);
       }
-
-      setVisibleTeachers(filteredTeacher.slice(0, visibleCount));
     }
-  }, [allTeachers, favoriteIds, onlyFavorites, searchParams, visibleCount]);
-
-  useEffect(() => {
-    if (visibleTeachers.length === 0 && !isLoading) {
-      setIsEmpty(true);
-    } else {
-      setIsEmpty(false);
-    }
-  }, [isLoading, visibleTeachers.length]);
+  }, [filteredTeachers, isEmpty, isLoadingIds, visibleCount]);
 
   useEffect(() => {
     setVisibleCount(initialCount);
-  }, [initialCount, searchParams]);
+  }, [initialCount, filters]);
 
   const showMore = () => {
     setVisibleCount((prevCount) => prevCount + initialCount);
   };
 
-  return (
-    <>
-      {error && <p>Error: {error.message}</p>}
+  if (error) {
+    alert(error.message);
+  }
 
-      <ul>
-        {visibleTeachers.map((el) => {
+  if (isLoadingData) {
+    return <RingLoader width="65" height="65" />;
+  }
+
+  return isEmpty ? (
+    favoriteIds.length === 0 ? (
+      <p>{pageContent.isEmpty.noFavTeachers}</p>
+    ) : (
+      <p>{pageContent.isEmpty.noFilterTeachers}</p>
+    )
+  ) : (
+    <>
+      <TeachersList>
+        {visibleTeachers.map((el, index) => {
           return (
-            <TeacherCard key={el.tid} teacherData={el} user={user} favoriteIds={favoriteIds} />
+            <TeacherCard
+              key={el.tid}
+              teacherData={el}
+              user={user}
+              favoriteIds={favoriteIds}
+              filters={filters}
+              delay={(index - (visibleCount - initialCount)) * 0.1}
+            />
           );
         })}
-      </ul>
+      </TeachersList>
 
-      {isLoading && <RingLoader width="65" height="65" />}
-
-      {isEmpty ? (
-        favoriteIds.length === 0 ? (
-          <p>{pageContent.isEmpty.noFavTeachers}</p>
-        ) : (
-          <p>{pageContent.isEmpty.noFilterTeachers}</p>
-        )
-      ) : isLastPage ? (
+      {isLastPage ? (
         <p>{pageContent.isLastPage}</p>
       ) : (
-        <button onClick={showMore} disabled={isLoading}>
+        <button onClick={showMore} disabled={isLoadingData}>
           Load more
         </button>
       )}

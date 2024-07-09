@@ -3,19 +3,17 @@ import { memo, useEffect, useState } from "react";
 import { addToFavorites, removeFromFavorites } from "../../api/users";
 import { useModal } from "../../hooks/useModal";
 import { AuthRequiredModal, BookLessonModal } from "../Modals";
-import { useAuth } from "../../hooks/useAuth";
 import { Button, SvgIcon } from "../ui";
 import { TeacherAvatar, TeacherCardStyled, TeacherName } from "./TeacherCard.styled";
 import { CardBtn, Experience, HeartBtn, MoreWrapper } from "./TeacherCard.styled";
 import { reviewsVariants, slideUpVariants } from "../../styles/animations";
 import { AnimatePresence } from "framer-motion";
 
-const TeacherCard = memo(({ isOnline = true, teacherData, favoriteIds }) => {
+const TeacherCard = memo(({ user, isOnline = true, teacherData, favoriteIds, filters, delay }) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [error, setError] = useState(null);
   const { openModal, closeModal } = useModal();
-  const { user } = useAuth();
 
   const { tid, name, surname, avatar_url: avatarUrl } = teacherData;
   const { levels, rating, reviews, languages, conditions, experience } = teacherData;
@@ -56,7 +54,13 @@ const TeacherCard = memo(({ isOnline = true, teacherData, favoriteIds }) => {
   };
 
   return (
-    <TeacherCardStyled key={fullName} variants={slideUpVariants}>
+    <TeacherCardStyled
+      variants={slideUpVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      custom={delay}
+    >
       <HeartBtn $isFavorite={isFavorite} onClick={handleFavoriteClick}>
         <SvgIcon name="icon-heart" $isFavorite={isFavorite} />
       </HeartBtn>
@@ -74,6 +78,7 @@ const TeacherCard = memo(({ isOnline = true, teacherData, favoriteIds }) => {
         languages={languages}
         lessonInfo={lessonInfo}
         conditions={conditions}
+        filterLanguage={filters.language}
       />
 
       <MoreWrapper
@@ -97,7 +102,7 @@ const TeacherCard = memo(({ isOnline = true, teacherData, favoriteIds }) => {
         </AnimatePresence>
       </MoreWrapper>
 
-      <Levels tid={tid} levels={levels} />
+      <Levels tid={tid} levels={levels} filterLevel={filters.level} />
 
       {showMoreInfo && (
         <CardBtn

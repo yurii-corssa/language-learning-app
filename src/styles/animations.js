@@ -147,20 +147,15 @@ export const reviewsVariants = {
 
 export const slideUpVariants = {
   initial: { opacity: 0, y: "10%" },
-  animate: {
+  animate: (delay) => ({
     opacity: 1,
     y: 0,
     transition: {
       type: "spring",
       stiffness: 100,
       damping: 17,
+      ...(delay && { delay }),
     },
-  },
-  exit: {},
-};
-
-export const cardsVariants = {
-  initial: {},
-  animate: { transition: { duration: 2, staggerChildren: 0.3 } },
+  }),
   exit: {},
 };

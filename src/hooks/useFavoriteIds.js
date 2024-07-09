@@ -5,11 +5,12 @@ import { useAuth } from "./useAuth";
 export const useFavoriteIds = () => {
   const [favoriteIds, setFavoriteIds] = useState([]);
   const [isLoadingIds, setIsLoadingIds] = useState(true);
-  const { user } = useAuth();
+  const { user, isLoadingAuth } = useAuth();
 
   useEffect(() => {
-    if (user) {
+    if (isLoadingAuth) {
       setIsLoadingIds(true);
+    } else if (user) {
       const unsubscribe = subscribeToFavorites(user.uid, (favorites) => {
         setFavoriteIds(Object.values(favorites).reverse());
         setIsLoadingIds(false);
@@ -21,7 +22,7 @@ export const useFavoriteIds = () => {
     } else {
       setIsLoadingIds(false);
     }
-  }, [user]);
+  }, [isLoadingAuth, user]);
 
   return [favoriteIds, isLoadingIds];
 };

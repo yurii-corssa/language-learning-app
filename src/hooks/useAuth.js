@@ -8,10 +8,10 @@ import { removeFromLocalStorage, saveToLocalsStorage } from "../helpers/storage"
 
 export const useProvideAuth = () => {
   const [user, setUser] = useState(loadFromLocalStorage("user"));
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingAuth, setLoadingAuth] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
+    setLoadingAuth(true);
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -24,7 +24,7 @@ export const useProvideAuth = () => {
         setUser(null);
         removeFromLocalStorage("user");
       }
-      setIsLoading(false);
+      setLoadingAuth(false);
     });
 
     return () => unsubscribe();
@@ -68,7 +68,7 @@ export const useProvideAuth = () => {
     removeFromLocalStorage("user");
   };
 
-  return { user, isLoading, signin, signinWithProvider, signup, signout };
+  return { user, isLoadingAuth, signin, signinWithProvider, signup, signout };
 };
 
 export const useAuth = () => {

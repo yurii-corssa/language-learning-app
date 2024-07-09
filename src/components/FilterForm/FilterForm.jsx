@@ -1,8 +1,6 @@
-import { useSearchParams } from "react-router-dom";
 import { useFilterAttributes } from "../../hooks/useFilterAttributes";
 
-const FilterForm = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+const FilterForm = ({ filters, setSearchParams }) => {
   const [languages, levels, prices, isLoading, error] = useFilterAttributes();
 
   const handleChange = (e) => {
@@ -28,7 +26,7 @@ const FilterForm = () => {
         <select
           id="language"
           name="language"
-          value={searchParams.get("language") ?? ""}
+          value={filters.language ?? ""}
           disabled={isLoading}
           onChange={handleChange}
         >
@@ -48,7 +46,7 @@ const FilterForm = () => {
         <select
           id="level"
           name="level"
-          value={searchParams.get("level") ?? ""}
+          value={filters.level ?? ""}
           disabled={isLoading}
           onChange={handleChange}
         >
@@ -68,7 +66,7 @@ const FilterForm = () => {
         <select
           id="price"
           name="price"
-          value={searchParams.get("price") ?? ""}
+          value={filters.price ?? ""}
           disabled={isLoading}
           onChange={handleChange}
         >
