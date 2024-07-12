@@ -1,8 +1,8 @@
 import { nanoid } from "nanoid";
 
-import { SvgIcon } from "../../ui";
+import { SvgIcon } from "../../../ui";
 import { ReviewItem, ReviewList, ReviewerName, ReviewerRating } from "./Reviews.styled";
-import { slideUpVariants } from "../../../styles/animations";
+import { slideUpVariants } from "../../../../styles/animations";
 import { memo } from "react";
 
 const Reviews = memo(({ reviews = [] }) => {

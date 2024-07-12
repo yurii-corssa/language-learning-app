@@ -1,12 +1,12 @@
 import { DetailedInfo, TeacherSummary, Reviews, Levels } from "./";
 import { memo, useEffect, useState } from "react";
-import { addToFavorites, removeFromFavorites } from "../../api/users";
-import { useModal } from "../../hooks/useModal";
-import { AuthRequiredModal, BookLessonModal } from "../Modals";
-import { Button, SvgIcon } from "../ui";
+import { addToFavorites, removeFromFavorites } from "../../../api/users";
+import { useModal } from "../../../hooks/useModal";
+import { AuthRequiredModal, BookLessonModal } from "../../Modals";
+import { Button, SvgIcon } from "../../ui";
 import { TeacherAvatar, TeacherCardStyled, TeacherName } from "./TeacherCard.styled";
 import { CardBtn, Experience, HeartBtn, MoreWrapper } from "./TeacherCard.styled";
-import { reviewsVariants, slideUpVariants } from "../../styles/animations";
+import { reviewsVariants, slideUpVariants } from "../../../styles/animations";
 import { AnimatePresence } from "framer-motion";
 
 const TeacherCard = memo(({ user, isOnline = true, teacherData, favoriteIds, filters, delay }) => {
@@ -55,11 +55,12 @@ const TeacherCard = memo(({ user, isOnline = true, teacherData, favoriteIds, fil
 
   return (
     <TeacherCardStyled
-      variants={slideUpVariants}
+      custom={delay}
       initial="initial"
       animate="animate"
       exit="exit"
-      custom={delay}
+      variants={slideUpVariants}
+      layout
     >
       <HeartBtn $isFavorite={isFavorite} onClick={handleFavoriteClick}>
         <SvgIcon name="icon-heart" $isFavorite={isFavorite} />

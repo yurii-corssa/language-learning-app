@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { breakpoints, colors, transitions } from "../../styles/variables";
-import { ButtonStyled } from "../ui/Button/Button.styled";
+import { breakpoints, colors, transitions } from "../../../styles/variables";
+import { ButtonStyled } from "../../ui/Button/Button.styled";
 import { motion } from "framer-motion";
 
 export const TeacherCardStyled = styled(motion.li)`

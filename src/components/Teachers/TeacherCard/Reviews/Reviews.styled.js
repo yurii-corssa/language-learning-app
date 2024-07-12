@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints, colors } from "../../../styles/variables";
+import { breakpoints, colors } from "../../../../styles/variables";
 import { motion } from "framer-motion";
 
 export const ReviewList = styled(motion.ul)`

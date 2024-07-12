@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints, colors, transitions } from "../../../styles/variables";
+import { breakpoints, colors, transitions } from "../../../../styles/variables";
 
 export const DetailedList = styled.ul`
   display: flex;

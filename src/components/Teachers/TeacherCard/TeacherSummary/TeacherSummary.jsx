@@ -1,4 +1,4 @@
-import { SvgIcon } from "../../ui";
+import { SvgIcon } from "../../../ui";
 import { Price, SummaryItem, SummaryList } from "./TeacherSummary.styled";
 
 const TeacherSummary = ({ lessonsDone, rating, price }) => {

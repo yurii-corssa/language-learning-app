@@ -146,7 +146,10 @@ export const reviewsVariants = {
 };
 
 export const slideUpVariants = {
-  initial: { opacity: 0, y: "10%" },
+  initial: {
+    opacity: 0,
+    y: "10%",
+  },
   animate: (delay) => ({
     opacity: 1,
     y: 0,
@@ -157,5 +160,5 @@ export const slideUpVariants = {
       ...(delay && { delay }),
     },
   }),
-  exit: {},
+  // exit: { opacity: 0, transition: { duration: 0.1 } },
 };

@@ -3,19 +3,18 @@ import { getAllTeachers } from "../../api/teachers";
 import { applyFilters } from "../../helpers/applyFilters";
 import { useFavoriteIds } from "../../hooks/useFavoriteIds";
 import { useAuth } from "../../hooks/useAuth";
-import TeacherCard from "../TeacherCard/TeacherCard";
 import { RingLoader } from "../ui";
 import { pageContent } from "../../styles/variables";
-import { TeachersList } from "./Teachers.styled";
+import TeachersList from "./TeachersList/TeachersList";
+import { nanoid } from "nanoid";
 
 const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
   const [allTeachers, setAllTeachers] = useState([]);
-  const [filteredTeachers, setFilteredTeachers] = useState([]);
   const [visibleCount, setVisibleCount] = useState(initialCount);
   const [isLastPage, setIsLastPage] = useState(false);
   const [visibleTeachers, setVisibleTeachers] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
-  const [isLoadingData, setIsLoadingData] = useState(true);
+  const [isLoadingData, setIsLoadingData] = useState(false);
   const [error, setError] = useState(null);
 
   const [favoriteIds, isLoadingIds] = useFavoriteIds();
@@ -28,6 +27,8 @@ const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
         setAllTeachers(newTeachers);
       } catch (error) {
         setError(error);
+      } finally {
+        setIsLoadingData(false);
       }
     };
 
@@ -36,38 +37,26 @@ const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
   }, []);
 
   useEffect(() => {
-    if (isLoadingIds) {
+    if (isLoadingIds || !allTeachers.length) {
       return;
     }
-    if (allTeachers.length !== 0) {
-      const newFilteredTeacher = applyFilters(allTeachers, filters, favoriteIds, onlyFavorites);
+    const newFilteredTeacher = applyFilters(allTeachers, filters, favoriteIds, onlyFavorites);
 
-      if (newFilteredTeacher.length !== 0) {
-        setIsEmpty(false);
-        setFilteredTeachers(newFilteredTeacher);
-      } else {
-        setIsLoadingData(false);
-        setIsEmpty(true);
-      }
-    }
-  }, [allTeachers, favoriteIds, filters, isLoadingIds, onlyFavorites]);
-
-  useEffect(() => {
-    if (isLoadingIds || isEmpty) {
+    if (!newFilteredTeacher.length) {
+      setIsEmpty(true);
+      setVisibleTeachers([]);
       return;
     }
-    if (filteredTeachers.length !== 0) {
-      const newVisibleTeachers = filteredTeachers.slice(0, visibleCount);
-      setVisibleTeachers(newVisibleTeachers);
-      setIsLoadingData(false);
 
-      if (visibleCount >= filteredTeachers.length) {
-        setIsLastPage(true);
-      } else {
-        setIsLastPage(false);
-      }
+    const newVisibleTeachers = newFilteredTeacher.slice(0, visibleCount);
+    setVisibleTeachers(newVisibleTeachers);
+
+    if (visibleCount >= newFilteredTeacher.length) {
+      setIsLastPage(true);
+    } else {
+      setIsLastPage(false);
     }
-  }, [filteredTeachers, isEmpty, isLoadingIds, visibleCount]);
+  }, [allTeachers, favoriteIds, filters, isLoadingIds, onlyFavorites, visibleCount]);
 
   useEffect(() => {
     setVisibleCount(initialCount);
@@ -84,7 +73,6 @@ const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
   if (isLoadingData) {
     return <RingLoader width="65" height="65" />;
   }
-
   return isEmpty ? (
     favoriteIds.length === 0 ? (
       <p>{pageContent.isEmpty.noFavTeachers}</p>
@@ -93,20 +81,16 @@ const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
     )
   ) : (
     <>
-      <TeachersList>
-        {visibleTeachers.map((el, index) => {
-          return (
-            <TeacherCard
-              key={el.tid}
-              teacherData={el}
-              user={user}
-              favoriteIds={favoriteIds}
-              filters={filters}
-              delay={(index - (visibleCount - initialCount)) * 0.1}
-            />
-          );
-        })}
-      </TeachersList>
+      {visibleTeachers.length !== 0 && (
+        <TeachersList
+          key={nanoid()}
+          teachers={visibleTeachers}
+          user={user}
+          favoriteIds={favoriteIds}
+          filters={filters}
+          delayCount={visibleCount - initialCount}
+        />
+      )}
 
       {isLastPage ? (
         <p>{pageContent.isLastPage}</p>

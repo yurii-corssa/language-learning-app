@@ -1,4 +1,4 @@
-import { LevelLabel } from "../../ui";
+import { LevelLabel } from "../../../ui";
 import { useSearchParams } from "react-router-dom";
 import { LevelsList } from "./LevelsList.styled";
 

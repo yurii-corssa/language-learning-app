@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints, colors } from "../../../styles/variables";
+import { breakpoints, colors } from "../../../../styles/variables";
 
 export const SummaryList = styled.ul`
   display: flex;

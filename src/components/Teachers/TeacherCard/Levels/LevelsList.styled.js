@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { breakpoints } from "../../../styles/variables";
+import { breakpoints } from "../../../../styles/variables";
 
 export const LevelsList = styled.ul`
   display: flex;
