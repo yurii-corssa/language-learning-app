@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import { breakpoints, colors } from "../../styles/variables";
+import { breakpoints } from "../../styles/variables";
 import { motion } from "framer-motion";
 
 export const SectionContainerStyled = styled(motion.section)`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   padding: 0 20px;
   margin: 0 auto;
-  background-color: ${colors.backgroundPage};
 
   /* @media screen and (min-width: ${breakpoints.mobile}px) {
     width: 320px;
@@ -18,7 +19,7 @@ export const SectionContainerStyled = styled(motion.section)`
   }
 
   @media only screen and (min-width: ${breakpoints.desktop}px) {
-    width: 1024px;
+    width: 1216px;
     padding: 0 16px;
   }
 `;

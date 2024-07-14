@@ -5,7 +5,13 @@ import AppContainer from "./AppContainer/AppContainer";
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { SharedModal } from "./Modals";
-import SectionContainer from "./SectionContainer/SectionContainer";
+import styled from "styled-components";
+
+const Main = styled.main`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+`;
 
 const SharedLayout = () => {
   return (
@@ -13,15 +19,13 @@ const SharedLayout = () => {
       <AppContainer>
         <Header />
 
-        <SectionContainer>
-          <main>
-            <Suspense fallback={<div>Loading...</div>}>
-              <Outlet />
-            </Suspense>
-          </main>
+        <Main>
+          <Suspense fallback={null}>
+            <Outlet />
+          </Suspense>
+        </Main>
 
-          <Footer />
-        </SectionContainer>
+        <Footer />
       </AppContainer>
 
       <SharedModal />
