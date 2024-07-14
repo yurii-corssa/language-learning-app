@@ -1,14 +1,28 @@
-import { AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
+import ListBottom from "../ListBottom/ListBottom";
 import TeacherCard from "../TeacherCard/TeacherCard";
 import { TeachersListStyled } from "./TeachersList.styled";
 
-const TeachersList = ({ teachers, user, favoriteIds, filters, delayCount }) => {
+const TeachersList = (props) => {
+  const { teachers, user, favoriteIds, filters, delayCount, isLastPage, showMore } = props;
+
+  useEffect(() => {
+    if (teachers.length - 3 !== 1) {
+      const element = document.getElementById(teachers.length - 3);
+
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }, [teachers.length]);
+
   return (
-    <TeachersListStyled>
-      <AnimatePresence>
+    <>
+      <TeachersListStyled>
         {teachers.map((el, index) => {
           return (
             <TeacherCard
+              id={index + 1}
               key={el.tid}
               teacherData={el}
               user={user}
@@ -18,8 +32,10 @@ const TeachersList = ({ teachers, user, favoriteIds, filters, delayCount }) => {
             />
           );
         })}
-      </AnimatePresence>
-    </TeachersListStyled>
+      </TeachersListStyled>
+
+      <ListBottom isLastPage={isLastPage} showMore={showMore} />
+    </>
   );
 };
 

@@ -150,9 +150,25 @@ export const slideUpVariants = {
     opacity: 0,
     y: "10%",
   },
-  animate: (delay) => ({
+  animate: {
     opacity: 1,
     y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 17,
+    },
+  },
+};
+
+export const scaleUpVariants = {
+  initial: {
+    opacity: 0,
+    scale: 0.9,
+  },
+  animate: (delay) => ({
+    opacity: 1,
+    scale: 1,
     transition: {
       type: "spring",
       stiffness: 100,
@@ -160,5 +176,4 @@ export const slideUpVariants = {
       ...(delay && { delay }),
     },
   }),
-  // exit: { opacity: 0, transition: { duration: 0.1 } },
 };

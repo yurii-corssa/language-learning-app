@@ -6,7 +6,9 @@ import { useAuth } from "../../hooks/useAuth";
 import { RingLoader } from "../ui";
 import { pageContent } from "../../styles/variables";
 import TeachersList from "./TeachersList/TeachersList";
-import { nanoid } from "nanoid";
+import empty from "/assets/images/empty.svg";
+import filter from "/assets/images/filter.svg";
+import PagePlaceholder from "../PagePlaceholder/PagePlaceholder";
 
 const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
   const [allTeachers, setAllTeachers] = useState([]);
@@ -75,31 +77,22 @@ const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
   }
   return isEmpty ? (
     favoriteIds.length === 0 ? (
-      <p>{pageContent.isEmpty.noFavTeachers}</p>
+      <PagePlaceholder image={empty} notification={pageContent.isEmpty.noFavTeachers} />
     ) : (
-      <p>{pageContent.isEmpty.noFilterTeachers}</p>
+      <PagePlaceholder image={filter} notification={pageContent.isEmpty.noFilterTeachers} />
     )
   ) : (
-    <>
-      {visibleTeachers.length !== 0 && (
-        <TeachersList
-          key={nanoid()}
-          teachers={visibleTeachers}
-          user={user}
-          favoriteIds={favoriteIds}
-          filters={filters}
-          delayCount={visibleCount - initialCount}
-        />
-      )}
-
-      {isLastPage ? (
-        <p>{pageContent.isLastPage}</p>
-      ) : (
-        <button onClick={showMore} disabled={isLoadingData}>
-          Load more
-        </button>
-      )}
-    </>
+    visibleTeachers.length !== 0 && (
+      <TeachersList
+        teachers={visibleTeachers}
+        user={user}
+        favoriteIds={favoriteIds}
+        filters={filters}
+        delayCount={visibleCount - initialCount}
+        isLastPage={isLastPage}
+        showMore={showMore}
+      />
+    )
   );
 };
 
