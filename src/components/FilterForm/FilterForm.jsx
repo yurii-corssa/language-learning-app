@@ -1,10 +1,27 @@
 import { useFilterAttributes } from "../../hooks/useFilterAttributes";
+import { breakpoints } from "../../styles/variables";
+import { Button, SvgIcon } from "../ui";
+import { opacityVariants, filterVariants } from "../../styles/animations";
+import { useMediaQuery } from "../../hooks";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import Dropdown from "../ui/Dropdown/Dropdown";
+import {
+  DropdownsWrapper,
+  FilterBtn,
+  FilterBtnWrapper,
+  FilterFormStyled,
+} from "./FilterForm.styled";
 
 const FilterForm = ({ filters, setSearchParams }) => {
+  const [showFilter, setShowFilter] = useState(false);
   const [languages, levels, prices, isLoading, error] = useFilterAttributes();
 
+  const isMobile = useMediaQuery(`(max-width: ${breakpoints.tablet - 1}px)`);
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const name = e.currentTarget.getAttribute("data-name");
+    const value = e.currentTarget.getAttribute("data-value");
 
     if (value) {
       setSearchParams((prevParams) => {
@@ -19,69 +36,86 @@ const FilterForm = ({ filters, setSearchParams }) => {
     }
   };
 
+  const toggleShowFilter = () => {
+    setShowFilter((prevState) => !prevState);
+  };
+
+  const resetFilter = () => {
+    setSearchParams(new URLSearchParams());
+  };
+
   return (
-    <form>
-      <div>
-        <label htmlFor="language">Languages</label>
-        <select
-          id="language"
-          name="language"
-          value={filters.language ?? ""}
-          disabled={isLoading}
-          onChange={handleChange}
-        >
-          <option key="defaultLang" value="">
-            - - - - - - -
-          </option>
-          {languages.map((lang) => (
-            <option key={lang} value={lang}>
-              {lang}
-            </option>
-          ))}
-        </select>
-      </div>
+    <FilterFormStyled>
+      <AnimatePresence>
+        <FilterBtnWrapper key="filter-buttons">
+          {(filters.language || filters.level || filters.price) && (
+            <motion.div
+              key="reset-filter-btn"
+              variants={opacityVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <Button variant="icon" onClick={resetFilter} disabled={isLoading}>
+                <SvgIcon name="icon-filter-x" width="20px" height="20px" />
+              </Button>
+            </motion.div>
+          )}
+          {isMobile && (
+            <FilterBtn
+              key="filter-btn"
+              $variant="icon"
+              $showFilter={showFilter}
+              disabled={isLoading}
+              onClick={toggleShowFilter}
+            >
+              Filter
+              <SvgIcon name={"icon-chevron-down"} width="20px" height="20px" />
+            </FilterBtn>
+          )}
+        </FilterBtnWrapper>
 
-      <div>
-        <label htmlFor="level">Level of knowledge</label>
-        <select
-          id="level"
-          name="level"
-          value={filters.level ?? ""}
-          disabled={isLoading}
-          onChange={handleChange}
-        >
-          <option key="defaultLevel" value="">
-            - - - - - - -
-          </option>
-          {levels.map((lvl) => (
-            <option key={lvl} value={lvl}>
-              {lvl}
-            </option>
-          ))}
-        </select>
-      </div>
+        {(showFilter || !isMobile) && (
+          <DropdownsWrapper
+            key="dropdowns"
+            variants={filterVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <Dropdown
+              id="language"
+              label="Languages"
+              value={filters.language ?? ""}
+              options={languages}
+              minWidth="220px"
+              disabled={isLoading}
+              onChange={handleChange}
+            />
+            <Dropdown
+              id="level"
+              label="Level of knowledge"
+              value={filters.level ?? ""}
+              options={levels}
+              minWidth="246px"
+              disabled={isLoading}
+              onChange={handleChange}
+            />
+            <Dropdown
+              id="price"
+              label="Price"
+              value={filters.price ?? ""}
+              options={prices}
+              minWidth="124px"
+              disabled={isLoading}
+              onChange={handleChange}
+            />
+          </DropdownsWrapper>
+        )}
+      </AnimatePresence>
 
-      <div>
-        <label htmlFor="price">Price</label>
-        <select
-          id="price"
-          name="price"
-          value={filters.price ?? ""}
-          disabled={isLoading}
-          onChange={handleChange}
-        >
-          <option key="defaultPrice" value="">
-            - - - - - - -
-          </option>
-          {prices.map((price) => (
-            <option key={price} value={price}>
-              {price}
-            </option>
-          ))}
-        </select>
-      </div>
       {error && <p>Error: {error.message}</p>}
-    </form>
+    </FilterFormStyled>
   );
 };
 

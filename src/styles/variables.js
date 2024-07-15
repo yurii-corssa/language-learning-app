@@ -23,6 +23,7 @@ export const breakpoints = {
 
 export const shadows = {
   menu: "-20px -2px 41px -25px rgba(107, 114, 128, 0.75)",
+  dropdown: "0px 50px 100px -20px rgba(50, 50, 93, 0.1)",
 };
 
 export const modalContent = {

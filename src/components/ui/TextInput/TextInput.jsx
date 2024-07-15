@@ -1,6 +1,6 @@
 import { forwardRef, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { inputMessageVariants } from "../../../styles/animations";
+import { opacityVariants } from "../../../styles/animations";
 import SvgIcon from "../SvgIcon";
 import { ErrorMessage, InputWrapper, TextInputStyled, VisibleBtn } from "./TextInput.styled";
 
@@ -27,7 +27,7 @@ const TextInput = forwardRef(
         <AnimatePresence>
           {errorMessage && (
             <ErrorMessage
-              variants={inputMessageVariants}
+              variants={opacityVariants}
               initial="initial"
               animate="animate"
               exit="exit"

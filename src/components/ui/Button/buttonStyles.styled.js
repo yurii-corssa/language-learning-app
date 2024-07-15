@@ -75,11 +75,11 @@ export const buttonStyles = {
       stroke: currentColor;
     }
     @media (hover: hover) {
-      &:hover {
+      &:hover:not(:disabled) {
         color: ${colors.primary};
       }
     }
-    &:active {
+    &:active:not(:disabled) {
       color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
     }
   `,
@@ -121,7 +121,7 @@ export const buttonStyles = {
         background-color: color-mix(in srgb, ${colors.backgroundPage}, ${colors.primary} 20%);
       }
     }
-    &:active {
+    &:active:not(:disabled) {
       background-color: ${colors.primary};
     }
   `,
