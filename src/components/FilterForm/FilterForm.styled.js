@@ -23,6 +23,7 @@ export const DropdownsWrapper = styled(motion.div)`
   }
   @media only screen and (min-width: ${breakpoints.tablet}px) {
     flex-direction: row;
+    min-height: 74px;
   }
 `;
 

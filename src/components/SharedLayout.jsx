@@ -6,6 +6,8 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { SharedModal } from "./Modals";
 import styled from "styled-components";
+import { RingLoader } from "./ui";
+import Backdrop from "./Backdrop/Backdrop";
 
 const Main = styled.main`
   flex-grow: 1;
@@ -20,7 +22,13 @@ const SharedLayout = () => {
         <Header />
 
         <Main>
-          <Suspense fallback={null}>
+          <Suspense
+            fallback={
+              <Backdrop>
+                <RingLoader />
+              </Backdrop>
+            }
+          >
             <Outlet />
           </Suspense>
         </Main>

@@ -15,13 +15,15 @@ export const HeaderContainer = styled(motion.header)`
   background-color: ${colors.backgroundPage};
 
   @media only screen and (min-width: ${breakpoints.tablet}px) {
-    width: 768px;
+    width: 704px;
     height: 88px;
     padding: 30px 64px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
   }
 
   @media only screen and (min-width: ${breakpoints.desktop}px) {
-    width: 1024px;
+    width: 1152px;
     padding: 20px 80px;
   }
 `;

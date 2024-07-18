@@ -1,22 +1,3 @@
-export const fadeVariants = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      ease: "easeOut",
-      duration: 0.3,
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      ease: "easeOut",
-      duration: 0.2,
-      delay: 0.2,
-    },
-  },
-};
-
 export const modalScaleVariants = {
   initial: {
     opacity: 0,
@@ -53,10 +34,23 @@ export const pageScaleVariants = {
   menuClosed: { scale: 1 },
 };
 
-export const inputMessageVariants = {
+export const opacityVariants = {
   initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      ease: "easeOut",
+      duration: 0.3,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      ease: "easeOut",
+      duration: 0.2,
+      delay: 0.2,
+    },
+  },
 };
 
 export const headerInVariants = {
@@ -145,6 +139,12 @@ export const reviewsVariants = {
   exit: {},
 };
 
+export const filterVariants = {
+  initial: { height: "0" },
+  animate: { height: "auto", transition: { ease: "easeIn", duration: 0.3, staggerChildren: 0.1 } },
+  exit: { height: "0" },
+};
+
 export const slideUpVariants = {
   initial: {
     opacity: 0,
@@ -158,6 +158,10 @@ export const slideUpVariants = {
       stiffness: 100,
       damping: 17,
     },
+  },
+  exit: {
+    opacity: 0,
+    y: "10%",
   },
 };
 
@@ -176,4 +180,29 @@ export const scaleUpVariants = {
       ...(delay && { delay }),
     },
   }),
+};
+
+export const dropdownVariants = {
+  closed: {
+    opacity: 0,
+    scale: 0.9,
+    transition: {
+      type: "spring",
+      stiffness: 350,
+      damping: 23,
+    },
+    transitionEnd: {
+      display: "none",
+    },
+  },
+  open: {
+    display: "flex",
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 350,
+      damping: 23,
+    },
+  },
 };

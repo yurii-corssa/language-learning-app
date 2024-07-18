@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { DropdownWrapper, Label, Option, OptionsList, Select } from "./Dropdown.styled";
 import { dropdownVariants, slideUpVariants } from "../../../styles/animations";
 import SvgIcon from "../SvgIcon";
@@ -71,42 +70,39 @@ const Dropdown = ({ id, label, value, options, minWidth, disabled, onChange }) =
         <SvgIcon name="icon-chevron-down" width="20" height="20" />
       </Select>
 
-      <AnimatePresence>
-        {isOpen && (
-          <OptionsList
-            key="options-list"
-            variants={dropdownVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            layout
+      <OptionsList
+        key="options-list"
+        variants={dropdownVariants}
+        initial="closed"
+        animate={isOpen ? "open" : "closed"}
+        $top={selectRef?.current?.getBoundingClientRect().bottom}
+        $left={selectRef?.current?.getBoundingClientRect().left}
+        $width={selectRef?.current?.getBoundingClientRect().width}
+      >
+        <Option
+          key={`default${id}`}
+          data-name={id}
+          data-value=""
+          onClick={onChange}
+          onKeyDown={handleChange}
+          tabIndex={0}
+        >
+          All
+        </Option>
+        {options.map((opt) => (
+          <Option
+            key={opt}
+            data-name={id}
+            data-value={opt}
+            $isSelected={value === opt + ""}
+            onClick={onChange}
+            onKeyDown={handleChange}
+            tabIndex={0}
           >
-            <Option
-              key={`default${id}`}
-              data-name={id}
-              data-value=""
-              onClick={onChange}
-              onKeyDown={handleChange}
-              tabIndex={0}
-            >
-              All
-            </Option>
-            {options.map((opt) => (
-              <Option
-                key={opt}
-                data-name={id}
-                data-value={opt}
-                $isSelected={value === opt + ""}
-                onClick={onChange}
-                onKeyDown={handleChange}
-                tabIndex={0}
-              >
-                {opt}
-              </Option>
-            ))}
-          </OptionsList>
-        )}
-      </AnimatePresence>
+            {opt}
+          </Option>
+        ))}
+      </OptionsList>
     </DropdownWrapper>
   );
 };

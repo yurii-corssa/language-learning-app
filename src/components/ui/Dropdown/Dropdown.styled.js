@@ -10,6 +10,8 @@ export const DropdownWrapper = styled(motion.div)`
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
+
+  z-index: 1;
 `;
 
 export const Label = styled.label`
@@ -67,8 +69,6 @@ export const OptionsList = styled(motion.ul)`
   border-radius: 12px;
   background-color: ${colors.white};
   box-shadow: ${shadows.dropdown};
-
-  z-index: 999;
 `;
 
 export const Option = styled.li`

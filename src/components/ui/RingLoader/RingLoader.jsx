@@ -1,8 +1,14 @@
 import { RingLoaderStyled } from "./RingLoader.styled";
 
-const RingLoader = (props) => {
+const RingLoader = ({ width = 65, height = 65, ...props }) => {
   return (
-    <RingLoaderStyled xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+    <RingLoaderStyled
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={width}
+      height={height}
+      {...props}
+    >
       <g stroke="currentColor">
         <circle cx={12} cy={12} r={9.5} fill="none" strokeLinecap="round" strokeWidth={3}>
           <animate

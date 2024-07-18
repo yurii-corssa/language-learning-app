@@ -1,4 +1,4 @@
-import { fadeVariants } from "../../styles/animations";
+import { opacityVariants } from "../../styles/animations";
 import { BackdropStyled } from "./Backdrop.styled";
 
 const Backdrop = ({ onClose, children }) => {
@@ -10,7 +10,8 @@ const Backdrop = ({ onClose, children }) => {
 
   return (
     <BackdropStyled
-      variants={fadeVariants}
+      key="backdrop"
+      variants={opacityVariants}
       initial="initial"
       animate="animate"
       exit="exit"

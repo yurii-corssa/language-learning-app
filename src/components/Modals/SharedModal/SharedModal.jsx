@@ -30,7 +30,7 @@ const SharedModal = () => {
     <AnimatePresence>
       {content && (
         <>
-          <Backdrop onClose={closeModal} />
+          <Backdrop onClose={closeModal}></Backdrop>
           <ModalCard
             key={content.key}
             variants={modalScaleVariants}

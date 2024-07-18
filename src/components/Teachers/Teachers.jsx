@@ -3,12 +3,12 @@ import { getAllTeachers } from "../../api/teachers";
 import { applyFilters } from "../../helpers/applyFilters";
 import { useFavoriteIds } from "../../hooks/useFavoriteIds";
 import { useAuth } from "../../hooks/useAuth";
-import { RingLoader } from "../ui";
 import { pageContent } from "../../styles/variables";
 import TeachersList from "./TeachersList/TeachersList";
 import empty from "/assets/images/empty.svg";
 import filter from "/assets/images/filter.svg";
 import PagePlaceholder from "../PagePlaceholder/PagePlaceholder";
+import SkeletonCard from "../SkeletonCard/SkeletonCard";
 
 const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
   const [allTeachers, setAllTeachers] = useState([]);
@@ -73,7 +73,9 @@ const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
   }
 
   if (isLoadingData) {
-    return <RingLoader width="65" height="65" />;
+    return Array(4)
+      .fill(0)
+      .map((_, i) => <SkeletonCard key={i} />);
   }
   return isEmpty ? (
     favoriteIds.length === 0 ? (

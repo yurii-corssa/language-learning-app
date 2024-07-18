@@ -11,4 +11,5 @@ export const BackdropStyled = styled(motion.div)`
   align-items: center;
 
   background-color: ${colors.backdrop};
+  z-index: 888;
 `;
