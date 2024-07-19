@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getAllTeachers } from "../../api/teachers";
 import { applyFilters } from "../../helpers/applyFilters";
 import { useFavoriteIds } from "../../hooks/useFavoriteIds";
 import { useAuth } from "../../hooks/useAuth";
@@ -8,41 +7,21 @@ import TeachersList from "./TeachersList/TeachersList";
 import empty from "/assets/images/empty.svg";
 import filter from "/assets/images/filter.svg";
 import PagePlaceholder from "../PagePlaceholder/PagePlaceholder";
-import SkeletonCard from "../SkeletonCard/SkeletonCard";
 
-const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
-  const [allTeachers, setAllTeachers] = useState([]);
+const Teachers = ({ teachers, filters, onlyFavorites = false, initialCount = 4 }) => {
   const [visibleCount, setVisibleCount] = useState(initialCount);
   const [isLastPage, setIsLastPage] = useState(false);
   const [visibleTeachers, setVisibleTeachers] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
-  const [isLoadingData, setIsLoadingData] = useState(false);
-  const [error, setError] = useState(null);
 
   const [favoriteIds, isLoadingIds] = useFavoriteIds();
   const { user } = useAuth();
 
   useEffect(() => {
-    const fetchTeachers = async () => {
-      try {
-        const newTeachers = await getAllTeachers();
-        setAllTeachers(newTeachers);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoadingData(false);
-      }
-    };
-
-    setIsLoadingData(true);
-    fetchTeachers();
-  }, []);
-
-  useEffect(() => {
-    if (isLoadingIds || !allTeachers.length) {
+    if (isLoadingIds || !teachers.length) {
       return;
     }
-    const newFilteredTeacher = applyFilters(allTeachers, filters, favoriteIds, onlyFavorites);
+    const newFilteredTeacher = applyFilters(teachers, filters, favoriteIds, onlyFavorites);
 
     if (!newFilteredTeacher.length) {
       setIsEmpty(true);
@@ -58,7 +37,7 @@ const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
     } else {
       setIsLastPage(false);
     }
-  }, [allTeachers, favoriteIds, filters, isLoadingIds, onlyFavorites, visibleCount]);
+  }, [teachers, favoriteIds, filters, isLoadingIds, onlyFavorites, visibleCount]);
 
   useEffect(() => {
     setVisibleCount(initialCount);
@@ -68,15 +47,6 @@ const Teachers = ({ filters, onlyFavorites = false, initialCount = 4 }) => {
     setVisibleCount((prevCount) => prevCount + initialCount);
   };
 
-  if (error) {
-    alert(error.message);
-  }
-
-  if (isLoadingData) {
-    return Array(4)
-      .fill(0)
-      .map((_, i) => <SkeletonCard key={i} />);
-  }
   return isEmpty ? (
     favoriteIds.length === 0 ? (
       <PagePlaceholder image={empty} notification={pageContent.isEmpty.noFavTeachers} />

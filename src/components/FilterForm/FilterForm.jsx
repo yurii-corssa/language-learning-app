@@ -6,12 +6,8 @@ import { useMediaQuery } from "../../hooks";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import Dropdown from "../ui/Dropdown/Dropdown";
-import {
-  DropdownsWrapper,
-  FilterBtn,
-  FilterBtnWrapper,
-  FilterFormStyled,
-} from "./FilterForm.styled";
+import { DropdownsWrapper, FilterBtn } from "./FilterForm.styled";
+import { FilterBtnWrapper, FilterFormStyled } from "./FilterForm.styled";
 
 const FilterForm = ({ filters, setSearchParams }) => {
   const [showFilter, setShowFilter] = useState(false);
@@ -48,7 +44,7 @@ const FilterForm = ({ filters, setSearchParams }) => {
     <FilterFormStyled>
       <AnimatePresence>
         <FilterBtnWrapper key="filter-buttons">
-          {(filters.language || filters.level || filters.price) && (
+          {(filters?.language || filters?.level || filters?.price) && (
             <motion.div
               key="reset-filter-btn"
               variants={opacityVariants}
@@ -86,7 +82,7 @@ const FilterForm = ({ filters, setSearchParams }) => {
             <Dropdown
               id="language"
               label="Languages"
-              value={filters.language ?? ""}
+              value={filters?.language ?? ""}
               options={languages}
               minWidth="220px"
               disabled={isLoading}
@@ -95,7 +91,7 @@ const FilterForm = ({ filters, setSearchParams }) => {
             <Dropdown
               id="level"
               label="Level of knowledge"
-              value={filters.level ?? ""}
+              value={filters?.level ?? ""}
               options={levels}
               minWidth="246px"
               disabled={isLoading}
@@ -104,7 +100,7 @@ const FilterForm = ({ filters, setSearchParams }) => {
             <Dropdown
               id="price"
               label="Price"
-              value={filters.price ?? ""}
+              value={filters?.price ?? ""}
               options={prices}
               minWidth="124px"
               disabled={isLoading}

@@ -6,7 +6,6 @@ import PrivateRoute from "./components/PrivateRoute";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const TeachersPage = lazy(() => import("./pages/TeachersPage"));
-const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 const App = () => {
@@ -15,7 +14,10 @@ const App = () => {
       <Route path={routes.HOME} element={<SharedLayout />}>
         <Route index element={<HomePage />} />
         <Route path={routes.TEACHERS} element={<TeachersPage />} />
-        <Route path={routes.FAVORITES} element={<PrivateRoute comp={<FavoritesPage />} />} />
+        <Route
+          path={routes.FAVORITES}
+          element={<PrivateRoute comp={<TeachersPage onlyFavorites={true} />} />}
+        />
 
         <Route path="*" element={<NotFoundPage />} />
       </Route>

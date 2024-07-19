@@ -6,12 +6,9 @@ export const SectionContainerStyled = styled(motion.section)`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  width: 100%;
   padding: 0 20px;
   margin: 0 auto;
-
-  /* @media screen and (min-width: ${breakpoints.mobile}px) {
-    width: 320px;
-  } */
 
   @media only screen and (min-width: ${breakpoints.tablet}px) {
     width: 768px;
@@ -20,6 +17,5 @@ export const SectionContainerStyled = styled(motion.section)`
 
   @media only screen and (min-width: ${breakpoints.desktop}px) {
     width: 1216px;
-    padding: 0 16px;
   }
 `;
