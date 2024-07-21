@@ -10,7 +10,7 @@ import Skeleton from "../components/Skeleton/Skeleton";
 const TeachersPage = ({ onlyFavorites = false }) => {
   const [teachers, setTeachers] = useState([]);
   const [filters, setFilters] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [searchParams, setSearchParams] = useSearchParams();

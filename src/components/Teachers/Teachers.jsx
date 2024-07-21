@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { applyFilters } from "../../helpers/applyFilters";
 import { useFavoriteIds } from "../../hooks/useFavoriteIds";
 import { useAuth } from "../../hooks/useAuth";
@@ -17,6 +17,10 @@ const Teachers = ({ teachers, filters, onlyFavorites = false, initialCount = 4 }
   const [favoriteIds, isLoadingIds] = useFavoriteIds();
   const { user } = useAuth();
 
+  useLayoutEffect(() => {
+    setVisibleCount(initialCount);
+  }, [initialCount, filters]);
+
   useEffect(() => {
     if (isLoadingIds || !teachers.length) {
       return;
@@ -27,6 +31,8 @@ const Teachers = ({ teachers, filters, onlyFavorites = false, initialCount = 4 }
       setIsEmpty(true);
       setVisibleTeachers([]);
       return;
+    } else {
+      setIsEmpty(false);
     }
 
     const newVisibleTeachers = newFilteredTeacher.slice(0, visibleCount);
@@ -38,10 +44,6 @@ const Teachers = ({ teachers, filters, onlyFavorites = false, initialCount = 4 }
       setIsLastPage(false);
     }
   }, [teachers, favoriteIds, filters, isLoadingIds, onlyFavorites, visibleCount]);
-
-  useEffect(() => {
-    setVisibleCount(initialCount);
-  }, [initialCount, filters]);
 
   const showMore = () => {
     setVisibleCount((prevCount) => prevCount + initialCount);
@@ -59,8 +61,8 @@ const Teachers = ({ teachers, filters, onlyFavorites = false, initialCount = 4 }
         teachers={visibleTeachers}
         user={user}
         favoriteIds={favoriteIds}
-        filters={filters}
-        delayCount={visibleCount - initialCount}
+        initialCount={initialCount}
+        visibleCount={visibleCount}
         isLastPage={isLastPage}
         showMore={showMore}
       />

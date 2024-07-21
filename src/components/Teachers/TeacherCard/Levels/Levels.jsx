@@ -2,12 +2,12 @@ import { LevelLabel } from "../../../ui";
 import { useSearchParams } from "react-router-dom";
 import { LevelsList } from "./LevelsList.styled";
 
-const Levels = ({ tid, levels, filterLevel }) => {
-  const setSearchParams = useSearchParams()[1];
+const Levels = ({ tid, levels }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleChangeLevel = (e) => {
     const value = e.target.textContent.slice(1);
-    if (filterLevel === value) {
+    if (searchParams.get("level") === value) {
       setSearchParams((prevParams) => {
         prevParams.delete("level");
         return prevParams;
@@ -23,7 +23,7 @@ const Levels = ({ tid, levels, filterLevel }) => {
   return (
     <LevelsList>
       {levels.map((el) => {
-        const isSelected = filterLevel === el;
+        const isSelected = searchParams.get("level") === el;
         return (
           <LevelLabel
             key={`${tid}-${el}`}

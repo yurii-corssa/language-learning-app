@@ -1,5 +1,5 @@
 import { DetailedInfo, TeacherSummary, Reviews, Levels } from "./";
-import { memo, useEffect, useState } from "react";
+import { forwardRef, memo, useEffect, useState } from "react";
 import { addToFavorites, removeFromFavorites } from "../../../api/users";
 import { useModal } from "../../../hooks/useModal";
 import { AuthRequiredModal, BookLessonModal } from "../../Modals";
@@ -10,7 +10,8 @@ import { reviewsVariants, scaleUpVariants, slideUpVariants } from "../../../styl
 import { AnimatePresence } from "framer-motion";
 
 const TeacherCard = memo(
-  ({ id, user, isOnline = true, teacherData, favoriteIds, filters, delay }) => {
+  forwardRef((props, ref) => {
+    const { id, user, isOnline = true, teacherData, favoriteIds, delay } = props;
     const [showMoreInfo, setShowMoreInfo] = useState(false);
     const [isFavorite, setIsFavorite] = useState(false);
     const [error, setError] = useState(null);
@@ -67,6 +68,7 @@ const TeacherCard = memo(
         exit="exit"
         variants={scaleUpVariants}
         layout="position"
+        ref={ref}
       >
         <HeartBtn $isFavorite={isFavorite} onClick={handleFavoriteClick}>
           <SvgIcon name="icon-heart" $isFavorite={isFavorite} />
@@ -85,7 +87,6 @@ const TeacherCard = memo(
           languages={languages}
           lessonInfo={lessonInfo}
           conditions={conditions}
-          filterLanguage={filters.language}
         />
 
         <MoreWrapper
@@ -109,7 +110,7 @@ const TeacherCard = memo(
           </AnimatePresence>
         </MoreWrapper>
 
-        <Levels tid={tid} levels={levels} filterLevel={filters.level} />
+        <Levels tid={tid} levels={levels} />
 
         {showMoreInfo && (
           <CardBtn
@@ -128,7 +129,7 @@ const TeacherCard = memo(
         )}
       </TeacherCardStyled>
     );
-  }
+  })
 );
 
 TeacherCard.displayName = "TeacherCard";
