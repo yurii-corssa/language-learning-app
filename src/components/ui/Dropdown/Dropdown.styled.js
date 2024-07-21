@@ -10,8 +10,6 @@ export const DropdownWrapper = styled(motion.div)`
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
-
-  z-index: 1;
 `;
 
 export const Label = styled.label`
@@ -60,11 +58,14 @@ export const Select = styled.div`
 
 export const OptionsList = styled(motion.ul)`
   position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  right: 0;
+  top: ${({ $top }) => ($top ? `${$top + 4}px` : 0)};
+  left: ${({ $left }) => ($left ? `${$left}px` : 0)};
   display: flex;
   flex-direction: column;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  width: ${({ $width }) => ($width ? `${$width}px` : 0)};
   padding: 14px 0;
   border-radius: 12px;
   background-color: ${colors.white};

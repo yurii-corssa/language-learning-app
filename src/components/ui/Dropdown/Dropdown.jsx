@@ -2,10 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { DropdownWrapper, Label, Option, OptionsList, Select } from "./Dropdown.styled";
 import { dropdownVariants, slideUpVariants } from "../../../styles/animations";
 import SvgIcon from "../SvgIcon";
+import { AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 
 const Dropdown = ({ id, label, value, options, minWidth, disabled, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef(null);
+  const dropdownRoot = document.getElementById("dropdown-root");
 
   const toggleSelect = () => {
     setIsOpen((prevState) => !prevState);
@@ -70,39 +73,47 @@ const Dropdown = ({ id, label, value, options, minWidth, disabled, onChange }) =
         <SvgIcon name="icon-chevron-down" width="20" height="20" />
       </Select>
 
-      <OptionsList
-        key="options-list"
-        variants={dropdownVariants}
-        initial="closed"
-        animate={isOpen ? "open" : "closed"}
-        $top={selectRef?.current?.getBoundingClientRect().bottom}
-        $left={selectRef?.current?.getBoundingClientRect().left}
-        $width={selectRef?.current?.getBoundingClientRect().width}
-      >
-        <Option
-          key={`default${id}`}
-          data-name={id}
-          data-value=""
-          onClick={onChange}
-          onKeyDown={handleChange}
-          tabIndex={0}
-        >
-          All
-        </Option>
-        {options.map((opt) => (
-          <Option
-            key={opt}
-            data-name={id}
-            data-value={opt}
-            $isSelected={value === opt + ""}
-            onClick={onChange}
-            onKeyDown={handleChange}
-            tabIndex={0}
-          >
-            {opt}
-          </Option>
-        ))}
-      </OptionsList>
+      {createPortal(
+        <AnimatePresence>
+          {isOpen && (
+            <OptionsList
+              key="options-list"
+              variants={dropdownVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              $top={selectRef?.current?.getBoundingClientRect().bottom}
+              $left={selectRef?.current?.getBoundingClientRect().left}
+              $width={selectRef?.current?.getBoundingClientRect().width}
+            >
+              <Option
+                key={`default${id}`}
+                data-name={id}
+                data-value=""
+                onClick={onChange}
+                onKeyDown={handleChange}
+                tabIndex={0}
+              >
+                All
+              </Option>
+              {options.map((opt) => (
+                <Option
+                  key={opt}
+                  data-name={id}
+                  data-value={opt}
+                  $isSelected={value === opt + ""}
+                  onClick={onChange}
+                  onKeyDown={handleChange}
+                  tabIndex={0}
+                >
+                  {opt}
+                </Option>
+              ))}
+            </OptionsList>
+          )}
+        </AnimatePresence>,
+        dropdownRoot
+      )}
     </DropdownWrapper>
   );
 };
