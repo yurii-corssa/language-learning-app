@@ -64,8 +64,8 @@ export const TeacherAvatar = styled.div`
     position: absolute;
     top: 20px;
     right: 20px;
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     background-color: ${({ $isOnline }) => ($isOnline ? colors.green : colors.red)};
     border-radius: 50%;
     border: 2px solid ${colors.white};

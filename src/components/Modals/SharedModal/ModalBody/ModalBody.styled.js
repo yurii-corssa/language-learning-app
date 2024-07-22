@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { breakpoints, colors } from "../../../../styles/variables";
 
 export const ModalBodyStyled = styled.div`
-  position: relative;
   overflow-y: auto;
   height: 100%;
   margin-right: -30px;
