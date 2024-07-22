@@ -1,5 +1,7 @@
 import BookLessonForm from "../../BookLessonForm/BookLessonForm";
 import ModalBody from "../SharedModal/ModalBody/ModalBody";
+import { CurrentTeacher, TeacherAvatarImg } from "./BookLessonModal.styled";
+import { TeacherAvatarThumb, TeacherName, TeacherNameLabel } from "./BookLessonModal.styled";
 
 const BookLessonModal = ({ teacherData, closeModal }) => {
   const { name, surname, avatar_url: avatarUrl } = teacherData;
@@ -10,15 +12,16 @@ const BookLessonModal = ({ teacherData, closeModal }) => {
       title="Book trial lesson"
       text="Our experienced tutor will assess your current language level, discuss your learning goals, and tailor the lesson to your specific needs."
     >
-      <div className="CurrentTeacher">
-        <div className="TeacherAvatar">
-          <img src={avatarUrl} alt={fullName} width="44" height="44" />
+      <CurrentTeacher>
+        <TeacherAvatarThumb>
+          <TeacherAvatarImg src={avatarUrl} alt={fullName} width="44" height="44" />
+        </TeacherAvatarThumb>
+
+        <div>
+          <TeacherNameLabel>Your teacher</TeacherNameLabel>
+          <TeacherName>{fullName}</TeacherName>
         </div>
-        <div className="TeacherName">
-          <p>Your teacher</p>
-          <h3>{fullName}</h3>
-        </div>
-      </div>
+      </CurrentTeacher>
 
       <BookLessonForm closeModal={closeModal} />
     </ModalBody>

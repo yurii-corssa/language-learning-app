@@ -1,6 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { bookLessonSchema } from "../../helpers/schemas";
+import { Button, TextInput } from "../ui";
+import { AnimatePresence } from "framer-motion";
+import { opacityVariants } from "../../styles/animations";
+import { BookLessonFormStyled, ErrorMessage } from "./BookLessonForm.styled";
+import { FormHeader, InputsWrapper, RadiosWrapper } from "./BookLessonForm.styled";
+import RadioOption from "../ui/RadioOption/RadioOption";
 
 const BookLessonForm = ({ closeModal }) => {
   const { register, handleSubmit, formState } = useForm({
@@ -13,92 +19,98 @@ const BookLessonForm = ({ closeModal }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <p>What is your main reason for learning English?</p>
-      <div>
-        <label>
-          <input
-            type="radio"
-            value="Career and business"
-            disabled={formState.isSubmitting}
-            {...register("reason")}
-          />
-          Career and business
-        </label>
+    <BookLessonFormStyled onSubmit={handleSubmit(onSubmit)}>
+      <RadiosWrapper>
+        <FormHeader>What is your main reason for learning English?</FormHeader>
+        <RadioOption
+          id="career"
+          name="reason"
+          value="career"
+          label="Career and business"
+          disabled={formState.isSubmitting}
+          {...register("reason")}
+        />
 
-        <label>
-          <input
-            type="radio"
-            value="Lesson for kids"
-            disabled={formState.isSubmitting}
-            {...register("reason")}
-          />
-          Lesson for kids
-        </label>
+        <RadioOption
+          id="kids"
+          name="reason"
+          value="kids"
+          label="Lesson for kids"
+          disabled={formState.isSubmitting}
+          {...register("reason")}
+        />
 
-        <label>
-          <input
-            type="radio"
-            value="Living abroad"
-            disabled={formState.isSubmitting}
-            {...register("reason")}
-          />
-          Living abroad
-        </label>
+        <RadioOption
+          id="abroad"
+          name="reason"
+          value="abroad"
+          label="Living abroad"
+          disabled={formState.isSubmitting}
+          {...register("reason")}
+        />
 
-        <label>
-          <input
-            type="radio"
-            value="Exams and coursework"
-            disabled={formState.isSubmitting}
-            {...register("reason")}
-          />
-          Exams and coursework
-        </label>
+        <RadioOption
+          id="exams"
+          name="reason"
+          value="exams"
+          label="Exams and coursework"
+          disabled={formState.isSubmitting}
+          {...register("reason")}
+        />
 
-        <label>
-          <input
-            type="radio"
-            value="Culture, travel or hobby"
-            disabled={formState.isSubmitting}
-            {...register("reason")}
-          />
-          Culture, travel or hobby
-        </label>
+        <RadioOption
+          id="hobby"
+          name="reason"
+          value="hobby"
+          label="Culture, travel or hobby"
+          disabled={formState.isSubmitting}
+          {...register("reason")}
+        />
 
-        <p>{formState.errors.reason?.message}</p>
-      </div>
+        <AnimatePresence>
+          {formState.errors.reason?.message && (
+            <ErrorMessage
+              variants={opacityVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              {formState.errors.reason.message}
+            </ErrorMessage>
+          )}
+        </AnimatePresence>
+      </RadiosWrapper>
 
-      <div>
-        <input
+      <InputsWrapper>
+        <TextInput
           type="text"
           placeholder="Full Name"
           disabled={formState.isSubmitting}
+          errorMessage={formState.errors.fullName?.message}
           {...register("fullName")}
         />
-        <p>{formState.errors.fullName?.message}</p>
 
-        <input
+        <TextInput
           type="email"
           placeholder="Email"
           disabled={formState.isSubmitting}
+          errorMessage={formState.errors.email?.message}
           {...register("email")}
         />
-        <p>{formState.errors.email?.message}</p>
 
-        <input
+        <TextInput
           type="tel"
           placeholder="Phone number"
           disabled={formState.isSubmitting}
+          errorMessage={formState.errors.phoneNumber?.message}
           {...register("phoneNumber")}
         />
-        <p>{formState.errors.phoneNumber?.message}</p>
-      </div>
+      </InputsWrapper>
 
-      <button disabled={formState.isSubmitting}>
+      <Button type="submit" width="100%" disabled={formState.isSubmitting}>
         {formState.isSubmitting ? "loading..." : "Book"}
-      </button>
-    </form>
+      </Button>
+    </BookLessonFormStyled>
   );
 };
 

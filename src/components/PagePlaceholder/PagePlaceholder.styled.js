@@ -8,7 +8,6 @@ export const PlaceholderWrapper = styled(motion.div)`
   align-items: center;
   justify-content: center;
   gap: 54px;
-  flex-grow: 1;
 
   svg {
     --primary: ${colors.primary};
