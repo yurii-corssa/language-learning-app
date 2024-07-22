@@ -28,6 +28,12 @@ const LoginForm = ({ isLoading, setIsLoading, closeModal }) => {
     }
   };
 
+  useEffect(() => {
+    if (formState.errors.authentication?.message) {
+      alert(formState.errors.authentication.message);
+    }
+  }, [formState.errors.authentication]);
+
   return (
     <FormStyled onSubmit={handleSubmit(onSubmit)}>
       <InputsWrapper>
@@ -35,6 +41,7 @@ const LoginForm = ({ isLoading, setIsLoading, closeModal }) => {
           type="email"
           placeholder="Email"
           disabled={isLoading}
+          autoComplete="email"
           errorMessage={formState.errors.email?.message}
           {...register("email")}
         />
@@ -42,6 +49,7 @@ const LoginForm = ({ isLoading, setIsLoading, closeModal }) => {
           type="password"
           placeholder="Password"
           disabled={isLoading}
+          autoComplete="current-password"
           errorMessage={formState.errors.password?.message}
           {...register("password")}
         />

@@ -86,6 +86,7 @@ const BookLessonForm = ({ closeModal }) => {
           type="text"
           placeholder="Full Name"
           disabled={formState.isSubmitting}
+          autoComplete="name"
           errorMessage={formState.errors.fullName?.message}
           {...register("fullName")}
         />
@@ -94,6 +95,7 @@ const BookLessonForm = ({ closeModal }) => {
           type="email"
           placeholder="Email"
           disabled={formState.isSubmitting}
+          autoComplete="email"
           errorMessage={formState.errors.email?.message}
           {...register("email")}
         />
@@ -102,6 +104,7 @@ const BookLessonForm = ({ closeModal }) => {
           type="tel"
           placeholder="Phone number"
           disabled={formState.isSubmitting}
+          autoComplete="tel"
           errorMessage={formState.errors.phoneNumber?.message}
           {...register("phoneNumber")}
         />

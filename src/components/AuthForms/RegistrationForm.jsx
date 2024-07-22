@@ -35,6 +35,7 @@ const RegistrationForm = ({ isLoading, setIsLoading, closeModal }) => {
           type="text"
           placeholder="Name"
           disabled={isLoading}
+          autoComplete="name"
           errorMessage={formState.errors.displayName?.message}
           {...register("displayName")}
         />
@@ -42,6 +43,7 @@ const RegistrationForm = ({ isLoading, setIsLoading, closeModal }) => {
           type="email"
           placeholder="Email"
           disabled={isLoading}
+          autoComplete="email"
           errorMessage={formState.errors.email?.message}
           {...register("email")}
         />
@@ -49,6 +51,7 @@ const RegistrationForm = ({ isLoading, setIsLoading, closeModal }) => {
           type="password"
           placeholder="Password"
           disabled={isLoading}
+          autoComplete="current-password"
           errorMessage={formState.errors.password?.message}
           {...register("password")}
         />
