@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "/helpers/schemas";
+import { loginSchema } from "../../helpers/schemas";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";

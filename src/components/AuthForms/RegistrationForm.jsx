@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registrationSchema } from "/helpers/schemas";
+import { registrationSchema } from "../../helpers/schemas";
 import { useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { FormStyled, InputsWrapper } from "./AuthForms.styled";

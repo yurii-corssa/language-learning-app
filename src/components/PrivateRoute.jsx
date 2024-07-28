@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { routes } from "/helpers/routes";
+import { routes } from "../helpers/routes";
 import { useAuth } from "../hooks/useAuth";
 
 const PrivateRoute = ({ comp: Component, redirectTo = routes.HOME }) => {

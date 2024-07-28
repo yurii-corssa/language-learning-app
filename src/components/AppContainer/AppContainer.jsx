@@ -17,7 +17,6 @@ const AppContainer = ({ children }) => {
         left: 0,
         behavior: "smooth",
       });
-      console.log("scroll");
     }
   }, [pathname, containerRef]);
 
