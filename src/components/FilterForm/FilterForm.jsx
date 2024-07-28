@@ -1,11 +1,10 @@
 import { useFilterAttributes } from "../../hooks/useFilterAttributes";
 import { breakpoints } from "../../styles/variables";
-import { Button, SvgIcon } from "../ui";
+import { Button, Dropdown, SvgIcon } from "../ui";
 import { opacityVariants, filterVariants } from "../../styles/animations";
 import { useMediaQuery } from "../../hooks";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import Dropdown from "../ui/Dropdown/Dropdown";
 import { DropdownsWrapper, FilterBtn } from "./FilterForm.styled";
 import { FilterBtnWrapper, FilterFormStyled } from "./FilterForm.styled";
 

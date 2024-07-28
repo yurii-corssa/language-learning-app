@@ -5,3 +5,6 @@ export { default as SvgIcon } from "./SvgIcon";
 export { default as TextInput } from "./TextInput/TextInput";
 export { default as DotsLoader } from "./DotsLoader/DotsLoader";
 export { default as RingLoader } from "./RingLoader/RingLoader";
+export { default as Avatar } from "./Avatar/Avatar";
+export { default as Dropdown } from "./Dropdown/Dropdown";
+export { default as RadioOption } from "./RadioOption/RadioOption";

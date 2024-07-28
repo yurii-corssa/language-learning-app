@@ -1,12 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { bookLessonSchema } from "../../helpers/schemas";
-import { Button, TextInput } from "../ui";
+import { Button, RadioOption, TextInput } from "../ui";
 import { AnimatePresence } from "framer-motion";
 import { opacityVariants } from "../../styles/animations";
 import { BookLessonFormStyled, ErrorMessage } from "./BookLessonForm.styled";
 import { FormHeader, InputsWrapper, RadiosWrapper } from "./BookLessonForm.styled";
-import RadioOption from "../ui/RadioOption/RadioOption";
 
 const BookLessonForm = ({ closeModal }) => {
   const { register, handleSubmit, formState } = useForm({

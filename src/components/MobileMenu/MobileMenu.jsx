@@ -1,4 +1,4 @@
-import { Button, SvgIcon } from "../ui";
+import { Avatar, Button, SvgIcon } from "../ui";
 import { HeaderLink, UserContainer, UserName } from "../Header/Header.styled";
 import { routes } from "../../helpers/routes";
 import { Mobile } from "../Responsive";
@@ -7,7 +7,6 @@ import Backdrop from "../Backdrop/Backdrop";
 import { createPortal } from "react-dom";
 import { AnimatePresence } from "framer-motion";
 import { menuTranslateVariants, menuChildrenVariants } from "../../styles/animations";
-import Avatar from "../ui/Avatar/Avatar";
 import { useAuth, useSidebar } from "../../hooks";
 import { MenuContainer, NavMobileMenu } from "./MobileMenu.styled";
 
