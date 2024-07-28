@@ -38,27 +38,14 @@ ${normalize}
     src: local("Roboto") url('/language-learning-app/fonts/Roboto-Bold.woff2') format('woff2') , url('/language-learning-app/fonts/Roboto-Bold.woff') format('woff');
 }
 
-:root {
-  
-
-
-    --yellow: #FFC107;
-    --blueLink: #54ADFF;
-    --blueGradient: linear-gradient(290deg, #419EF1 0%, #9BD0FF 107.89%);
-    --blueLight: #CCE4FB;
-    --red: #F43F5E;
-    --green: #00C3AD;
-    --gray: #888888;
-    --white: #FFFFFF;
-    --boxShadowDefault: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
-    --boxShadowHover: 7px 13px 14px 0px rgba(116, 177, 232, 0.24);
-    
-}
-
 html {
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    
+}
+
+body {
     background-color: ${colors.backgroundApp};
     color: ${colors.black};
 }
@@ -95,5 +82,7 @@ input, button, textarea, select {
     font: inherit;
 }
 
-
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
 `;
