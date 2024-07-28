@@ -21,6 +21,7 @@ export const StatsContainer = styled(motion.div)`
 export const Stat = styled.div`
   display: flex;
   align-items: center;
+  min-width: 120px;
 
   @media only screen and (max-width: ${breakpoints.desktop - 1}px) {
     flex-direction: column-reverse;
