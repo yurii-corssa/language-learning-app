@@ -16,7 +16,7 @@ const Hero = () => {
         variants={scaleUpVariants}
         layout="position"
       >
-        <Emoji src={`${routes.BASE}/image/emoji.png`} alt="emoji" />
+        <Emoji src={`${routes.BASE}/images/emoji.png`} alt="emoji" />
 
         <Mac>
           <SvgIcon name="icon-mac" width="100%" height="100%" />

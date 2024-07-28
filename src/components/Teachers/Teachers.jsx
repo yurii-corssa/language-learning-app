@@ -4,9 +4,8 @@ import { useFavoriteIds } from "../../hooks/useFavoriteIds";
 import { useAuth } from "../../hooks/useAuth";
 import { pageContent } from "../../styles/variables";
 import TeachersList from "./TeachersList/TeachersList";
-import empty from "/assets/images/empty.svg";
-import filter from "/assets/images/filter.svg";
 import PagePlaceholder from "../PagePlaceholder/PagePlaceholder";
+import { routes } from "../../helpers/routes";
 
 const Teachers = ({ teachers, filters, onlyFavorites = false, initialCount = 4 }) => {
   const [visibleCount, setVisibleCount] = useState(initialCount);
@@ -51,9 +50,15 @@ const Teachers = ({ teachers, filters, onlyFavorites = false, initialCount = 4 }
 
   return isEmpty ? (
     favoriteIds.length === 0 ? (
-      <PagePlaceholder image={empty} notification={pageContent.isEmpty.noFavTeachers} />
+      <PagePlaceholder
+        src={`${routes.BASE}/images/empty.svg`}
+        notification={pageContent.isEmpty.noFavTeachers}
+      />
     ) : (
-      <PagePlaceholder image={filter} notification={pageContent.isEmpty.noFilterTeachers} />
+      <PagePlaceholder
+        src={`${routes.BASE}/images/filter.svg`}
+        notification={pageContent.isEmpty.noFilterTeachers}
+      />
     )
   ) : (
     visibleTeachers.length !== 0 && (

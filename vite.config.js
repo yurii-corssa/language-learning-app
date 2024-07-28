@@ -7,5 +7,7 @@ export default defineConfig({
   base: "/language-learning-app",
   build: {
     outDir: "../dist",
+    assetsDir: "assets",
   },
+  publicDir: "../public",
 });

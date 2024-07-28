@@ -1,9 +1,9 @@
-import sprite from "/assets/images/sprite.svg";
+import { routes } from "../../helpers/routes";
 
 const SvgIcon = ({ name, width = 26, height = 26 }) => {
   return (
     <svg width={width} height={height}>
-      <use href={`${sprite}#${name}`}></use>
+      <use href={`${routes.BASE}/images/sprite.svg#${name}`}></use>
     </svg>
   );
 };
