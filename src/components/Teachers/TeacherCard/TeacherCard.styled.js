@@ -8,6 +8,7 @@ export const TeacherCardStyled = styled(motion.li)`
   padding: 24px;
   background-color: ${colors.white};
   border-radius: 24px;
+  scroll-margin-top: 50px;
 
   @media only screen and (max-width: ${breakpoints.tablet - 1}px) {
     display: flex;
@@ -31,6 +32,7 @@ export const TeacherCardStyled = styled(motion.li)`
   }
 
   @media only screen and (min-width: ${breakpoints.desktop}px) {
+    scroll-margin-top: 40px;
     column-gap: 39px;
     grid-template-columns: auto 232px 1fr;
     grid-template-areas:
