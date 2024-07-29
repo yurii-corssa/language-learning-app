@@ -1,4 +1,4 @@
-import{u as e,m as d,c as n,b as i,B as m,a as h,j as t,s as l,r as c,S as g,d as u,e as b,R as f}from"./index-DLVCpaHw.js";import{S as w}from"./SectionContainer-BGqdtEi4.js";const y=e(d.div)`
+import{u as e,m as d,c as n,b as i,B as m,a as h,j as t,s as l,r as c,S as g,d as u,e as b,R as f}from"./index-BYV9qCv5.js";import{S as w}from"./SectionContainer-ChjGH1wq.js";const y=e(d.div)`
   background-color: ${n.backgroundPage};
   padding: 98px 64px;
   border-radius: 30px;
