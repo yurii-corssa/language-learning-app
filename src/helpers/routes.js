@@ -1,5 +1,5 @@
 export const routes = {
-  BASE: "/language-learning-app",
+  BASE: "/language-learning-app/",
 
   HOME: "/",
   TEACHERS: "/teachers",
