@@ -1,10 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { routes } from "./src/helpers/routes";
 
 export default defineConfig({
   plugins: [react()],
-  base: routes.BASE,
+  base: "/language-learning-app/",
   build: {
     outDir: "dist",
     assetsDir: "assets",

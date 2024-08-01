@@ -3,13 +3,13 @@ import { FacebookAuthProvider, GoogleAuthProvider, getAuth } from "firebase/auth
 import { getDatabase } from "firebase/database";
 
 const app = initializeApp({
-  apiKey: "AIzaSyCpuhRIrjk7iVhKTIi8C_BJxaWYVD6kyKI",
-  authDomain: "learn-lingo-connect.firebaseapp.com",
-  projectId: "learn-lingo-connect",
-  storageBucket: "learn-lingo-connect.appspot.com",
-  messagingSenderId: "947344857741",
-  appId: "1:947344857741:web:14a89974e1b6d6d887e0c4",
-  databaseURL: "https://learn-lingo-connect-default-rtdb.europe-west1.firebasedatabase.app/",
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  databaseURL: import.meta.env.VITE_DATABASE_URL,
 });
 
 export const database = getDatabase(app);

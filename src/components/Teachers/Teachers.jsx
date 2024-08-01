@@ -5,7 +5,8 @@ import { useAuth } from "../../hooks/useAuth";
 import { pageContent } from "../../styles/variables";
 import TeachersList from "./TeachersList/TeachersList";
 import PagePlaceholder from "../PagePlaceholder/PagePlaceholder";
-import { routes } from "../../helpers/routes";
+
+const baseURL = import.meta.env.BASE_URL;
 
 const Teachers = ({ teachers, filters, onlyFavorites = false, initialCount = 4 }) => {
   const [visibleCount, setVisibleCount] = useState(initialCount);
@@ -51,12 +52,12 @@ const Teachers = ({ teachers, filters, onlyFavorites = false, initialCount = 4 }
   return isEmpty ? (
     favoriteIds.length === 0 ? (
       <PagePlaceholder
-        src={`${routes.BASE}/images/empty.svg`}
+        src={`${baseURL}/images/empty.svg`}
         notification={pageContent.isEmpty.noFavTeachers}
       />
     ) : (
       <PagePlaceholder
-        src={`${routes.BASE}/images/filter.svg`}
+        src={`${baseURL}/images/filter.svg`}
         notification={pageContent.isEmpty.noFilterTeachers}
       />
     )

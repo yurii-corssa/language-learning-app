@@ -4,7 +4,8 @@ import AuthModal from "../AuthModal/AuthModal";
 import ModalBody from "../SharedModal/ModalBody/ModalBody";
 import PagePlaceholder from "../../PagePlaceholder/PagePlaceholder";
 import { BtnWrapper } from "./AuthRequiredModal.styled";
-import { routes } from "../../../helpers/routes";
+
+const baseURL = import.meta.env.BASE_URL;
 
 const AuthRequiredModal = ({ openModal }) => {
   return (
@@ -12,7 +13,7 @@ const AuthRequiredModal = ({ openModal }) => {
       title={modalContent.authRequiredModal.title}
       text={modalContent.authRequiredModal.text}
     >
-      <PagePlaceholder src={`${routes.BASE}/images/authentication.svg`} />
+      <PagePlaceholder src={`${baseURL}/images/authentication.svg`} />
       <BtnWrapper>
         <Button width="100%" onClick={() => openModal(<AuthModal key="login" type="login" />)}>
           Log in

@@ -2,8 +2,9 @@ import Info from "./Info/Info";
 import Stats from "./Stats/Stats";
 import { SvgIcon } from "../ui";
 import { scaleUpVariants } from "../../styles/animations";
-import { routes } from "../../helpers/routes";
 import { Emoji, HeroContainer, ImageContainer, Mac } from "./Hero.styled";
+
+const baseURL = import.meta.env.BASE_URL;
 
 const Hero = () => {
   return (
@@ -16,7 +17,7 @@ const Hero = () => {
         variants={scaleUpVariants}
         layout="position"
       >
-        <Emoji src={`${routes.BASE}/images/emoji.png`} alt="emoji" />
+        <Emoji src={`${baseURL}/images/emoji.png`} alt="emoji" />
 
         <Mac>
           <SvgIcon name="icon-mac" width="100%" height="100%" />

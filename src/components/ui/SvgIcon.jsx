@@ -1,9 +1,9 @@
-import { routes } from "../../helpers/routes";
+const baseURL = import.meta.env.BASE_URL;
 
 const SvgIcon = ({ name, width = 26, height = 26 }) => {
   return (
     <svg width={width} height={height}>
-      <use href={`${routes.BASE}/images/sprite.svg#${name}`}></use>
+      <use href={`${baseURL}/images/sprite.svg#${name}`}></use>
     </svg>
   );
 };
