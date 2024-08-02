@@ -63,7 +63,7 @@ const ProviderButtons = ({ onClose, isLoading, setIsLoading }) => {
         variant="provider"
         type="button"
         onClick={onLoginWithFacebook}
-        disabled={isLoading}
+        disabled={true}
         width="100%"
       >
         {isSubmittingFacebook ? (
