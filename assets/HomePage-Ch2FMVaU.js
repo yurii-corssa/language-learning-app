@@ -1,4 +1,4 @@
-import{u as e,m as d,c as n,b as i,B as x,a as m,j as t,s as l,r as h,S as g,d as u,e as b,R as f}from"./index-D_Q_NP--.js";import{S as w}from"./SectionContainer-ChyHM0Me.js";const y=e(d.div)`
+import{u as e,m as d,c as n,b as i,B as x,a as m,j as t,s as l,r as h,S as g,d as u,e as b,R as f}from"./index-B8brkrHM.js";import{S as w}from"./SectionContainer-CO3mpuS4.js";const y=e(d.div)`
   background-color: ${n.backgroundPage};
   padding: 98px 64px;
   border-radius: 30px;
@@ -161,4 +161,4 @@ import{u as e,m as d,c as n,b as i,B as x,a as m,j as t,s as l,r as h,S as g,d a
   @media only screen and (min-width: ${i.desktop}px) {
     width: 62%;
   }
-`,B="/language-learning-app/",H=()=>t.jsxs(L,{children:[t.jsxs(P,{custom:0,initial:"initial",animate:"animate",exit:"exit",variants:l,layout:"position",children:[t.jsx(R,{src:`${B}/images/emoji.png`,alt:"emoji"}),t.jsx(z,{children:t.jsx(g,{name:"icon-mac",width:"100%",height:"100%"})})]}),t.jsx(S,{delay:.2}),t.jsx(C,{delay:.3})]}),U=()=>{const{isLoading:a}=u();return t.jsx(w,{children:a?t.jsx(b,{children:t.jsx(f,{})}):t.jsx(H,{})})};export{U as default};
+`,B="/language-learning-app/",H=()=>t.jsxs(L,{children:[t.jsxs(P,{custom:0,initial:"initial",animate:"animate",exit:"exit",variants:l,layout:"position",children:[t.jsx(R,{src:`${B}images/emoji.png`,alt:"emoji"}),t.jsx(z,{children:t.jsx(g,{name:"icon-mac",width:"100%",height:"100%"})})]}),t.jsx(S,{delay:.2}),t.jsx(C,{delay:.3})]}),U=()=>{const{isLoading:a}=u();return t.jsx(w,{children:a?t.jsx(b,{children:t.jsx(f,{})}):t.jsx(H,{})})};export{U as default};
