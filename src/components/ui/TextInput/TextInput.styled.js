@@ -8,6 +8,7 @@ export const TextInputStyled = styled.input`
   padding: 16px 18px;
   border-radius: 12px;
   border: 1px solid ${colors.semiTransparent(0.1)};
+  margin: 2px;
   outline-color: transparent;
   transition: outline-color ${transitions.default};
 
