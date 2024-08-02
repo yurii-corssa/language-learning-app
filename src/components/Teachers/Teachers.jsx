@@ -52,12 +52,12 @@ const Teachers = ({ teachers, filters, onlyFavorites = false, initialCount = 4 }
   return isEmpty ? (
     favoriteIds.length === 0 ? (
       <PagePlaceholder
-        src={`${baseURL}/images/empty.svg`}
+        src={`${baseURL}images/empty.svg`}
         notification={pageContent.isEmpty.noFavTeachers}
       />
     ) : (
       <PagePlaceholder
-        src={`${baseURL}/images/filter.svg`}
+        src={`${baseURL}images/filter.svg`}
         notification={pageContent.isEmpty.noFilterTeachers}
       />
     )

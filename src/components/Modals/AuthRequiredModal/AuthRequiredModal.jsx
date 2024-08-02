@@ -13,7 +13,7 @@ const AuthRequiredModal = ({ openModal }) => {
       title={modalContent.authRequiredModal.title}
       text={modalContent.authRequiredModal.text}
     >
-      <PagePlaceholder src={`${baseURL}/images/authentication.svg`} />
+      <PagePlaceholder src={`${baseURL}images/authentication.svg`} />
       <BtnWrapper>
         <Button width="100%" onClick={() => openModal(<AuthModal key="login" type="login" />)}>
           Log in
