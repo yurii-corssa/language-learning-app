@@ -1,112 +1,97 @@
-## Загальний план виконання проекту "Веб-застосунок для вивчення мов онлайн"
+### Learn Lingo App
 
-### 1. Мета проекту
+This project is a language learning application that demonstrates the skills in developing a full-stack application. Users can register, search for teachers that best suit their needs, book lessons, and add teachers to their favorites list.
 
-Створити веб-застосунок для компанії, що пропонує послуги онлайн-викладачів мов. Застосунок має включати 3 сторінки:
+![Learn Lingo App Preview](./src/assets/learn-lingo-preview.jpg)
 
-- **Home:** Сторінка з описом переваг компанії та кнопкою для початку роботи, яка перенаправляє на сторінку "Teachers".
-- **Teachers:** Сторінка з переліком викладачів, які користувач може фільтрувати за мовою викладання, рівнем знань учнів, з якими працює викладач, та ціною за годину заняття.
-- **Favorites:** Приватна сторінка з викладачами, доданими користувачем до "обраних".
+---
 
-### 2. Технічні вимоги
+### Features
 
-- **Фронт-енд:**
-  - React
-  - Vite (бандлер)
-  - Redux (управління станом)
-  - styled-components (стилізація)
-  - react-hook-form & yup (валідація форм)
-  - React Router (маршрутизація)
-- **Бекенд:**
-  - Firebase Authentication (аутентифікація)
-  - Firebase Realtime Database (зберігання даних про викладачів)
-- **Деплоймент:** GitHub Pages
-- **Критерії виконання:**
-  - Респонсивна верстка (від 320px до 1440px)
-  - Відсутність помилок в консолі браузера
-  - Код відформатований та без коментарів
-  - README.md з описом проекту
-  - Деплоймент на GitHub Pages
+- **User Registration and Authentication**: Users can register and authenticate using their email and password, as well as through Google.
+- **Teacher Search and Filtering**: Users can search and filter teachers based on various criteria.
+- **Favorite Teachers**: Users can add teachers to their favorites list for quick access.
+- **Lesson Booking**: Users can book lessons with teachers.
+- **Responsive Design**: The app is optimized for both desktop and mobile devices.
 
-### 3. Детальний план виконання
+### Technology Stack
 
-#### 1. ✅ Аутентифікація користувача (Firebase Authentication)
+- **Frontend**:
 
-- ✅ Додати можливість реєстрації та логінізації користувачів за допомогою Firebase Authentication.
-- ✅ Реалізувати отримання даних про поточного користувача.
-- ✅ Додати можливість виходу з системи.
+  - **React**: JavaScript library for building user interfaces.
+  - **React Router**: For routing and navigation.
+  - **Styled Components**: For styling React components.
+  - **Framer Motion**: For animations.
 
-#### 2. ✅ Форма реєстрації/авторизації (react-hook-form & yup)
+- **Backend**:
 
-- ✅ Створити форму реєстрації/авторизації.
-- ✅ За допомогою react-hook-form та yup реалізувати валідацію полів.
-- ✅ Всі поля мають бути обов'язковими до заповнення.
-- ✅ Додати модальне вікно з формою, яке закривається по кліку на кнопку "X", по кліку на backdrop або натисканні на клавішу Esc.
+  - **Firebase**: Used for authentication (including Google authentication), database, and storage.
 
-#### 3. ✅ Реалізувати маршрутизацію
+- **Form Handling**:
 
-- ✅ Створити публічні маршрути `/`, `/teachers`.
-- ✅ Створити приватні маршрути `/favorites`.
-- ✅ Створити сторінку для неіснуючих маршрутів.
+  - **React Hook Form**: For managing form state.
+  - **Yup**: For form validation.
 
-#### 4. ✅ Колекція викладачів (Firebase Realtime Database)
+- **Build Tool**:
+  - **Vite**: For fast development and build setup.
 
-- ✅ Створити колекцію "teachers" в Firebase Realtime Database.
-- ✅ Зберігати дані про викладачів у форматі, як описано в технічному завданні.
+### Installation
 
-#### 5. ✅ Картка викладача
+1. Clone the repository:
 
-- ✅ Реалізувати картку з описом характеристик викладача.
-- ✅ Картка має містити інформацію про ім'я, прізвище, мови викладання, рівні знань учнів, з якими працює викладач, рейтинг, відгуки, ціну за годину заняття, опис уроків, умови та досвід.
+   ```sh
+   git clone https://github.com/yurii-corssa/language-learning-app.git
+   cd language-learning-app
+   ```
 
-#### 6. ✅ Сторінка "Teachers"
+2. Install dependencies:
 
-- ✅ На сторінці "Teachers" мають рендеритися 4 картки викладачів.
-- ✅ Додати кнопку "Load more" для завантаження нових карток.
-- ✅ При кліку на кнопку "Load more" має виконуватися запит до бази даних для відображення нової порції карток.
+   ```sh
+   npm install
+   ```
 
-#### 7. Додавання/видалення викладачів з "обраних"
+3. Start the development server:
 
-- ✅ НЕавторизованим користувачам при кліку на кнопку "серця" має з'являтися модальне вікно про те, що даний функціонал доступний лише для авторизованих користувачів.
-- ✅ Авторизованим користувачам при кліку на кнопку "серця":
-  - ✅ має додаватися до списку обраних за допомогою роботи з колекцією users - by Firebase).
-  - ✅ Колір кнопки "серця" має змінюватися.
-- ✅ При оновленні сторінки авторизованим користувачем має фіксуватися кінцевий результат дій користувача (кнопка "серця" залишається в стані “обраної” із відповідним кольором).
-- ✅ При повторному кліку по кнопці "серця" картка повинна бути видалена зі списку обраних, а колір кнопки змінитись до початкового стану.
+   ```sh
+   npm run dev
+   ```
 
-#### 8. Функціональність розширення картки викладача
+4. Build for production:
+   ```sh
+   npm run build
+   ```
 
-- ✅ Реалізувати функціональність розширення картки викладача для відображення додаткової інформації та відгуків від його учнів при натисканні кнопки "Read more".
+### Usage
 
-#### 9. Модальне вікно для бронювання пробного заняття
+1. **Register/Login**: Create an account or log in with existing credentials or via Google.
+2. **Search Teachers**: Use the search and filter options to find teachers that meet your criteria.
+3. **Book Lessons**: Select available times and book lessons with your preferred teachers.
+4. **Manage Favorites**: Add or remove teachers from your favorites list for easy access.
 
-- ✅ При кліку на кнопку "Book trial lesson" має відкриватися модальне вікно з формою для бронювання пробного заняття.
-- ✅ Реалізувати форму та мінімальну валідацію її полів за допомогою react-hook-form та yup. Всі поля обов'язкові до заповнення.
-- ✅ Модальне вікно повинно закриватися по кліку на кнопку "X", по кліку на backdrop або натисканні на клавішу Esc.
+### Additional Resources
 
-#### 10. Сторінка "Favorites"
+- [Technical Specification](https://docs.google.com/document/d/1ZB_MFgnnJj7t7OXtv5hESSwY6xRgVoACZKzgZczWc3Y/edit): Detailed project requirements and implementation details.
+- [Figma Design](https://www.figma.com/design/dewf5jVviSTuWMMyU3d8Mc/Learn-Lingo?node-id=0-1): Visual design and user interface mockups.
 
-- ✅ Для авторизованого користувача доступна приватна сторінка "Favorites", при переході на яку користувач має можливість переглянути усі картки викладачів, які були додані ним в “обрані”.
-- ✅ За стилізацією сторінка має бути аналогічною сторінці "Teachers".
+### Development and Deployment
 
-#### 11. Стилізація
+- **Development**: The application is developed using modern JavaScript practices and tools. The development environment uses Vite for fast builds and hot module replacement.
+- **Deployment**: The application can be deployed to any static hosting service. The build script generates a production-ready bundle that can be served by any web server.
 
-- ❗ Реалізувати адаптивну верстку від 320px до 1440px, щоб вона коректно відображалась на мобільних та планшетних пристроях.
-- ❗ Переконатися, що стилізація семантична та валідна.
+### Security
 
-#### 12. Перевірка та тестування
+The application leverages Firebase for secure authentication and database management. Users' data is securely stored and managed, ensuring privacy and security.
 
-- ❗ Перевірити відсутність помилок у консолі браузера.
-- ❗ Провести тестування інтерактивності відповідно до технічного завдання.
+### Performance
 
-#### 13. Оформлення коду
+The app is optimized for performance with efficient loading and rendering. Vite's fast build times and hot module replacement enhance the development experience, while React's virtual DOM ensures efficient updates and rendering.
 
-- ❗ Переконатися, що код відформатований та без зайвих коментарів.
+### Future Enhancements
 
-#### 14. Оформлення документації
+- **Teacher Reviews and Ratings**: Allowing users to leave reviews and ratings for teachers.
+- **Multi-language Support**: Adding support for multiple languages to cater to a global audience.
+- **Advanced Filtering**: Enhancing the filtering options for a more personalized search experience.
 
-- ❗ Створити README.md з описом проекту: про що цей проект, основні технології, макет, технічне завдання.
+### License
 
-#### 15. Деплой проекту
-
-- ❗ Деплоїти проект на GitHub Pages за допомогою GitHub Actions.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
