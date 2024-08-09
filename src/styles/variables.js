@@ -7,6 +7,7 @@ export const colors = {
   backgroundPage: "#FFF",
   avatarBorder: "#FBE9BA",
   black: "#121417",
+  grey: "#8A8A89",
   white: "#FFF",
   green: "#38CD3E",
   red: "#FF4D4D",

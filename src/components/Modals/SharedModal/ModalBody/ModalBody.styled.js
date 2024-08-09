@@ -23,6 +23,9 @@ export const ModalBodyStyled = styled.div`
     background: ${colors.semiTransparent(0.5)};
   }
 
+  @media only screen and (max-width: ${breakpoints.tablet - 1}px) {
+    padding: 32px;
+  }
   @media only screen and (min-width: ${breakpoints.tablet}px) {
     margin-right: -55px;
     max-height: 80vh;

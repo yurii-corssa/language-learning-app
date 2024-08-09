@@ -1,4 +1,4 @@
-### Learn Lingo App
+# Learn Lingo App
 
 This project is a language learning application that demonstrates the skills in developing a full-stack application. Users can register, search for teachers that best suit their needs, book lessons, and add teachers to their favorites list.
 

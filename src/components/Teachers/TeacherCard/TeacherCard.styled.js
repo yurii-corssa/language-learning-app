@@ -34,7 +34,7 @@ export const TeacherCardStyled = styled(motion.li)`
   @media only screen and (min-width: ${breakpoints.desktop}px) {
     scroll-margin-top: 40px;
     column-gap: 39px;
-    grid-template-columns: auto 232px 1fr;
+    grid-template-columns: auto max-content 1fr;
     grid-template-areas:
       "a n s"
       "a i i"
@@ -128,11 +128,11 @@ export const HeartBtn = styled.button`
 
   @media (hover: hover) {
     &:hover {
-      color: color-mix(in srgb, ${colors.primary}, ${colors.white} 20%);
+      color: ${colors.primary};
     }
   }
   &:active {
-    color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
+    color: ${colors.darkPrimary};
   }
 `;
 

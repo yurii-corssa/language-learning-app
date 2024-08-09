@@ -22,7 +22,7 @@ export const TeacherAvatarImg = styled.img`
 `;
 
 export const TeacherNameLabel = styled.p`
-  color: ${colors.semiTransparent(0.5)};
+  color: ${colors.grey};
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;

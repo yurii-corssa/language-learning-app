@@ -1,4 +1,3 @@
-import { facebookProvider, googleProvider } from "../../../firebaseApp";
 import { useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 import { Button, DotsLoader, SvgIcon } from "../../ui";
@@ -6,18 +5,17 @@ import { ProviderBtnWrapper } from "./ProviderButtons.styled";
 
 const ProviderButtons = ({ onClose, isLoading, setIsLoading }) => {
   const [isSubmittingGoogle, setIsSubmittingGoogle] = useState(false);
-  const [isSubmittingFacebook, setIsSubmittingFacebook] = useState(false);
-  const { signinWithProvider } = useAuth();
+  const { signinWithGoogleProvider } = useAuth();
 
   const setError = ({ message }) => {
     alert(message);
   };
 
-  const handleLogin = async (provider) => {
+  const handleLogin = async () => {
     setIsLoading(true);
 
     try {
-      await signinWithProvider(provider);
+      await signinWithGoogleProvider();
       setIsLoading(false);
       onClose();
     } catch {
@@ -25,19 +23,8 @@ const ProviderButtons = ({ onClose, isLoading, setIsLoading }) => {
         message: "Authentication error, please try again",
       });
       setIsLoading(false);
-      setIsSubmittingFacebook(false);
       setIsSubmittingGoogle(false);
     }
-  };
-
-  const onLoginWithGoogle = () => {
-    setIsSubmittingGoogle(true);
-    handleLogin(googleProvider);
-  };
-
-  const onLoginWithFacebook = () => {
-    setIsSubmittingFacebook(true);
-    handleLogin(facebookProvider);
   };
 
   return (
@@ -45,7 +32,7 @@ const ProviderButtons = ({ onClose, isLoading, setIsLoading }) => {
       <Button
         variant="provider"
         type="button"
-        onClick={onLoginWithGoogle}
+        onClick={handleLogin}
         disabled={isLoading}
         width="100%"
       >
@@ -55,23 +42,6 @@ const ProviderButtons = ({ onClose, isLoading, setIsLoading }) => {
           <>
             <SvgIcon name="icon-google-logo" width="28" height="28" />
             <span>Google</span>
-          </>
-        )}
-      </Button>
-
-      <Button
-        variant="provider"
-        type="button"
-        onClick={onLoginWithFacebook}
-        disabled={true}
-        width="100%"
-      >
-        {isSubmittingFacebook ? (
-          <DotsLoader />
-        ) : (
-          <>
-            <SvgIcon name="icon-facebook-logo" width="28" height="28" />
-            <span>Facebook</span>
           </>
         )}
       </Button>

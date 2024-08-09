@@ -6,13 +6,13 @@ export const ModalCard = styled(motion.div)`
   position: fixed;
   top: 50%;
   left: 50%;
-  padding: 32px;
   background: ${colors.white};
   overflow: hidden;
 
-  width: 100%;
-  height: 100%;
-
+  @media only screen and (max-width: ${breakpoints.tablet - 1}px) {
+    width: 100%;
+    height: 100%;
+  }
   @media only screen and (min-width: ${breakpoints.tablet}px) {
     width: 566px;
     height: auto;

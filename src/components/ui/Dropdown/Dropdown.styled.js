@@ -15,7 +15,7 @@ export const DropdownWrapper = styled(motion.div)`
 export const Label = styled.label`
   font-size: 14px;
   line-height: 18px;
-  color: ${colors.semiTransparent(0.6)};
+  color: ${colors.grey};
   padding-left: 8px;
 `;
 
@@ -51,7 +51,7 @@ export const Select = styled.div`
   }
   &:active:not(:disabled) {
     svg {
-      color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
+      color: ${colors.darkPrimary};
     }
   }
 `;

@@ -21,7 +21,7 @@ export const ReviewItem = styled(motion.li)`
 
 export const ReviewerName = styled.span`
   display: block;
-  color: ${colors.semiTransparent(0.6)};
+  color: ${colors.grey};
   margin-bottom: 2px;
 `;
 

@@ -30,7 +30,7 @@ export const Highlight = styled.span`
     position: absolute;
     width: 180px;
     height: 35px;
-    background-color: color-mix(in srgb, ${colors.primary}, #fff 60%);
+    background-color: ${colors.lightPrimary};
 
     border-radius: 8px;
     z-index: -1;

@@ -1,7 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { auth } from "../firebaseApp";
 import { signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
-import { createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  updateProfile,
+} from "firebase/auth";
 import { AuthContext } from "../contexts/AuthContext";
 import { loadFromLocalStorage } from "../helpers/storage";
 import { removeFromLocalStorage, saveToLocalsStorage } from "../helpers/storage";
@@ -13,9 +18,9 @@ export const useProvideAuth = () => {
   useEffect(() => {
     setLoadingAuth(true);
 
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const { uid, displayName, email, photoURL } = user;
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        const { uid, displayName, email, photoURL } = currentUser;
         const saveUser = { uid, displayName, email, photoURL };
 
         setUser(saveUser);
@@ -30,45 +35,23 @@ export const useProvideAuth = () => {
     return () => unsubscribe();
   }, []);
 
-  const signin = async (email, password) => {
-    const { user } = await signInWithEmailAndPassword(auth, email, password);
+  const signin = (email, password) => signInWithEmailAndPassword(auth, email, password);
 
-    const { uid, displayName, photoURL } = user;
-    const saveUser = { uid, displayName, email, photoURL };
+  const signinWithGoogleProvider = () => {
+    const googleProvider = new GoogleAuthProvider();
 
-    setUser(saveUser);
-    saveToLocalsStorage("user", saveUser);
-  };
-
-  const signinWithProvider = async (provider) => {
-    const { user } = await signInWithPopup(auth, provider);
-
-    const { uid, displayName, email, photoURL } = user;
-    const saveUser = { uid, displayName, email, photoURL };
-
-    setUser(saveUser);
-    saveToLocalsStorage("user", saveUser);
+    // return signInWithRedirect(auth, googleProvider);
+    return signInWithPopup(auth, googleProvider);
   };
 
   const signup = async (email, password, displayName) => {
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
     updateProfile(user, { displayName });
-
-    const { uid, photoURL } = user;
-    const saveUser = { uid, displayName, email, photoURL };
-
-    setUser(saveUser);
-    saveToLocalsStorage("user", saveUser);
   };
 
-  const signout = async () => {
-    await signOut(auth);
+  const signout = () => signOut(auth);
 
-    setUser(null);
-    removeFromLocalStorage("user");
-  };
-
-  return { user, isLoadingAuth, signin, signinWithProvider, signup, signout };
+  return { user, isLoadingAuth, signin, signinWithGoogleProvider, signup, signout };
 };
 
 export const useAuth = () => {

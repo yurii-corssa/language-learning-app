@@ -13,7 +13,7 @@ export const buttonStyles = {
       }
     }
     &:active {
-      background-color: color-mix(in srgb, ${colors.black}, ${colors.primary} 80%);
+      background-color: ${colors.darkPrimary};
     }
   `,
 
@@ -31,7 +31,10 @@ export const buttonStyles = {
       }
     }
     &:active {
-      color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
+      color: ${colors.darkPrimary};
+      svg {
+        stroke: currentColor;
+      }
     }
   `,
 
@@ -47,7 +50,7 @@ export const buttonStyles = {
       }
     }
     &:active {
-      color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
+      color: ${colors.darkPrimary};
     }
   `,
 
@@ -59,11 +62,11 @@ export const buttonStyles = {
 
     @media (hover: hover) {
       &:hover {
-        background-color: color-mix(in srgb, ${colors.primary}, ${colors.white} 20%);
+        background-color: ${colors.lightPrimary};
       }
     }
     &:active {
-      background-color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
+      background-color: ${colors.darkPrimary};
     }
   `,
 
@@ -80,7 +83,7 @@ export const buttonStyles = {
       }
     }
     &:active:not(:disabled) {
-      color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
+      color: ${colors.darkPrimary};
     }
   `,
 
@@ -100,7 +103,7 @@ export const buttonStyles = {
       }
     }
     &:active {
-      color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
+      color: ${colors.darkPrimary};
     }
   `,
 
@@ -115,7 +118,6 @@ export const buttonStyles = {
     svg {
       stroke: currentColor;
     }
-
     @media (hover: hover) {
       &:hover:not(:disabled) {
         background-color: color-mix(in srgb, ${colors.backgroundPage}, ${colors.primary} 20%);
@@ -123,6 +125,14 @@ export const buttonStyles = {
     }
     &:active:not(:disabled) {
       background-color: ${colors.primary};
+    }
+    &:disabled {
+      svg {
+        --color1: currentColor;
+        --color2: currentColor;
+        --color3: currentColor;
+        --color4: currentColor;
+      }
     }
   `,
 };

@@ -16,7 +16,7 @@ export const InfoText = styled.p`
   line-height: 24px;
 
   & > span {
-    color: ${colors.semiTransparent(0.6)};
+    color: ${colors.grey};
   }
 `;
 
@@ -35,6 +35,6 @@ export const Speak = styled.button`
     }
   }
   &:active {
-    color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
+    color: ${colors.darkPrimary};
   }
 `;

@@ -23,7 +23,7 @@ export const LevelLabelStyled = styled.li`
     }
   }
   &:active {
-    border-color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
-    background-color: color-mix(in srgb, ${colors.primary}, ${colors.black} 10%);
+    border-color: ${colors.darkPrimary};
+    background-color: ${colors.darkPrimary};
   }
 `;

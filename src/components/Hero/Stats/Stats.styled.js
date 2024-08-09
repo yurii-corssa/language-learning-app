@@ -41,7 +41,7 @@ export const Number = styled.p`
 `;
 
 export const Label = styled.p`
-  color: ${colors.semiTransparent(0.7)};
+  color: ${colors.grey};
   font-size: 14px;
   line-height: 18px;
 
