@@ -1,4 +1,4 @@
-import{u as e,m as d,c as n,b as i,B as x,a as m,j as t,s as l,r as h,S as g,d as u,e as b,R as f}from"./index-B8brkrHM.js";import{S as w}from"./SectionContainer-CO3mpuS4.js";const y=e(d.div)`
+import{u as e,m as s,c as n,b as i,B as x,a as m,j as t,s as l,r as h,S as g,d as u,e as b,R as y}from"./index-bkmxFgDs.js";import{S as f}from"./SectionContainer-el403DIv.js";const w=e(s.div)`
   background-color: ${n.backgroundPage};
   padding: 98px 64px;
   border-radius: 30px;
@@ -21,7 +21,7 @@ import{u as e,m as d,c as n,b as i,B as x,a as m,j as t,s as l,r as h,S as g,d a
     position: absolute;
     width: 180px;
     height: 35px;
-    background-color: color-mix(in srgb, ${n.primary}, #fff 60%);
+    background-color: ${n.lightPrimary};
 
     border-radius: 8px;
     z-index: -1;
@@ -36,7 +36,7 @@ import{u as e,m as d,c as n,b as i,B as x,a as m,j as t,s as l,r as h,S as g,d a
   @media only screen and (min-width: ${i.tablet}px) {
     width: 267px;
   }
-`,S=({delay:a})=>{const p=m(),c=()=>{p(h.TEACHERS)};return t.jsxs(y,{custom:a,initial:"initial",animate:"animate",exit:"exit",variants:l,layout:"position",children:[t.jsxs(j,{children:["Unlock your potential with the best ",t.jsx(k,{children:"language"})," tutors"]}),t.jsx($,{children:"Embark on an Exciting Language Journey with Expert Language Tutors: Elevate your language proficiency to new heights by connecting with highly qualified and experienced tutors."}),t.jsx(v,{onClick:c,children:"Get started"})]})},E=e(d.div)`
+`,S=({delay:a})=>{const c=m(),p=()=>{c(h.TEACHERS)};return t.jsxs(w,{custom:a,initial:"initial",animate:"animate",exit:"exit",variants:l,layout:"position",children:[t.jsxs(j,{children:["Unlock your potential with the best ",t.jsx(k,{children:"language"})," tutors"]}),t.jsx($,{children:"Embark on an Exciting Language Journey with Expert Language Tutors: Elevate your language proficiency to new heights by connecting with highly qualified and experienced tutors."}),t.jsx(v,{onClick:p,children:"Get started"})]})},E=e(s.div)`
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -68,15 +68,15 @@ import{u as e,m as d,c as n,b as i,B as x,a as m,j as t,s as l,r as h,S as g,d a
   font-size: 28px;
   font-weight: 500;
   line-height: 32px;
-`,s=e.p`
-  color: ${n.semiTransparent(.7)};
+`,d=e.p`
+  color: ${n.grey};
   font-size: 14px;
   line-height: 18px;
 
   @media only screen and (min-width: ${i.desktop}px) {
     width: 96px;
   }
-`,C=({delay:a})=>t.jsxs(E,{custom:a,initial:"initial",animate:"animate",exit:"exit",variants:l,layout:"position",children:[t.jsxs(o,{children:[t.jsx(r,{children:"32,000+"}),t.jsx(s,{children:"Experienced tutors"})]}),t.jsxs(o,{children:[t.jsx(r,{children:"300,000+"}),t.jsx(s,{children:"5-star tutor reviews"})]}),t.jsxs(o,{children:[t.jsx(r,{children:"120+"}),t.jsx(s,{children:"Subjects taught"})]}),t.jsxs(o,{children:[t.jsx(r,{children:"200+"}),t.jsx(s,{children:"Tutor nationalities"})]})]}),L=e.div`
+`,C=({delay:a})=>t.jsxs(E,{custom:a,initial:"initial",animate:"animate",exit:"exit",variants:l,layout:"position",children:[t.jsxs(o,{children:[t.jsx(r,{children:"32,000+"}),t.jsx(d,{children:"Experienced tutors"})]}),t.jsxs(o,{children:[t.jsx(r,{children:"300,000+"}),t.jsx(d,{children:"5-star tutor reviews"})]}),t.jsxs(o,{children:[t.jsx(r,{children:"120+"}),t.jsx(d,{children:"Subjects taught"})]}),t.jsxs(o,{children:[t.jsx(r,{children:"200+"}),t.jsx(d,{children:"Tutor nationalities"})]})]}),P=e.div`
   display: grid;
   background-color: #f8f8f8;
   padding-top: 20px;
@@ -89,7 +89,7 @@ import{u as e,m as d,c as n,b as i,B as x,a as m,j as t,s as l,r as h,S as g,d a
   @media only screen and (min-width: ${i.desktop}px) {
     grid-template-columns: 0.55fr 0.45fr;
   }
-`,P=e(d.div)`
+`,L=e(s.div)`
   grid-row-start: 1;
   grid-column-end: -1;
 
@@ -161,4 +161,4 @@ import{u as e,m as d,c as n,b as i,B as x,a as m,j as t,s as l,r as h,S as g,d a
   @media only screen and (min-width: ${i.desktop}px) {
     width: 62%;
   }
-`,B="/language-learning-app/",H=()=>t.jsxs(L,{children:[t.jsxs(P,{custom:0,initial:"initial",animate:"animate",exit:"exit",variants:l,layout:"position",children:[t.jsx(R,{src:`${B}images/emoji.png`,alt:"emoji"}),t.jsx(z,{children:t.jsx(g,{name:"icon-mac",width:"100%",height:"100%"})})]}),t.jsx(S,{delay:.2}),t.jsx(C,{delay:.3})]}),U=()=>{const{isLoading:a}=u();return t.jsx(w,{children:a?t.jsx(b,{children:t.jsx(f,{})}):t.jsx(H,{})})};export{U as default};
+`,B="/language-learning-app/",H=()=>t.jsxs(P,{children:[t.jsxs(L,{custom:0,initial:"initial",animate:"animate",exit:"exit",variants:l,layout:"position",children:[t.jsx(R,{src:`${B}images/emoji.png`,alt:"emoji"}),t.jsx(z,{children:t.jsx(g,{name:"icon-mac",width:"100%",height:"100%"})})]}),t.jsx(S,{delay:.2}),t.jsx(C,{delay:.3})]}),U=()=>{const{isLoading:a}=u();return t.jsx(f,{children:a?t.jsx(b,{children:t.jsx(y,{})}):t.jsx(H,{})})};export{U as default};
