@@ -23,9 +23,11 @@ export const useFilterAttributes = () => {
           pricesSet.add(teacher.price_per_hour);
         });
 
+        const sortedPrices = [...pricesSet].sort((a, b) => a - b);
+
         setLanguages([...languagesSet]);
         setLevels([...levelsSet]);
-        setPrices([...pricesSet]);
+        setPrices(sortedPrices);
       } catch (error) {
         setError(error);
       } finally {

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { DropdownWrapper, Label, Option, OptionsList, Select } from "./Dropdown.styled";
-import { dropdownVariants, slideUpVariants } from "../../../styles/animations";
+import { dropdownVariants, opacityVariants } from "../../../styles/animations";
 import SvgIcon from "../SvgIcon";
 import { AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
@@ -8,7 +8,7 @@ import { createPortal } from "react-dom";
 const Dropdown = ({ id, label, value, options, minWidth, disabled, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef(null);
-  const dropdownRoot = document.getElementById("dropdown-root");
+  const dropdownRef = useRef(null);
 
   const toggleSelect = () => {
     setIsOpen((prevState) => !prevState);
@@ -57,7 +57,7 @@ const Dropdown = ({ id, label, value, options, minWidth, disabled, onChange }) =
   }, [isOpen]);
 
   return (
-    <DropdownWrapper variants={slideUpVariants}>
+    <DropdownWrapper ref={dropdownRef} variants={opacityVariants}>
       <Label htmlFor={id}>{label}</Label>
       <Select
         ref={selectRef}
@@ -73,47 +73,45 @@ const Dropdown = ({ id, label, value, options, minWidth, disabled, onChange }) =
         <SvgIcon name="icon-chevron-down" width="20" height="20" />
       </Select>
 
-      {createPortal(
-        <AnimatePresence>
-          {isOpen && (
-            <OptionsList
-              key="options-list"
-              variants={dropdownVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              $top={selectRef?.current?.getBoundingClientRect().bottom}
-              $left={selectRef?.current?.getBoundingClientRect().left}
-              $width={selectRef?.current?.getBoundingClientRect().width}
-            >
-              <Option
-                key={`default${id}`}
-                data-name={id}
-                data-value=""
-                onClick={onChange}
-                onKeyDown={handleChange}
-                tabIndex={0}
+      {dropdownRef.current &&
+        createPortal(
+          <AnimatePresence>
+            {isOpen && (
+              <OptionsList
+                key="options-list"
+                variants={dropdownVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
               >
-                All
-              </Option>
-              {options.map((opt) => (
                 <Option
-                  key={opt}
+                  key={`default${id}`}
                   data-name={id}
-                  data-value={opt}
-                  $isSelected={value === opt + ""}
+                  data-value=""
                   onClick={onChange}
                   onKeyDown={handleChange}
                   tabIndex={0}
                 >
-                  {opt}
+                  All
                 </Option>
-              ))}
-            </OptionsList>
-          )}
-        </AnimatePresence>,
-        dropdownRoot
-      )}
+                {options.map((opt) => (
+                  <Option
+                    key={opt}
+                    data-name={id}
+                    data-value={opt}
+                    $isSelected={value === opt + ""}
+                    onClick={onChange}
+                    onKeyDown={handleChange}
+                    tabIndex={0}
+                  >
+                    {opt}
+                  </Option>
+                ))}
+              </OptionsList>
+            )}
+          </AnimatePresence>,
+          dropdownRef.current
+        )}
     </DropdownWrapper>
   );
 };
