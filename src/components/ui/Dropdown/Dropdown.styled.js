@@ -66,8 +66,6 @@ export const OptionsList = styled(motion.ul)`
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
-  /* width: ${({ $width }) => ($width ? `${$width}px` : 0)}; */
-
   padding: 14px 0;
   border-radius: 12px;
   background-color: ${colors.white};

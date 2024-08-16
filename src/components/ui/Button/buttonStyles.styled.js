@@ -115,9 +115,6 @@ export const buttonStyles = {
     padding: 16px 48px;
     border: 2px solid ${colors.primary};
 
-    svg {
-      stroke: currentColor;
-    }
     @media (hover: hover) {
       &:hover:not(:disabled) {
         background-color: color-mix(in srgb, ${colors.backgroundPage}, ${colors.primary} 20%);
