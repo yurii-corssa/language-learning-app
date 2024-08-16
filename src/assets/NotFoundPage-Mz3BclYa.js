@@ -1,0 +1,1 @@
+import{j as o}from"./hooks--aaWd0HJ.js";import"./react-vendor-fKLcOhQA.js";import"./firebase-database-vendor-CbbLdNQs.js";import"./firebase-app-vendor-Dm8EoJqR.js";import"./firebase-auth-vendor-BiLe07Fo.js";const p=()=>o.jsx("div",{children:"NotFoundPage"});export{p as default};
