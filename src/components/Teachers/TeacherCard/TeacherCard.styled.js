@@ -52,6 +52,8 @@ export const TeacherAvatar = styled.div`
   border: 3px solid ${colors.avatarBorder};
   border-radius: 50%;
   overflow: hidden;
+  background: url(${import.meta.env.BASE_URL}images/user-round.svg) center center no-repeat;
+  background-size: 60%;
 
   img {
     width: 100%;

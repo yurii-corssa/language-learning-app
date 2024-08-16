@@ -77,7 +77,7 @@ const TeacherCard = memo(
         </HeartBtn>
 
         <TeacherAvatar $isOnline={isOnline}>
-          <img src={avatarUrl} alt={fullName} width="96" height="96" />
+          <img src={avatarUrl} alt={fullName} loading="lazy" width="96" height="96" />
         </TeacherAvatar>
 
         <TeacherName>{fullName}</TeacherName>
