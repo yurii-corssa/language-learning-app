@@ -1,8 +1,10 @@
+import { lazy } from "react";
 import { useAuth, useModal } from "../../../hooks";
 import { headerChildVariants, menuChildrenVariants } from "../../../styles/animations";
-import { AuthModal } from "../../Modals";
 import { Button, SvgIcon } from "../../ui";
 import { AuthBtnContainer } from "./AuthBtns.styled";
+
+const AuthModal = lazy(() => import("../../Modals/AuthModal/AuthModal"));
 
 const AuthBtns = ({ type, onCloseMobileMenu }) => {
   const { user, signout } = useAuth();

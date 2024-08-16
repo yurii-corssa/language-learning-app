@@ -1,5 +1,5 @@
 import BookLessonForm from "../../BookLessonForm/BookLessonForm";
-import ModalBody from "../SharedModal/ModalBody/ModalBody";
+import ModalBody from "../ModalContainer/ModalBody/ModalBody";
 import { CurrentTeacher, TeacherAvatarImg } from "./BookLessonModal.styled";
 import { TeacherAvatarThumb, TeacherName, TeacherNameLabel } from "./BookLessonModal.styled";
 

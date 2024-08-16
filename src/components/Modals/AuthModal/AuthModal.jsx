@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LoginForm, ProviderButtons, RegistrationForm } from "../../AuthForms";
-import ModalBody from "../SharedModal/ModalBody/ModalBody";
+import ModalBody from "../ModalContainer/ModalBody/ModalBody";
 import { useModal } from "../../../hooks";
 import { modalContent } from "../../../styles/variables";
 import { RingLoader } from "../../ui";

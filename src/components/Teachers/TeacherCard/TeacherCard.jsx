@@ -1,13 +1,15 @@
 import { DetailedInfo, TeacherSummary, Reviews, Levels } from "./";
-import { forwardRef, memo, useEffect, useState } from "react";
+import { forwardRef, lazy, memo, useEffect, useState } from "react";
 import { addToFavorites, removeFromFavorites } from "../../../api/users";
 import { useModal } from "../../../hooks/useModal";
-import { AuthRequiredModal, BookLessonModal } from "../../Modals";
 import { Button, SvgIcon } from "../../ui";
 import { TeacherAvatar, TeacherCardStyled, TeacherName } from "./TeacherCard.styled";
 import { CardBtn, Experience, HeartBtn, MoreWrapper } from "./TeacherCard.styled";
 import { reviewsVariants, scaleUpVariants, slideUpVariants } from "../../../styles/animations";
 import { AnimatePresence } from "framer-motion";
+
+const AuthRequiredModal = lazy(() => import("../../Modals/AuthRequiredModal/AuthRequiredModal"));
+const BookLessonModal = lazy(() => import("../../Modals/BookLessonModal/BookLessonModal"));
 
 const TeacherCard = memo(
   forwardRef((props, ref) => {

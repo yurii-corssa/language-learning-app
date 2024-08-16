@@ -1,14 +1,13 @@
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-import SharedMobileMenu from "./MobileMenu/MobileMenu";
 import AppContainer from "./AppContainer/AppContainer";
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import { SharedModal } from "./Modals";
 import styled from "styled-components";
-import { RingLoader } from "./ui";
-import Backdrop from "./Backdrop/Backdrop";
 import { breakpoints } from "../styles/variables";
+import SharedMobileMenu from "./SharedMobileMenu";
+import SharedModal from "./SharedModal";
+import LinearIndeterminate from "./ui/LinearIndeterminate/LinearIndeterminate";
 
 const Main = styled.main`
   display: flex;
@@ -31,13 +30,7 @@ const SharedLayout = () => {
         <Header />
 
         <Main>
-          <Suspense
-            fallback={
-              <Backdrop>
-                <RingLoader />
-              </Backdrop>
-            }
-          >
+          <Suspense fallback={<LinearIndeterminate />}>
             <Outlet />
           </Suspense>
         </Main>
