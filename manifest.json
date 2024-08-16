@@ -1,0 +1,18 @@
+{
+  "name": "Language Learning App",
+  "short_name": "LearnLang",
+  "description": "A comprehensive app for learning languages with various interactive features.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F8F8",
+  "theme_color": "#9FBAAE",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "orientation": "portrait-primary",
+  "lang": "en"
+}
