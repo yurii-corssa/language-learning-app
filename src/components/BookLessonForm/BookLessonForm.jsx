@@ -6,15 +6,25 @@ import { AnimatePresence } from "framer-motion";
 import { opacityVariants } from "../../styles/animations";
 import { BookLessonFormStyled, ErrorMessage } from "./BookLessonForm.styled";
 import { FormHeader, InputsWrapper, RadiosWrapper } from "./BookLessonForm.styled";
+import NotificationModal from "../Modals/NotificationModal/NotificationModal";
+import { modalContent } from "../../styles/variables";
 
-const BookLessonForm = ({ closeModal }) => {
+const BookLessonForm = ({ openModal, closeModal }) => {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(bookLessonSchema),
   });
 
   const onSubmit = async (data) => {
     console.log(data);
-    closeModal();
+    openModal(
+      <NotificationModal
+        key="noticeModal"
+        title={modalContent.thankYouModal.title}
+        text={modalContent.thankYouModal.text}
+        svgName="thank-you"
+        onClose={closeModal}
+      />
+    );
   };
 
   return (

@@ -3,7 +3,7 @@ import ModalBody from "../ModalContainer/ModalBody/ModalBody";
 import { CurrentTeacher, TeacherAvatarImg } from "./BookLessonModal.styled";
 import { TeacherAvatarThumb, TeacherName, TeacherNameLabel } from "./BookLessonModal.styled";
 
-const BookLessonModal = ({ teacherData, closeModal }) => {
+const BookLessonModal = ({ teacherData, openModal, closeModal }) => {
   const { name, surname, avatar_url: avatarUrl } = teacherData;
   const fullName = `${name} ${surname}`;
 
@@ -23,7 +23,7 @@ const BookLessonModal = ({ teacherData, closeModal }) => {
         </div>
       </CurrentTeacher>
 
-      <BookLessonForm closeModal={closeModal} />
+      <BookLessonForm openModal={openModal} closeModal={closeModal} />
     </ModalBody>
   );
 };

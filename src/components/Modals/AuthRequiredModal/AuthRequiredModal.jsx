@@ -1,11 +1,9 @@
-import { lazy } from "react";
 import { modalContent } from "../../../styles/variables";
 import { Button } from "../../ui";
 import ModalBody from "../ModalContainer/ModalBody/ModalBody";
 import PagePlaceholder from "../../PagePlaceholder/PagePlaceholder";
 import { BtnWrapper } from "./AuthRequiredModal.styled";
-
-const AuthModal = lazy(() => import("../../Modals/AuthModal/AuthModal"));
+import AuthModal from "../AuthModal/AuthModal";
 
 const baseURL = import.meta.env.BASE_URL;
 
