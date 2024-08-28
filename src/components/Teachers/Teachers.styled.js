@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { colors } from "../../styles/variables";
 
 export const Notification = styled.p`
+  text-align: center;
   font-weight: 500;
+  max-width: 580px;
   color: ${colors.semiTransparent(0.3)};
 `;
 
