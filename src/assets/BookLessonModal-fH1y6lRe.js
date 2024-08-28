@@ -1,4 +1,4 @@
-import{c as h,j as e,m as x}from"./hooks-K7UW4uoY.js";import{M as g,u as f,o as v,b as y}from"./ModalBody-BIEym9nb.js";import{u as o,m as k,e as b,w as l,A as S,o as w,T as m}from"./index-Blcma-hn.js";import"./react-vendor-CibYK_bk.js";import{P as M}from"./TeachersPage-BSZjs8Zv.js";import"./firebase-database-vendor-CbbLdNQs.js";import"./firebase-app-vendor-Dm8EoJqR.js";import"./firebase-auth-vendor-BiLe07Fo.js";import"./SectionContainer-RNjQcKlV.js";const N=o.form`
+import{c as h,j as e,m as x}from"./hooks-K7UW4uoY.js";import{M as g,u as f,o as v,b as y}from"./ModalBody-BrjLGZFk.js";import{u as o,m as k,e as b,w as l,A as S,o as w,T as m}from"./index-ZFOfhqv3.js";import"./react-vendor-CibYK_bk.js";import{P as M}from"./PagePlaceholder-DtpzdRgF.js";import"./firebase-database-vendor-CbbLdNQs.js";import"./firebase-app-vendor-Dm8EoJqR.js";import"./firebase-auth-vendor-BiLe07Fo.js";const N=o.form`
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -41,4 +41,4 @@ import{c as h,j as e,m as x}from"./hooks-K7UW4uoY.js";import{M as g,u as f,o as 
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
-`,G=({teacherData:i,openModal:r,closeModal:a})=>{const{name:t,surname:s,avatar_url:d}=i,n=`${t} ${s}`;return e.jsxs(g,{title:"Book trial lesson",text:"Our experienced tutor will assess your current language level, discuss your learning goals, and tailor the lesson to your specific needs.",children:[e.jsxs(P,{children:[e.jsx(A,{children:e.jsx(R,{src:d,alt:n,width:"44",height:"44"})}),e.jsxs("div",{children:[e.jsx(z,{children:"Your teacher"}),e.jsx(I,{children:n})]})]}),e.jsx(F,{openModal:r,closeModal:a})]})};export{G as default};
+`,D=({teacherData:i,openModal:r,closeModal:a})=>{const{name:t,surname:s,avatar_url:d}=i,n=`${t} ${s}`;return e.jsxs(g,{title:"Book trial lesson",text:"Our experienced tutor will assess your current language level, discuss your learning goals, and tailor the lesson to your specific needs.",children:[e.jsxs(P,{children:[e.jsx(A,{children:e.jsx(R,{src:d,alt:n,width:"44",height:"44"})}),e.jsxs("div",{children:[e.jsx(z,{children:"Your teacher"}),e.jsx(I,{children:n})]})]}),e.jsx(F,{openModal:r,closeModal:a})]})};export{D as default};
