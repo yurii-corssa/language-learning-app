@@ -2,14 +2,12 @@ import { useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 import { Button, DotsLoader, SvgIcon } from "../../ui";
 import { ProviderBtnWrapper } from "./ProviderButtons.styled";
+import { useToast } from "../../../hooks";
 
 const ProviderButtons = ({ onClose, isLoading, setIsLoading }) => {
   const [isSubmittingGoogle, setIsSubmittingGoogle] = useState(false);
   const { signinWithGoogleProvider } = useAuth();
-
-  const setError = ({ message }) => {
-    alert(message);
-  };
+  const { addToast } = useToast();
 
   const handleLogin = async () => {
     setIsLoading(true);
@@ -19,9 +17,7 @@ const ProviderButtons = ({ onClose, isLoading, setIsLoading }) => {
       setIsLoading(false);
       onClose();
     } catch {
-      setError({
-        message: "Authentication error, please try again",
-      });
+      addToast.error("Authentication error, please try again");
       setIsLoading(false);
       setIsSubmittingGoogle(false);
     }

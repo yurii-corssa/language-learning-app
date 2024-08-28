@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { getAllTeachers } from "../api/teachers";
+import { useToast } from "./useToast";
 
 export const useFilterAttributes = () => {
   const [languages, setLanguages] = useState([]);
   const [levels, setLevels] = useState([]);
   const [prices, setPrices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+
+  const { addToast } = useToast();
 
   useEffect(() => {
     const fetch = async () => {
@@ -29,14 +31,15 @@ export const useFilterAttributes = () => {
         setLevels([...levelsSet]);
         setPrices(sortedPrices);
       } catch (error) {
-        setError(error);
+        console.error(error);
+        addToast.error("Something went wrong. Please try again later or refresh the page.");
       } finally {
         setIsLoading(false);
       }
     };
 
     fetch();
-  }, []);
+  }, [addToast]);
 
-  return [languages, levels, prices, isLoading, error];
+  return [languages, levels, prices, isLoading];
 };

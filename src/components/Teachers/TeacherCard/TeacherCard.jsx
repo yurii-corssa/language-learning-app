@@ -7,6 +7,7 @@ import { TeacherAvatar, TeacherCardStyled, TeacherName } from "./TeacherCard.sty
 import { CardBtn, Experience, HeartBtn, MoreWrapper } from "./TeacherCard.styled";
 import { reviewsVariants, scaleUpVariants, slideUpVariants } from "../../../styles/animations";
 import { AnimatePresence } from "framer-motion";
+import { useToast } from "../../../hooks";
 
 const AuthRequiredModal = lazy(() => import("../../Modals/AuthRequiredModal/AuthRequiredModal"));
 const BookLessonModal = lazy(() => import("../../Modals/BookLessonModal/BookLessonModal"));
@@ -18,6 +19,7 @@ const TeacherCard = memo(
     const [isFavorite, setIsFavorite] = useState(false);
     const [error, setError] = useState(null);
     const { openModal, closeModal } = useModal();
+    const { addToast } = useToast();
 
     const { tid, name, surname, avatar_url: avatarUrl } = teacherData;
     const { levels, rating, reviews, languages, conditions, experience } = teacherData;
@@ -39,8 +41,10 @@ const TeacherCard = memo(
     }, [favoriteIds, tid, user]);
 
     useEffect(() => {
-      if (error) alert(error);
-    }, [error]);
+      if (error) {
+        addToast.error("Something went wrong. Please try again later or refresh the page.");
+      }
+    }, [addToast, error]);
 
     const handleFavoriteClick = async () => {
       if (!user) {
@@ -121,6 +125,7 @@ const TeacherCard = memo(
                 <BookLessonModal
                   key="bookLesson"
                   teacherData={teacherData}
+                  openModal={openModal}
                   closeModal={closeModal}
                 />
               )

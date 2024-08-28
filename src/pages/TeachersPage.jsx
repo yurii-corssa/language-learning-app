@@ -6,14 +6,15 @@ import SectionContainer from "../components/SectionContainer/SectionContainer";
 import { TeachersWrapper } from "../components/Teachers/Teachers.styled";
 import { getAllTeachers } from "../api/teachers";
 import Skeleton from "../components/Skeleton/Skeleton";
+import { useToast } from "../hooks";
 
 const TeachersPage = ({ onlyFavorites = false }) => {
   const [teachers, setTeachers] = useState([]);
   const [filters, setFilters] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const { addToast } = useToast();
 
   useEffect(() => {
     const fetchTeachers = async () => {
@@ -21,7 +22,8 @@ const TeachersPage = ({ onlyFavorites = false }) => {
         const newTeachers = await getAllTeachers();
         setTeachers(newTeachers);
       } catch (error) {
-        setError(error);
+        console.error(error);
+        addToast.error("Failed to load data. Please check your connection or try again later.");
       } finally {
         setIsLoading(false);
       }
@@ -29,7 +31,7 @@ const TeachersPage = ({ onlyFavorites = false }) => {
 
     setIsLoading(true);
     fetchTeachers();
-  }, []);
+  }, [addToast]);
 
   useEffect(() => {
     setFilters({
@@ -38,10 +40,6 @@ const TeachersPage = ({ onlyFavorites = false }) => {
       price: searchParams.get("price"),
     });
   }, [searchParams]);
-
-  if (error) {
-    alert(error.message);
-  }
 
   return (
     <SectionContainer>

@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
-import { colors } from "./variables";
+import { breakpoints, colors } from "./variables";
 
 export const GlobalStyle = createGlobalStyle`
 ${normalize}
@@ -85,4 +85,18 @@ input, button, textarea, select {
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
+`;
+
+export const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+
+  @media only screen and (max-width: ${breakpoints.tablet - 1}px) {
+    min-height: calc(100dvh - 68px);
+  }
+  @media only screen and (min-width: ${breakpoints.tablet}px) {
+    min-height: calc(100vh - 88px);
+  }
 `;

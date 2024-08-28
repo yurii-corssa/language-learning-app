@@ -10,7 +10,7 @@ import { FilterBtnWrapper, FilterFormStyled } from "./FilterForm.styled";
 
 const FilterForm = ({ filters, setSearchParams }) => {
   const [showFilter, setShowFilter] = useState(false);
-  const [languages, levels, prices, isLoading, error] = useFilterAttributes();
+  const [languages, levels, prices, isLoading] = useFilterAttributes();
 
   const isMobile = useMediaQuery(`(max-width: ${breakpoints.tablet - 1}px)`);
 
@@ -108,8 +108,6 @@ const FilterForm = ({ filters, setSearchParams }) => {
           </DropdownsWrapper>
         )}
       </AnimatePresence>
-
-      {error && <p>Error: {error.message}</p>}
     </FilterFormStyled>
   );
 };

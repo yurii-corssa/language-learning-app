@@ -5,9 +5,11 @@ import { useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { Button, DotsLoader, TextInput } from "../ui";
 import { FormStyled, InputsWrapper } from "./AuthForms.styled";
+import { useToast } from "../../hooks";
 
 const LoginForm = ({ isLoading, setIsLoading, closeModal }) => {
   const { signin } = useAuth();
+  const { addToast } = useToast();
 
   const { register, handleSubmit, formState, control } = useForm({
     resolver: yupResolver(loginSchema),
@@ -16,6 +18,12 @@ const LoginForm = ({ isLoading, setIsLoading, closeModal }) => {
   useEffect(() => {
     setIsLoading(formState.isSubmitting);
   }, [formState.isSubmitting, setIsLoading]);
+
+  useEffect(() => {
+    if (formState.errors.authentication?.message) {
+      addToast.error(formState.errors.authentication.message);
+    }
+  }, [addToast, formState.errors.authentication]);
 
   const onSubmit = async ({ email, password }) => {
     try {
@@ -27,12 +35,6 @@ const LoginForm = ({ isLoading, setIsLoading, closeModal }) => {
       });
     }
   };
-
-  useEffect(() => {
-    if (formState.errors.authentication?.message) {
-      alert(formState.errors.authentication.message);
-    }
-  }, [formState.errors.authentication]);
 
   return (
     <FormStyled onSubmit={handleSubmit(onSubmit)}>

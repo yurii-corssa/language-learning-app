@@ -4,3 +4,4 @@ export { useFilterAttributes } from "./useFilterAttributes";
 export { useMediaQuery } from "./useMediaQuery";
 export { useModal } from "./useModal";
 export { useSidebar } from "./useSidebar";
+export { useToast } from "./useToast";

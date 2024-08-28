@@ -11,6 +11,8 @@ export const colors = {
   white: "#FFF",
   green: "#38CD3E",
   red: "#FF4D4D",
+  orange: "#FFAA00",
+  blue: "#3C87CD",
   backdrop: "rgba(107, 114, 128, 0.75)",
   semiTransparent: (alpha = 0.5) => `rgba(18, 20, 23, ${alpha})`,
 };
@@ -42,6 +44,10 @@ export const modalContent = {
   authRequiredModal: {
     title: "Authentication Required",
     text: "You need to be logged in to access this feature.",
+  },
+  thankYouModal: {
+    title: "Thank You!",
+    text: "You have successfully booked a trial lesson with your language teacher.",
   },
 };
 
