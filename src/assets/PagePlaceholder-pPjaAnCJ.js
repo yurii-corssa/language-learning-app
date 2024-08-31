@@ -1,4 +1,4 @@
-import{c as t,j as e}from"./hooks-K7UW4uoY.js";import{u as i,m as o}from"./index-ZFOfhqv3.js";const s=i.p`
+import{c as t,j as e}from"./hooks-K7UW4uoY.js";import{u as i,m as o}from"./index-D4rZqIn9.js";const s=i.p`
   text-align: center;
   font-weight: 500;
   max-width: 580px;
