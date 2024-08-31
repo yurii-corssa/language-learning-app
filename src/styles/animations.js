@@ -206,3 +206,16 @@ export const dropdownVariants = {
     },
   },
 };
+
+export const scrollToTopBtnVariants = {
+  visible: {
+    display: "flex",
+    opacity: 1,
+  },
+  hidden: {
+    opacity: 0,
+    transitionEnd: {
+      display: "none",
+    },
+  },
+};

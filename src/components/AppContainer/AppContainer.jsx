@@ -3,6 +3,7 @@ import { useModal, useSidebar } from "../../hooks";
 import { pageScaleVariants } from "../../styles/animations";
 import { AppContainerStyled } from "./AppContainer.styled";
 import { useEffect, useRef } from "react";
+import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
 
 const AppContainer = ({ children }) => {
   const { isSidebarOpen } = useSidebar();
@@ -28,6 +29,7 @@ const AppContainer = ({ children }) => {
       transition={{ duration: 0.3 }}
     >
       {children}
+      <ScrollToTopButton parentRef={containerRef} />
     </AppContainerStyled>
   );
 };
